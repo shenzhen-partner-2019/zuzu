@@ -1,30 +1,15 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 import App from './App.vue'
+import router from './route/index'
 
-Vue.use(VueRouter)
+// 引入全局样式
+import './style/reset.css'
+import './style/common.scss'
+import './style/index.scss'
 
-const Home = { template: '<div><h2>Home Page</h2></div>' }
-const About = { template: '<div><h2>About Page</h2></div>' }
-const Contact = { template: '<div><h2>Contact Page</h2></div>' }
-
-const routes = [
-  { path: '/', component: Home },
-  { path: '/about', component: About },
-  { path: '/contact', component: Contact }
-]
-
-const router = new VueRouter({
-  routes,
-  mode: 'history'
-})
+Vue.config.productionTip = false
 
 new Vue({
-  el: '#app',
-  router,
   render: h => h(App),
-  mounted () {
-    // You'll need this for renderAfterDocumentEvent.
-    document.dispatchEvent(new Event('render-event'))
-  }
-})
+  router,
+}).$mount('#app')

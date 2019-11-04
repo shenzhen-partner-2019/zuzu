@@ -1,0 +1,17 @@
+/*布局相关*/
+
+html, body {
+  height: 100%;
+  min-width: 1180px;
+}
+
+#app {
+  height: 100%;
+  overflow: auto;
+}
+
+.wrap {
+  width: 1180px;
+  margin: auto;
+}
+  
