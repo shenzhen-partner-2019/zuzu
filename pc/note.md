@@ -9,3 +9,16 @@
 ### 全局提示
 
 ### 浏览器兼容性测试
+
+
+
+
+### 每次打开代码先 git pull
+
+### git add .
+
+### git commit -m '备注的提交信息'
+
+###  git pull
+
+### git push origin master:master
