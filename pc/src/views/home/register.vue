@@ -3,38 +3,48 @@
         <div class='popContainer'></div>
         <div class="popContent">
                 <div @click="closeBtn" class="close-text">×</div> 
-                <div class="mt15 font-size-26px">手机快速登录</div> 
-                <div class="font-size-12px textDescript">没有帐号，手机快速登录后将为你自动注册帐号</div> 
+                <div class="register-title">
+                    手机号码注册
+                    <div style="float:right;position:relative;top:10px;font-size:14px;">
+                        已有账号？<a class="color-blue curpor">去登录</a>
+                    </div>
+                </div> 
+
                 <div class="error-message">&nbsp;</div> 
 
                 <div class="ivu-input-wrapper">
-                    <input autocomplete="off" type="text" placeholder="请输入手机号" maxlength="11" class="ivu-input" v-model="form.phone"> 
+                    <input type="text" placeholder="请输入手机号" maxlength="11" class="ivu-input" v-model="form.phone"> 
                 </div> 
                 
                 <div class="form_input_item mb20">
-                    <input placeholder="请输入验证码" type="text" v-model="form.imgVerifycode" autocomplete="off">
+                    <input placeholder="请输入验证码" type="text" v-model="form.imgVerifycode">
                     <img style="height:40px;width:120px;" src="https://upassport.ke.com/freshCaptch?t=1573028837812">
                 </div>
 
-                <div class="form_input_item messageverifycode" style="">
-                    <input placeholder="请输入短信验证码" type="text" v-model="form.phoneVerifycode" autocomplete="off">
+                <div class="form_input_item messageverifycode mb20" >
+                    <input placeholder="请输入短信验证码" type="text" v-model="form.phoneVerifycode">
                     <span class="send_messageverifycode">
                         <em @click="getVerifycode">获取验证码</em>
                     </span>
                 </div>
 
-                <label class="ivu-checkbox-wrapper ivu-checkbox-wrapper-checked ivu-checkbox-default" style="margin-top: 25px;">
+                <div class="ivu-input-wrapper password-wrapper">
+                    <input type="text" placeholder="请输入密码" class="ivu-input password_input" v-model="form.password"> 
+                    <em class="password-view"></em>
+                </div> 
+
+                <label class="ivu-checkbox-wrapper mt25">
                     <span class="ivu-checkbox">
                       <span class="ivu-checkbox-inner"> 
                       </span> 
                       <input type="checkbox" v-model="form.isCheckbox" class="ivu-checkbox-input">
                     </span> 
-                    7天内免登录
+                    我已阅读并同意<a class="readTextColor" href="https://www.ke.com/zhuanti/protocol" target="_blank">《隐私政策》</a>
                 </label> 
 
                 <div class="login_btn">
                   <button type="button" class="button" @click="loginBtn"> 
-                    登录
+                    注册
                   </button>
                 </div>
                
@@ -53,13 +63,14 @@ export default {
             phone: '',
             imgVerifycode:'',
             phoneVerifycode: '',
+            password:'',
             isCheckbox:true,
         },
       }
     },
     methods:{
       closeBtn(){
-        this.$emit("close_login",false)
+        this.$emit("close_register",false)
       },
       //获取验证码
       getVerifycode(){
@@ -101,6 +112,11 @@ export default {
     margin-top: -230px;
     margin-left: -190px;
     box-sizing: border-box;
+    .register-title{
+        margin-top:15px;
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
     .close-text{
       text-align: right;
       cursor: pointer;
@@ -118,6 +134,9 @@ export default {
       margin-bottom: 8px;
       font-size: 12px;
     }
+    .password-wrapper.ivu-input-wrapper{
+
+    }
     //请输入手机号
     .ivu-input-wrapper {
       display: inline-block;
@@ -125,6 +144,15 @@ export default {
       position: relative;
       vertical-align: middle;
       line-height: normal;
+     
+      //密码图片
+    //  .password-view {
+    //     cursor: pointer;
+    //     display: inline-block;
+    //     width: 18px;
+    //     height: 12px;
+    //     background-image: url("../../../public/img/lookPassword.png");
+    //  }
       .ivu-input {
         border-radius: 0!important;
         padding: 20px;
@@ -132,7 +160,6 @@ export default {
         display: inline-block;
         width: 100%;
         line-height: 1.5;
-        /* padding: 4px 7px; */
         font-size: 12px;
         border: 1px solid #dcdee2;
         border-radius: 2px;
@@ -210,6 +237,9 @@ export default {
           cursor: pointer;
           // opacity: 0;
         }
+      }
+      .readTextColor {
+        color: #3072F6;
       }
     }
     //按钮
