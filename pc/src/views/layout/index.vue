@@ -1,8 +1,8 @@
 <template>
   <div class="zuzu">
     <!-- 头部区域 -->
-    <header-bar></header-bar>
-    <nav-bar v-show="navbarVisible"></nav-bar>
+    <header-bar class="g-header"></header-bar>
+    <nav-bar v-show="navbarVisible" class="g-navbar"></nav-bar>
     <!-- 主体内容 路由切换-->
     <router-view></router-view>
     <!-- 底部区域 -->
@@ -47,6 +47,12 @@ export default {
 <style lang="scss">
 .zuzu {
   width: 100%;
+}
+.g-header {
+  margin-bottom: 24px;
+}
+.g-navbar {
+  margin-bottom: 14px;
 }
 </style>
 
