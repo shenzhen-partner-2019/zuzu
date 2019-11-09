@@ -9,7 +9,7 @@
         <ul class="shareBox" style="overflow:hidden;">
             <li v-for="(item,i) in leaseData.leaseListData" :key="i">
                 <a>
-                    <div class="shareBox-img">
+                    <div class="shareBox-img" @click="goOfficeDetail(item.id)">
                         <img :src="item.imgUrl" :title="item.title">
                     </div>
                     <div class="houseBox-about">
@@ -47,7 +47,10 @@ export default {
         }
     },
     methods:{
-
+        goOfficeDetail(id){
+            console.log(id)
+            this.$router.push({path:'/zuzu/office-detail',query: {id:id}})
+        }
     },
 
 }
@@ -136,15 +139,11 @@ export default {
                 img {
                     width: 280px;
                     height: 210px;
+                    transition: all 0.6s;
                 }
                 &:hover img{
-                    width: 330px;
-                    height: 230px;
                     border-radius: 4px;
-                    transform: scale(1);
-                    -webkit-transform: scale(1);
-                    -webkit-transition: opacity .35s,-webkit-transform .35s;
-                    transition: opacity .35s,transform .35s;
+                    transform: scale(1.1);
                 }
             }
             //文本

@@ -6,7 +6,7 @@
                 <div class="register-title">
                     手机号码注册
                     <div style="float:right;position:relative;top:10px;font-size:14px;">
-                        已有账号？<a class="color-blue curpor">去登录</a>
+                        已有账号？<a class="color-blue curpor" @click="goLogin">去登录</a>
                     </div>
                 </div> 
 
@@ -69,6 +69,10 @@ export default {
       }
     },
     methods:{
+      //去登陆页面
+      goLogin(){
+         this.$parent.login_visible()
+      },
       closeBtn(){
         this.$emit("close_register",false)
       },
