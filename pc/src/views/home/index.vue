@@ -1,5 +1,5 @@
 <template>
-  <div class="Index" style="padding-bottom:200px;">
+  <div class="Index">
     <Header></Header>
     <div class="wrap">
       <!--导航列表-->
@@ -56,22 +56,73 @@
           </li>
         </ul>
       </div>
-
+      <!--共享办公-->
+      <Loufan :leaseData="sharedOffice"></Loufan>
+      <!--精选写字楼-->
+      <Loufan :leaseData="officeBuild"></Loufan>
+      <!--热门房源-->
+      <div class="likeMore">
+        <a href="/sz/house-list/" target="_blank">更多深圳办公房源</a>
+      </div>
     </div>
+    <!--底部-->
+    <Footerbar></Footerbar>
   </div>
 </template>
 
 <script>
+import img1 from "../../../public/img/jbyHzZa7if.jpg"
+import img2 from "../../../public/img/HTTFbecaxx.jpg"
+import img3 from "../../../public/img/ihjkc5sGPe.jpg"
+import img4 from "../../../public/img/BFM77c4RRd.jpg"
+import officeBuild1 from "../../../public/img/officeBuild1jpg.jpg"
+import officeBuild2 from "../../../public/img/officeBuild2.jpg"
+import officeBuild3 from "../../../public/img/officeBuild3.jpg"
+import officeBuild4 from "../../../public/img/officeBuild4.jpg"
+import officeBuild5 from "../../../public/img/officeBuild5.jpg"
+import officeBuild6 from "../../../public/img/officeBuild6.jpg"
+import officeBuild7 from "../../../public/img/officeBuild7.jpg"
+import officeBuild8 from "../../../public/img/officeBuild8.jpg"
 import Header from './header'
+import Footerbar from '../../components/footerbar'
+import Loufan from '../../components/loupanCompent'
 export default {
     name:'home',
     data(){
       return {
-       
+          sharedOffice:{
+            title:"共享办公",
+            discount:"免佣金",
+            descriptContent:"节省开支 提供全方位服务",
+            otherChannel:"开启共享办公之旅",
+            leaseListData:[
+                {imgUrl:img1,title:"深圳yeswedo福保国际·优客工场",houseName:"深圳yeswedo福保国际·优客工场",houseAddress:"福田-保税区",housePrice:"800",unitPrice:" 元/工位/月 "},
+                {imgUrl:img2,title:"深圳yeswedo蛇口国际·优客工场",houseName:"深圳yeswedo蛇口国际·优客工场",houseAddress:"南山-蛇口",housePrice:"1250",unitPrice:" 元/工位/月 "},
+                {imgUrl:img3,title:"WeWork（华润置地大厦）",houseName:"WeWork（华润置地大厦）",houseAddress:"南山-科技园",housePrice:"2100",unitPrice:" 元/工位/月 "},
+                {imgUrl:img4,title:"雷格斯（A8音乐大厦）",houseName:"雷格斯（A8音乐大厦）",houseAddress:"南山-科技园",housePrice:"1220",unitPrice:" 元/工位/月 "}
+            ]
+          },
+          officeBuild:{
+            title:"精选写字楼",
+            descriptContent:"高性价 高格调 超精致",
+            otherChannel:"查看更多",
+            leaseListData:[
+                {imgUrl:officeBuild1,title:"汇海广场",houseName:"汇海广场",houseAddress:"龙华-龙华",housePrice:"80.0",unitPrice:"元/m²⋅月"},
+                {imgUrl:officeBuild2,title:"航盛科技大厦",houseName:"航盛科技大厦",houseAddress:"南山-大冲",housePrice:"68.0",unitPrice:"元/m²⋅月"},
+                {imgUrl:officeBuild3,title:"京地大厦",houseName:"京地大厦",houseAddress:"福田-中心区",housePrice:"168.0",unitPrice:"元/m²⋅月"},
+                {imgUrl:officeBuild4,title:"卓越时代广场",houseName:"卓越时代广场",houseAddress:"福田-中心区",housePrice:"158.0",unitPrice:"元/m²⋅月"},
+                {imgUrl:officeBuild5,title:"中洲大厦",houseName:"中洲大厦",houseAddress:"福田-中心区",housePrice:"185.0",unitPrice:"元/m²⋅月"},
+                {imgUrl:officeBuild6,title:"迈科龙大厦",houseName:"迈科龙大厦",houseAddress:"南山-科技园",housePrice:"58.0",unitPrice:"元/m²⋅月"},
+                {imgUrl:officeBuild7,title:"中海信科技园",houseName:"中海信科技园",houseAddress:"龙岗-布吉",housePrice:"50.0",unitPrice:"元/m²⋅月"},
+                {imgUrl:officeBuild8,title:"中洲控股中心",houseName:"中洲控股中心",houseAddress:"南山-中心区",housePrice:"128.0",unitPrice:"元/m²⋅月"}
+            ]
+          }
       }
     },
     components:{
-      Header
+      Header,
+      Footerbar,
+      Loufan
     }
 }
 </script>
@@ -137,6 +188,28 @@ export default {
         }
       }
     }
+}
+//更多房源
+.likeMore {
+  margin:34px 0px;
+  text-align: center;
+  a {
+    line-height: 38px;
+    height: 38px;
+    width: 218px;
+    margin-top: 0;
+    display: inline-block;
+    border: 1px #f2f2f2 solid;
+    border-radius: 4px;
+    padding: 0 14px;
+    color: #979fa8;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  a:hover {
+    border-color: #f90;
+    color: #f90;
+  }
 }
 
 
