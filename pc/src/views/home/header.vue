@@ -380,6 +380,9 @@ export default {
                   position: relative;
                   a{
                     color:#fff;
+                    &:hover{
+                      color:#f90;
+                    }
                   }
                   .line{
                     margin:0px 8px;  
