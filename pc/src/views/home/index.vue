@@ -3,64 +3,21 @@
     <Header></Header>
     <div class="wrap">
       <!--导航列表-->
-      <div style="height:150px;background-color:yellow;">
-        <ul class="overflow-hidden">
-          <li class="fl">委托找房</li>
-          <li class="fl">投放房源</li>
-          <li class="fl">找办公室</li>
-        </ul>
-      </div>
+      <Nav></Nav>
       <!--热门商圈-->
-      <div class="titleBox">
-          <h1>热门商圈</h1>
-          <span class="s1">享优质配套 与大咖公司为邻</span>
-      </div>
-      <!--热门商圈图片列表-->
-      <div class="businessBox mb20">
-        <ul class="overflow-hidden">
-          <li class="fl">
-            <a href="#">
-                <img src="../../../public/img/d66f66289cb2335d5279d94db1c90270.jpg">
-                <div class="box-txt1">
-                    <h1 class="h1-title">福田中心区</h1>
-                    <p class="p1">福田中心区被誉为“深圳第一区”，集金融、商贸、信息、文化及行政于一体，城市整体功能的聚焦点。</p>
-                </div>
-            </a>
-          </li>
-          <li class="fl">
-            <a href="#">
-                <img src="../../../public/img/d66f66289cb2335d5279d94db1c90270.jpg">
-                <div class="box-txt1">
-                    <h1 class="h1-title">福田中心区</h1>
-                    <p class="p1">福田中心区被誉为“深圳第一区”，集金融、商贸、信息、文化及行政于一体，城市整体功能的聚焦点。</p>
-                </div>
-            </a>
-          </li>
-          <li class="fl">
-            <a href="#">
-                <img src="../../../public/img/d66f66289cb2335d5279d94db1c90270.jpg">
-                <div class="box-txt1">
-                    <h1 class="h1-title">福田中心区</h1>
-                    <p class="p1">福田中心区被誉为“深圳第一区”，集金融、商贸、信息、文化及行政于一体，城市整体功能的聚焦点。</p>
-                </div>
-            </a>
-          </li>
-          <li class="fl">
-            <a href="#">
-                <img src="../../../public/img/d66f66289cb2335d5279d94db1c90270.jpg">
-                <div class="box-txt1">
-                    <h1 class="h1-title">福田中心区</h1>
-                    <p class="p1">福田中心区被誉为“深圳第一区”，集金融、商贸、信息、文化及行政于一体，城市整体功能的聚焦点。</p>
-                </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!--共享办公-->
+      <HotBusinessBox></HotBusinessBox>
+      <!--共享办公/组件-->
       <Loufan :leaseData="sharedOffice"></Loufan>
-      <!--精选写字楼-->
+      <!--精选写字楼/组件-->
       <Loufan :leaseData="officeBuild"></Loufan>
       <!--热门房源-->
+      <div class="titleHotBox">
+        <h1>热门房源</h1>
+        <span class="s1">依托好租大数据 精选热门房源</span>
+      </div>
+      <!--热门房源数据列表/组件-->
+      <HouseResouce></HouseResouce>
+      <!--查看更多-->
       <div class="likeMore">
         <a href="/sz/house-list/" target="_blank">更多深圳办公房源</a>
       </div>
@@ -84,8 +41,11 @@ import officeBuild6 from "../../../public/img/officeBuild6.jpg"
 import officeBuild7 from "../../../public/img/officeBuild7.jpg"
 import officeBuild8 from "../../../public/img/officeBuild8.jpg"
 import Header from './header'
+import Nav from './nav'
+import HotBusinessBox from './hotBusinessBox'
 import Footerbar from '../../components/footerbar'
 import Loufan from '../../components/loupanCompent'
+import HouseResouce from "../../components/houseResource"
 export default {
     name:'home',
     data(){
@@ -96,10 +56,10 @@ export default {
             descriptContent:"节省开支 提供全方位服务",
             otherChannel:"开启共享办公之旅",
             leaseListData:[
-                {imgUrl:img1,title:"深圳yeswedo福保国际·优客工场",houseName:"深圳yeswedo福保国际·优客工场",houseAddress:"福田-保税区",housePrice:"800",unitPrice:" 元/工位/月 "},
-                {imgUrl:img2,title:"深圳yeswedo蛇口国际·优客工场",houseName:"深圳yeswedo蛇口国际·优客工场",houseAddress:"南山-蛇口",housePrice:"1250",unitPrice:" 元/工位/月 "},
-                {imgUrl:img3,title:"WeWork（华润置地大厦）",houseName:"WeWork（华润置地大厦）",houseAddress:"南山-科技园",housePrice:"2100",unitPrice:" 元/工位/月 "},
-                {imgUrl:img4,title:"雷格斯（A8音乐大厦）",houseName:"雷格斯（A8音乐大厦）",houseAddress:"南山-科技园",housePrice:"1220",unitPrice:" 元/工位/月 "}
+                {id:"1223132332",imgUrl:img1,title:"深圳yeswedo福保国际·优客工场",houseName:"深圳yeswedo福保国际·优客工场",houseAddress:"福田-保税区",housePrice:"800",unitPrice:" 元/工位/月 "},
+                {id:"2223132332",imgUrl:img2,title:"深圳yeswedo蛇口国际·优客工场",houseName:"深圳yeswedo蛇口国际·优客工场",houseAddress:"南山-蛇口",housePrice:"1250",unitPrice:" 元/工位/月 "},
+                {id:"3223132332",imgUrl:img3,title:"WeWork（华润置地大厦）",houseName:"WeWork（华润置地大厦）",houseAddress:"南山-科技园",housePrice:"2100",unitPrice:" 元/工位/月 "},
+                {id:"4223132332",imgUrl:img4,title:"雷格斯（A8音乐大厦）",houseName:"雷格斯（A8音乐大厦）",houseAddress:"南山-科技园",housePrice:"1220",unitPrice:" 元/工位/月 "}
             ]
           },
           officeBuild:{
@@ -107,86 +67,48 @@ export default {
             descriptContent:"高性价 高格调 超精致",
             otherChannel:"查看更多",
             leaseListData:[
-                {imgUrl:officeBuild1,title:"汇海广场",houseName:"汇海广场",houseAddress:"龙华-龙华",housePrice:"80.0",unitPrice:"元/m²⋅月"},
-                {imgUrl:officeBuild2,title:"航盛科技大厦",houseName:"航盛科技大厦",houseAddress:"南山-大冲",housePrice:"68.0",unitPrice:"元/m²⋅月"},
-                {imgUrl:officeBuild3,title:"京地大厦",houseName:"京地大厦",houseAddress:"福田-中心区",housePrice:"168.0",unitPrice:"元/m²⋅月"},
-                {imgUrl:officeBuild4,title:"卓越时代广场",houseName:"卓越时代广场",houseAddress:"福田-中心区",housePrice:"158.0",unitPrice:"元/m²⋅月"},
-                {imgUrl:officeBuild5,title:"中洲大厦",houseName:"中洲大厦",houseAddress:"福田-中心区",housePrice:"185.0",unitPrice:"元/m²⋅月"},
-                {imgUrl:officeBuild6,title:"迈科龙大厦",houseName:"迈科龙大厦",houseAddress:"南山-科技园",housePrice:"58.0",unitPrice:"元/m²⋅月"},
-                {imgUrl:officeBuild7,title:"中海信科技园",houseName:"中海信科技园",houseAddress:"龙岗-布吉",housePrice:"50.0",unitPrice:"元/m²⋅月"},
-                {imgUrl:officeBuild8,title:"中洲控股中心",houseName:"中洲控股中心",houseAddress:"南山-中心区",housePrice:"128.0",unitPrice:"元/m²⋅月"}
+                {id:"1223132332",imgUrl:officeBuild1,title:"汇海广场",houseName:"汇海广场",houseAddress:"龙华-龙华",housePrice:"80.0",unitPrice:"元/m²⋅月"},
+                {id:"2223132332",imgUrl:officeBuild2,title:"航盛科技大厦",houseName:"航盛科技大厦",houseAddress:"南山-大冲",housePrice:"68.0",unitPrice:"元/m²⋅月"},
+                {id:"3223132332",imgUrl:officeBuild3,title:"京地大厦",houseName:"京地大厦",houseAddress:"福田-中心区",housePrice:"168.0",unitPrice:"元/m²⋅月"},
+                {id:"4223132332",imgUrl:officeBuild4,title:"卓越时代广场",houseName:"卓越时代广场",houseAddress:"福田-中心区",housePrice:"158.0",unitPrice:"元/m²⋅月"},
+                {id:"5223132332",imgUrl:officeBuild5,title:"中洲大厦",houseName:"中洲大厦",houseAddress:"福田-中心区",housePrice:"185.0",unitPrice:"元/m²⋅月"},
+                {id:"6223132332",imgUrl:officeBuild6,title:"迈科龙大厦",houseName:"迈科龙大厦",houseAddress:"南山-科技园",housePrice:"58.0",unitPrice:"元/m²⋅月"},
+                {id:"7223132332",imgUrl:officeBuild7,title:"中海信科技园",houseName:"中海信科技园",houseAddress:"龙岗-布吉",housePrice:"50.0",unitPrice:"元/m²⋅月"},
+                {id:"8223132332",imgUrl:officeBuild8,title:"中洲控股中心",houseName:"中洲控股中心",houseAddress:"南山-中心区",housePrice:"128.0",unitPrice:"元/m²⋅月"}
             ]
           }
       }
     },
     components:{
       Header,
+      Nav,
+      HotBusinessBox,
       Footerbar,
-      Loufan
+      Loufan,
+      HouseResouce
     }
 }
 </script>
 
 <style lang="scss" scoped>
-//热门商圈
-.titleBox {
-    // height: 34px;
+//热门房源
+.titleHotBox {
     padding: 34px 0 15px;
     font-size: 0;
     h1 {
-      display: inline-block;
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 34px;
+        display: inline-block;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 34px;
     }
     .s1 {
-      display: inline-block;
-      padding-left: 10px;
-      height: 24px;
-      line-height: 24px;
-      color: #979fa8;
-      font-size: 14px;
-      padding-top: 8px;
-    }
-}
-.businessBox {
-  width: 1200px;
-  font-size: 0;
-  //热门商圈图片列表
-    li {
-      display: inline-block;
-      width: 280px;
-      height: 350px;
-      overflow: hidden;
-      position: relative;
-      margin-right: 20px;
-      border-radius: 4px;
-      .box-txt1 {
-        height: 65px;
-        width: 100%;
-        position: absolute;
-        left: 0;
-        top: 285px;
-        transition: All .4s ease-in-out;
-        -webkit-transition: All .4s ease-in-out;
-        -moz-transition: All .4s ease-in-out;
-        -o-transition: All .4s ease-in-out;
-        .h1-title {
-          padding: 28px 12px 0;
-          line-height: 30px;
-          // background: url(https://web-cdn.haozu.com/static/image/icon/headrpbg3.png) repeat-x;
-          color: #fff;
-          font-size: 18px;
-        }
-        .p1 {
-          padding: 7px 12px 20px;
-          font-size: 14px;
-          line-height: 22px;
-          background: rgba(0,0,0,.7);
-          color: #fff;
-          min-height: 66px;
-        }
-      }
+        display: inline-block;
+        padding-left: 10px;
+        height: 24px;
+        line-height: 24px;
+        color: #979fa8;
+        font-size: 14px;
+        padding-top: 8px;
     }
 }
 //更多房源
@@ -211,6 +133,5 @@ export default {
     color: #f90;
   }
 }
-
 
 </style>

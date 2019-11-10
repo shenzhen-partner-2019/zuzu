@@ -2,6 +2,7 @@
 
 const Home = () => import('../views/home/index.vue')
 const User = () => import('../views/user/index.vue')
+const Login = () => import('../views/home/login.vue')
 
 const Zuzu = () => import('../views/layout/index.vue')
 const Office = () => import('../views/office/index.vue')
@@ -17,7 +18,8 @@ const BMap = () =>import('../views/map/index.vue')
 const routes = [
   {
     component: Home,
-    path: '/'
+    path: '/',
+    redirect: ''
   },
   {
     component: User,
@@ -73,7 +75,11 @@ const routes = [
         name: '地图找房'
       },
     ]
-  }
+  },
+  {
+    component: Login,
+    path: '/login'
+  },
 ]
 
 export default routes

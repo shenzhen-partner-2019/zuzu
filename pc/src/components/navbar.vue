@@ -21,7 +21,7 @@ export default {
     SearchBar
   },
   created() {
-    console.log(this.activePath)
+    // console.log(this.activePath)
   },
   data() {
     return {
@@ -55,7 +55,7 @@ export default {
       deep: true,
       immediate: true,
       handler: function(route) {
-        console.log('route', route)
+        // console.log('route', route)
         // 获取当前菜单项
         this.activePath = route.path
       }

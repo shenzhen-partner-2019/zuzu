@@ -99,6 +99,7 @@
     </div>
   </div>
 </template>
+<<<<<<< HEAD
 <script>
 import { areas, subways } from "../../utils/location.js";
 import {
@@ -291,3 +292,21 @@ export default {
   }
 }
 </style>
+=======
+
+<script>
+export default {
+    data(){
+      return {
+      
+      }
+    },
+    components:{
+     
+    },
+    methods:{
+     
+    }
+}
+</script>
+>>>>>>> eb1bfa4499a3a29245354a1ae2f85dee08a4494d
