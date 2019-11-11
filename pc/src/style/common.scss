@@ -26,6 +26,14 @@
   overflow: hidden;
 }
 
+.clearfix:after {
+  content: "\0020";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
 .show {
   display: block;
 }
