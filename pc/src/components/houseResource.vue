@@ -55,6 +55,49 @@
                         </p>
                     </div>
                 </li>
+                 <li class="clearfix">
+                <div class="imgbox">
+                        <a @click="goOfficeDetail('1')">
+                            <img src="../../public/img/houseResoure1.jpg" alt="南山科技园 大冲商务中心 720平米 精装修 朝东南" title="南山科技园 大冲商务中心 720平米 精装修 朝东南">
+                            <em class="video">video</em>                    
+                        </a>
+                    </div>
+                <div class="list-content fl">
+                        <h1 class="h1-title">
+                            <a  href="https://www.haozu.com/sz/house946509" alt="南山科技园 大冲商务中心 720平米 精装修 朝东南" title="南山科技园 大冲商务中心 720平米 精装修 朝东南">南山科技园 大冲商务中心 720平米 精装修 朝东南</a>
+                        </h1>
+                        <p class="p1">
+                            <a href="/sz_xzl_1002/" target="_blank">大冲商务中心</a>
+                            <i>/</i>
+                            <span class="SLHEMKsUVrdkTz">720</span>m²
+                            <i>/</i>精装修             
+                        </p>
+                        <p class="p1">
+                            <a href="/sz/house-nanshan/">南山</a>&nbsp;-&nbsp;
+                            <a href="/sz/house-nanshan--nanshankejiyuansq/">
+                                南山科技园
+                            </a>
+                            <i>/</i>铜鼓路39号                        
+                            <i>/</i>距离罗宝线高新园站约102米                    
+                        </p>
+                        <p class="p2">有69位用户正在浏览该写字楼房源</p>
+                        <div class="list-price">
+                            <p class="p1">   
+                                <i class="i1"><span class="SLHEMKsUVrdkTz">9.7</span></i>万元/月                                                                                        
+                            </p>
+                            <p class="p2">单价:<span class="SLHEMKsUVrdkTz">135</span>元/m²⋅月</p>
+                            <div class="TagCollection ">
+                                <div class="Collection ">收藏
+                                </div>
+                            </div>
+                        </div>
+                        <p class="p-tag">
+                            <i class="offerTips t1">可注册</i>
+                            <i class="offerTips t2">地铁10分钟</i>
+                            <i class="offerTips t3">热门楼盘</i>
+                        </p>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
