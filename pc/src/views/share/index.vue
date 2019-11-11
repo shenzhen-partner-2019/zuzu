@@ -115,6 +115,12 @@
             <Item ></Item>
           </div>
         </div>
+        <!-- 分页 -->
+        <Paginator
+          class="page-custom"
+          :current.sync="pager.pageIndex"
+          :total="pager.total"
+        ></Paginator>
       </div>
       <div class="list-right">
         <div class="entrust">
@@ -142,7 +148,7 @@
 import { areas, subways } from "../../utils/location.js";
 import Item from "./item/index";
 import QualityItem from './qulity-item/index'
-
+import Paginator from '../../components/paginator'
 import {
   pricelist,
   numOfStafflist,
@@ -152,7 +158,8 @@ import {
 export default {
   components: {
     Item,
-    QualityItem
+    QualityItem,
+    Paginator,
   },
   data() {
     return {
@@ -185,7 +192,13 @@ export default {
       currentdecorateIndex: -1,
 
       sharelist: new Array(10),
-      qualitylist: new Array(10)
+      qualitylist: new Array(10),
+
+      pager: {
+        pageIndex: 1,
+        total: 318,
+        pageSize: 20
+      }
     };
   },
   methods: {
@@ -380,6 +393,10 @@ $blue-theme: #399EDE;
         }
       }
     }
+  }
+  .page-custom {
+    padding-top:30px;
+    margin-bottom: 30px;
   }
   .list-right {
     float: right;
