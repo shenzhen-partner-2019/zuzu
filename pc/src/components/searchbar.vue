@@ -17,6 +17,7 @@
         vertical-align: top;
         width: 281px;
         input {
+          width:100%;
           height: 40px;
           line-height: 40px;
           padding: 0 20px;

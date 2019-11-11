@@ -47,7 +47,7 @@ const routes = [
       {
         component: OfficeDetail,
         path: 'office-detail',
-        name: '出租详情'
+        name: 'office-detail'
       },
       {
         component: LoupanDetail,

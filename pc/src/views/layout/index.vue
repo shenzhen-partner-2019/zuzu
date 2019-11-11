@@ -48,11 +48,8 @@ export default {
 .zuzu {
   width: 100%;
 }
-.g-header {
-  margin-bottom: 24px;
-}
 .g-navbar {
-  margin-bottom: 14px;
+  margin-bottom: 24px;
 }
 </style>
 
