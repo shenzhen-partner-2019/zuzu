@@ -2,23 +2,23 @@
   <div class="we-swiper" :style="{width: width + 'px'}">
     <div class="img-wrap" :style="{width: width + 'px', height: height + 'px'}">
       <div class="img-list">
-        <div class="img-item current"><img src="../../public/img/swiper_01jpg.jpg" alt=""></div>
-        <div class="img-item"><img src="../../public/img/swiper_01jpg.jpg" alt=""></div>
-        <div class="img-item"><img src="../../public/img/swiper_01jpg.jpg" alt=""></div>
+        <div class="img-item" :class="{'current': activeIndex === i}" v-for="(item, i) in list" :key="i">
+          <img :src="item" alt="">
+        </div>
       </div>
       <span></span>
     </div>
     <!-- 缩略图 -->
     <div class="thumbnail">
-      <div class="btn prev"></div>
-      <div class="thumb-list">
-        <div class="thumb-item"><img src="../../public/img/swiper_01jpg.jpg" alt=""></div>
-        <div class="thumb-item"><img src="../../public/img/swiper_01jpg.jpg" alt=""></div>
-        <div class="thumb-item"><img src="../../public/img/swiper_01jpg.jpg" alt=""></div>
-        <div class="thumb-item"><img src="../../public/img/swiper_01jpg.jpg" alt=""></div>
-        <div class="thumb-item"><img src="../../public/img/swiper_01jpg.jpg" alt=""></div>
+      <div class="btn prev" @click="preImg()"></div>
+      <div class="thumb-list-wrap">
+        <div class="thumb-list" :style="{transform: 'translateX('+translateValue+'px)'}">
+          <div class="thumb-item" @click="selectImg(i)" :class="{'active': activeIndex === i}" v-for="(item, i) in list" :key="i" >
+            <img :src="item" alt="">
+          </div>
+        </div>
       </div>
-      <div class="btn next"></div>
+      <div class="btn next" @click="nextImg()"></div>
     </div>
   </div>
 </template>
@@ -68,6 +68,9 @@
         right: 0;
       }
     }
+    .thumb-list-wrap {
+      overflow: hidden;
+    }
     .thumb-list {
       padding: 0 40px;
       white-space: nowrap;
@@ -78,13 +81,20 @@
         margin-right: 9px;
         position: relative;
         overflow: hidden;
+
+        &.active {
+          img {
+            opacity: 1;
+          }
+        }
+
         img {
           width: 100%;
           height: 100%;
+          opacity: 0.4;
         }
       }
     }
-    
   }
 }
 </style>
@@ -92,7 +102,10 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      activeIndex: 0,
+      translateValue: 0
+    };
   },
   props: {
     width: {
@@ -102,6 +115,36 @@ export default {
     height: {
       type: Number,
       default: 500
+    },
+    list: {
+      type: Array,
+      default: []
+    }
+  },
+  watch: {
+    activeIndex: {
+      immediate: true,
+      handler: function(value) {
+        //
+        this.translateValue = -value * 129;
+      }
+    }
+  },
+  methods: {
+    preImg() {
+      if (this.activeIndex === 0) {
+        return;
+      }
+      this.activeIndex = this.activeIndex - 1;
+    },
+    nextImg() {
+      if (this.activeIndex === this.list.length - 1) {
+        return;
+      }
+      this.activeIndex = this.activeIndex + 1;
+    },
+    selectImg(i) {
+      this.activeIndex = i;
     }
   }
 };
