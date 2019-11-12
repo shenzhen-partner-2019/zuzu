@@ -10,15 +10,19 @@
     </div>
     <!-- 缩略图 -->
     <div class="thumbnail">
-      <div class="btn prev" @click="preImg()"></div>
+      <div :class="{'disabled': activeIndex === 0}" class="btn prev" @click="preImg()">
+        <span class="icon icon-prev"></span>
+      </div>
       <div class="thumb-list-wrap">
-        <div class="thumb-list" :style="{transform: 'translateX('+translateValue+'px)'}">
+        <div class="thumb-list" :style="{...transformStyle}">
           <div class="thumb-item" @click="selectImg(i)" :class="{'active': activeIndex === i}" v-for="(item, i) in list" :key="i" >
             <img :src="item" alt="">
           </div>
         </div>
       </div>
-      <div class="btn next" @click="nextImg()"></div>
+      <div :class="{'disabled': activeIndex === list.length - 1}" class="btn next" @click="nextImg()">
+        <span class="icon icon-next"></span>
+      </div>
     </div>
   </div>
 </template>
@@ -67,6 +71,23 @@
       &.next {
         right: 0;
       }
+      &.disabled {
+        cursor: no-drop;
+      }
+      .icon {
+          display: inline-block;
+        height: 16px;
+        width: 16px;
+      }
+      .icon-prev {
+        background: url('../../public/img/left_arrow.png') no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .icon-next {
+        background: url('../../public/img/right_arrow.png') no-repeat;
+        background-size: 100% 100%;
+      }
     }
     .thumb-list-wrap {
       overflow: hidden;
@@ -104,13 +125,17 @@ export default {
   data() {
     return {
       activeIndex: 0,
-      translateValue: 0
+      translateValue: 0,
+      transformStyle: {
+        transform: 'translateX(0)',
+        transition: 'all 1s'
+      }
     };
   },
   props: {
     width: {
       type: Number,
-      default: 710
+      default: 716
     },
     height: {
       type: Number,
@@ -125,8 +150,25 @@ export default {
     activeIndex: {
       immediate: true,
       handler: function(value) {
-        //
-        this.translateValue = -value * 129;
+        let step = 0
+        let length = this.list.length
+        if (length <= 5) {
+          return
+        } else {
+          let step = 0  
+          if (value >= length - 5) {
+            step = length - 5
+          } else {
+            step = value
+          }
+          console.log(step)
+          this.translateValue = 
+          this.transformStyle = {
+            transform: `translateX(${-step * 129}px)`,
+            transition: 'all 1s'
+          }
+        }
+        // this.translateValue = -value * 129;
       }
     }
   },
