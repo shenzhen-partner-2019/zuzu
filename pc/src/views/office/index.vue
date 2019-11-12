@@ -53,7 +53,7 @@
 
 <script>
 import CrumbsCompent from '../../components/crumbsCompent'
-import SelectFiller from './selectFiller'
+import SelectFiller from '../../components/selectFiller'
 import HouseResouce from "../../components/houseResource"
 import QualityItem from '../share/qulity-item/index'
 import Paginator from '../../components/paginator'

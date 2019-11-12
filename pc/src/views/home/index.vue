@@ -19,7 +19,7 @@
       <HouseResouce></HouseResouce>
       <!--查看更多-->
       <div class="likeMore">
-        <a href="/sz/house-list/" target="_blank">更多深圳办公房源</a>
+        <a href="#">更多深圳办公房源</a>
       </div>
     </div>
     <!--底部-->

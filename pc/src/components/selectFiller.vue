@@ -306,7 +306,7 @@ export default {
             vertical-align: middle;
             width: 12px;
             height: 12px;
-            background: url("../../../public/img/close.png") no-repeat;
+            background: url("../../public/img/close.png") no-repeat;
             background-size: 100% 100%;
             cursor: pointer;
           }
@@ -319,7 +319,7 @@ export default {
             vertical-align: middle;
             width: 16px;
             height: 16px;
-            background: url("../../../public/img/delete.png") no-repeat;
+            background: url("../../public/img/delete.png") no-repeat;
             background-size: 100% 100%;
             margin-right: 6px;
           }
