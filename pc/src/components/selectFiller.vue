@@ -43,7 +43,7 @@
                     <a href="/sz/house-list/" class="cur">全部</a>
                     <a href="/sz/house-list/a1/" class="">普通办公</a>
                     <a href="#" class="">共享办公</a>
-                    <a href="#" class="">创意园区</a>
+                    <!-- <a href="#" class="">创意园区</a> -->
                 </div>
             </dd>
         </dl>
@@ -101,15 +101,15 @@
             <dd>
                 <div class="clearfix">
                     <a href="#" class="cur">全部</a>
-                    <a href="#" class="">豪华装修</a>
+                    <!-- <a href="#" class="">豪华装修</a> -->
                     <a href="#" class="">精装修</a>
-                    <a href="#" class="">中等装修</a>
+                    <!-- <a href="#" class="">中等装修</a> -->
                     <a href="#" class="">简装修</a>
                     <a href="#" class="">毛坯</a>                
                 </div>
             </dd>
         </dl>
-        <dl class="clearfix">
+        <!-- <dl class="clearfix">
             <dt>特色：</dt>
             <dd>
                 <div class="clearfix">
@@ -134,7 +134,7 @@
                         <input type="checkbox" class="checkboxClass">整栋</label>
                 </div>
             </dd>
-        </dl>
+        </dl> -->
           <div class="divider-area"></div>
         <dl class="dl dl-selected">
         <dt>已选:</dt>

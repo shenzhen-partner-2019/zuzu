@@ -22,7 +22,7 @@
         </div>
         <div class="list">
           <!--热门房源数据列表/组件-->
-          <HouseResouce></HouseResouce>
+          <HouseResouce :houseResourceData="houseResourceData"></HouseResouce>
         </div>
         <!-- 分页 -->
         <Paginator
@@ -60,6 +60,7 @@ import SelectFiller from '../../components/selectFiller'
 import HouseResouce from "../../components/houseResource"
 import QualityItem from '../share/qulity-item/index'
 import Paginator from '../../components/paginator'
+import HouseResoure from '../../../public/img/houseResoure1.jpg'
 export default {
   data() {
     return {
@@ -69,7 +70,51 @@ export default {
         pageIndex: 1,
         total: 318,
         pageSize: 20
-      }
+      },
+        houseResourceData:[
+                {  id:'loupan2121212',
+                  imgUrl:HouseResoure,
+                  title:'南山科技园 大冲商务中心 720平米 精装修 朝东南',
+                  loupan:'大冲商务中心',
+                  square:'720',
+                  style:'精装修',
+                  qu:'南山',
+                  xian:"南山科技园",
+                  street:'铜鼓路39号',
+                  jl:'距离罗宝线高新园站约102米',
+                  renshu:69,
+                  yuan:'9.7',
+                  danjia:'135',
+                  shoucang:'red',
+                  pTag:[  
+                      {background: '#eff6f5',color: '#a6c5c1',text:'可注册'},
+                      {background: '#f5f2e9',color: '#e4d19e',text:'地铁10分钟'},
+                      {background: '#eef2f8',color: '#a2afc8',text:'热门楼盘'}
+                  ]
+                },
+                { 
+                  id:'loupan3121212',
+                  imgUrl:HouseResoure,
+                  title:'南山科技园 大冲商务中心 720平米 精装修 朝东南',
+                  loupan:'大冲商务中心',
+                  square:'720',
+                  style:'精装修',
+                  qu:'南山',
+                  xian:"南山科技园",
+                  street:'铜鼓路39号',
+                  jl:'距离罗宝线高新园站约102米',
+                  renshu:69,
+                  yuan:'9.7',
+                  danjia:'135',
+                  shoucang:'red',
+                  pTag:[  
+                      {background: '#eff6f5',color: '#a6c5c1',text:'可注册'},
+                      {background: '#f5f2e9',color: '#e4d19e',text:'地铁10分钟'},
+                      {background: '#eef2f8',color: '#a2afc8',text:'热门楼盘'}
+                  ]
+                },
+            ]
+
     };
   },
   components:{

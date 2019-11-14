@@ -16,7 +16,7 @@
         <span class="s1">依托好租大数据 精选热门房源</span>
       </div>
       <!--热门房源数据列表/组件-->
-      <HouseResouce></HouseResouce>
+      <HouseResouce :houseResourceData="houseResourceData"></HouseResouce>
       <!--查看更多-->
       <div class="likeMore">
         <a href="#">更多深圳办公房源</a>
@@ -40,6 +40,7 @@ import officeBuild5 from "../../../public/img/officeBuild5.jpg"
 import officeBuild6 from "../../../public/img/officeBuild6.jpg"
 import officeBuild7 from "../../../public/img/officeBuild7.jpg"
 import officeBuild8 from "../../../public/img/officeBuild8.jpg"
+import HouseResoure from '../../../public/img/houseResoure1.jpg'
 import Header from './header'
 import Nav from './nav'
 import HotBusinessBox from './hotBusinessBox'
@@ -76,7 +77,48 @@ export default {
                 {id:"7223132332",imgUrl:officeBuild7,title:"中海信科技园",houseName:"中海信科技园",houseAddress:"龙岗-布吉",housePrice:"50.0",unitPrice:"元/m²⋅月"},
                 {id:"8223132332",imgUrl:officeBuild8,title:"中洲控股中心",houseName:"中洲控股中心",houseAddress:"南山-中心区",housePrice:"128.0",unitPrice:"元/m²⋅月"}
             ]
-          }
+          },
+          houseResourceData:[
+                {   id:'2121212',
+                  imgUrl:HouseResoure,
+                  title:'南山科技园 大冲商务中心 720平米 精装修 朝东南',
+                  loupan:'大冲商务中心',
+                  square:'720',
+                  style:'精装修',
+                  qu:'南山',
+                  xian:"南山科技园",
+                  street:'铜鼓路39号',
+                  jl:'距离罗宝线高新园站约102米',
+                  renshu:69,
+                  yuan:'9.7',
+                  danjia:'135',
+                  pTag:[  
+                      {background: '#eff6f5',color: '#a6c5c1',text:'可注册'},
+                      {background: '#f5f2e9',color: '#e4d19e',text:'地铁10分钟'},
+                      {background: '#eef2f8',color: '#a2afc8',text:'热门楼盘'}
+                  ]
+                },
+                { 
+                  id:'3121212',
+                  imgUrl:HouseResoure,
+                  title:'南山科技园 大冲商务中心 720平米 精装修 朝东南',
+                  loupan:'大冲商务中心',
+                  square:'720',
+                  style:'精装修',
+                  qu:'南山',
+                  xian:"南山科技园",
+                  street:'铜鼓路39号',
+                  jl:'距离罗宝线高新园站约102米',
+                  renshu:69,
+                  yuan:'9.7',
+                  danjia:'135',
+                  pTag:[  
+                      {background: '#eff6f5',color: '#a6c5c1',text:'可注册'},
+                      {background: '#f5f2e9',color: '#e4d19e',text:'地铁10分钟'},
+                      {background: '#eef2f8',color: '#a2afc8',text:'热门楼盘'}
+                  ]
+                },
+            ]
       }
     },
     components:{
