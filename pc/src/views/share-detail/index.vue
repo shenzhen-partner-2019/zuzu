@@ -21,11 +21,11 @@
             <span class="value ellipsis">世邦魏理仕物业</span>
           </p>
            <p class="info-p">
-            <span class="name">物业费</span>
+            <span class="name">物&nbsp;业&nbsp;费</span>
             <span class="value ellipsis">3-22 元/平方*月含空调</span>
           </p>
           <p class="info-p">
-            <span class="name"> 开发商</span>
+            <span class="name"> 开&nbsp;发&nbsp;商</span>
             <span class="value ellipsis">深圳市城市建设投资发展有限公司</span>
           </p>
         </div>
@@ -45,11 +45,28 @@
           <p>专业客服，实时在线高效服务</p>
           <div class="btn-tel">
             <span class="icon-tel"></span>
-            <span>400-048-1818</span>
+            <span>400-733-2233</span>
           </div>
           <p>租租网承诺保护您的隐私安全</p>
         </div>
       </div>
+    </div>
+    <!-- 房源表格信息 -->
+    <div class="detail-info">
+       <div class="house-table-wrapper">
+        <div class="tab">
+          <a 
+            v-for="(item, i) in tableTablist"
+            :key="i"
+            :class="{'active': activeTableTabIndex === i}"
+            @click="onTableTabClick(i)"
+            href="javascript:;">
+            {{item}}
+            </a>
+        </div>
+        <house-table :tableData="tableData"></house-table>
+      </div>
+      <center-intro></center-intro>
     </div>
   </div>
 </template>
@@ -58,6 +75,7 @@
   .house-preview {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 30px;
     .swiper-custom {
       width: 716px;
     }
@@ -81,7 +99,7 @@
         .info-p {
           font-size: 14px;
           color: #333;
-          margin-bottom: 10px;
+          margin-bottom: 6px;
           span {
             display: inline-block;
           }
@@ -165,12 +183,45 @@
       }
     }
   }
+  .detail-info {
+    width: 716px;
+  }
+  .house-table-wrapper {
+    margin-bottom: 50px;
+    .tab {
+      margin-bottom: 20px;
+      a {
+        position: relative;
+        margin-right: 30px;
+        font-size: 14px;
+        color: #9399a5;
+        line-height: 40px;
+        &.active {
+          color: #399ede;
+          &::after {
+            display: block;
+          }
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          display: none;
+          width: 100%;
+          bottom: 0;
+          height: 2px;
+          background: #399ede;
+        }
+      }
+    }
+  }
 }
 </style>
 
 
 <script>
 import Swiper from "../../components/swiper";
+import HouseTable from './component/house-table'
+import CenterIntro from './component/center-intro'
 export default {
   data() {
     return {
@@ -183,11 +234,58 @@ export default {
         "https://blueprint1453.github.io/zu/img/swiper_06.jpg",
         "https://blueprint1453.github.io/zu/img/swiper_07.jpg",
         "https://blueprint1453.github.io/zu/img/swiper_08.jpg"
-      ]
+      ],
+      tableData: [
+        {
+          img_url: 'https://blueprint1453.github.io/zu/img/swiper_01.jpg',
+          area: 112,
+          people_num: '14-25',
+          decoration:'精装修',
+          orientaion: '东',
+          price: 2581,
+          total_price: 4.13
+        },
+         {
+          img_url: 'https://blueprint1453.github.io/zu/img/swiper_02.jpg',
+          area: 178,
+          people_num: '25-50',
+          decoration:'精装修',
+          orientaion: '东',
+          price: 2281,
+          total_price: 5.5
+        },
+         {
+          img_url: 'https://blueprint1453.github.io/zu/img/swiper_03.jpg',
+          area: 140,
+          people_num: '28-45',
+          decoration:'精装修',
+          orientaion: '东',
+          price: 2381,
+          total_price: 5.12
+        },
+         {
+          img_url: 'https://blueprint1453.github.io/zu/img/swiper_04.jpg',
+          area: 152,
+          people_num: '30-48',
+          decoration:'精装修',
+          orientaion: '东',
+          price: 2641,
+          total_price: 5.3
+        }
+      ],
+      tableTablist: ['全部房源','1人','2-3人','4-10人','10-15人','16-25人','25人以上'],
+      activeTableTabIndex: 0,
     };
   },
   components: {
-    Swiper
+    Swiper,
+    HouseTable,
+    CenterIntro
+  },
+  methods: {
+    onTableTabClick(i) {
+      this.activeTableTabIndex = i
+    }
   }
 };
 </script>
