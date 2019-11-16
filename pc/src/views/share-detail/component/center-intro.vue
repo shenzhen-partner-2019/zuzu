@@ -1,5 +1,6 @@
 <template>
   <div class="center-intro">
+    <h4 class="title">迈思商务中心简介</h4>
     <div class="item base-info">
       <span class="label">基本信息</span>
       <div class="content">
@@ -72,6 +73,12 @@
 
 <style lang="scss" scoped>
 .center-intro {
+  .title {
+    font-size: 20px;
+    color: #222;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
   .item {
     display: flex;
     margin-bottom: 10px;

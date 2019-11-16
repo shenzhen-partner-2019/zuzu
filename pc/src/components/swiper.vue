@@ -1,6 +1,6 @@
 <template>
   <div class="we-swiper" :style="{width: width + 'px'}">
-    <div class="img-wrap" :style="{width: width + 'px', height: height + 'px'}">
+    <div class="img-wrap" :style="{width: width + 'px'}">
       <div class="img-list">
         <div class="img-item" :class="{'current': activeIndex === i}" v-for="(item, i) in list" :key="i">
           <img :src="item" alt="">
@@ -30,6 +30,7 @@
 <style lang="scss" scoped>
 .we-swiper {
   .img-wrap {
+    margin-bottom: 14px;
     .img-list {
       position: relative;
       overflow: hidden;

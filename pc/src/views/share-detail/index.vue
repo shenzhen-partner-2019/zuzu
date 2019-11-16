@@ -1,7 +1,11 @@
 <template>
   <div class="share-detail wrap">
+    <div class="share-title">
+      <h2>迈思商务中心(深城投中心)</h2>
+      <span class="save-btn">关注房源</span>
+    </div>
     <div class="house-preview">
-      <swiper class="swiper-custom" :list="swiperlist"></swiper>
+      <swiper class="swiper-custom" ref="swiper" :list="swiperlist"></swiper>
       <div class="house-info">
         <div class="price">
           <span>2250-2885</span>
@@ -49,11 +53,14 @@
           </div>
           <p>租租网承诺保护您的隐私安全</p>
         </div>
+
+         <fixed-book :class="fixedBookStyle"></fixed-book>
+
       </div>
     </div>
     <!-- 房源表格信息 -->
     <div class="detail-info">
-       <div class="house-table-wrapper">
+       <!-- <div class="house-table-wrapper">
         <div class="tab">
           <a 
             v-for="(item, i) in tableTablist"
@@ -65,13 +72,63 @@
             </a>
         </div>
         <house-table :tableData="tableData"></house-table>
+      </div> -->
+      <center-intro class="center-info-custom"></center-intro>
+      <div class="building-info-wrapper">
+         <building-intro></building-intro>
       </div>
-      <center-intro></center-intro>
+    </div>
+     <div class="around">
+        <h4 class="title">周边信息</h4>
+        <div :style="{height: '510px',border: '1px solid #ccc'}"></div>
+      </div>
+    <div class="book">
+      <h4 class="title">预约看房</h4>
+      <div class="book-area">
+        <div class="left">
+          <p class="">委托租租网，省心找办公室</p>
+          <p><span class="icon-tel"></span>400-733-2233</p>
+        </div>
+        <div class="right">
+          <div class="right-inner">
+            <input class="input input-tel" type="text" placeholder="请输入手机号码">
+            <textarea rows="2" class="input input-text" ></textarea>
+            <div class="btn">立即预约</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
 .share-detail {
+  .share-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    .save-btn {
+      height: 44px;
+      line-height: 44px;
+      width: 120px;
+      text-align: center;
+      background: #399ede;
+      border-radius: 2px;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    h2 {
+      font-size: 26px;
+      font-weight: bold;
+    }
+  }
+  .title {
+    font-size: 20px;
+    color: #222;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
   .house-preview {
     display: flex;
     justify-content: space-between;
@@ -203,7 +260,7 @@
           }
         }
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           display: none;
           width: 100%;
@@ -214,14 +271,112 @@
       }
     }
   }
+  .center-info-custom {
+    margin-bottom: 50px;
+  }
+  .around {
+    margin-bottom: 50px;
+  }
+  .book {
+    margin-bottom: 40px;
+    .book-area {
+      display: flex;
+      height: 232px;
+      background: url("../../../public/img/concat-us.png") no-repeat;
+      background-size: 100% 100%;
+      .left {
+        width: 50%;
+        padding-left: 40px;
+        padding-top: 72px;
+        font-size: 32px;
+        color: #fff;
+        font-weight: bold;
+        p {
+          margin-bottom: 16px;
+          .icon-tel {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: url("../../../public/img/tel_white.png") no-repeat;
+            background-size: 100% 100%;
+            margin-right: 6px;
+          }
+        }
+      }
+      .right {
+        width: 50%;
+        padding-top: 30px;
+        padding-left: 84px;
+        .right-inner {
+          width: 368px;
+        }
+        .input {
+          display: block;
+          width: 100%;
+          background: none;
+          border: 1px solid #fff;
+          margin-bottom: 12px;
+          font-size: 14px;
+          color: #fff;
+          border-radius: 2px;
+          &::placeholder {
+            color: #fff;
+          }
+        }
+        .input-tel {
+          height: 40px;
+          padding: 14px;
+        }
+        .input-text {
+          padding: 14px;
+          line-height: 20px;
+          outline: none;
+        }
+        .btn {
+          background: #f5f5f6;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          border-radius: 2px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .building-info-wrapper {
+    position: relative;
+  }
+  .fixed-book-custom {
+    display: none;
+     position: fixed;
+      top: 70px;
+      z-index: 100;
+   
+    // right: -436px;
+    &.show {
+      display: block;
+    }
+    &.pos-absolute {
+      position: absolute;
+    }
+    // &.fixed {
+    //   position: fixed;
+    //   top: 70px;
+    //   z-index: 100;
+    //   // right: 0;
+    // }
+  }
 }
 </style>
 
 
 <script>
 import Swiper from "../../components/swiper";
-import HouseTable from './component/house-table'
-import CenterIntro from './component/center-intro'
+import HouseTable from "./component/house-table";
+import CenterIntro from "./component/center-intro";
+import BuildingIntro from "./component/building-intro";
+import FixedBook from "./component/fixed-book";
+
 export default {
   data() {
     return {
@@ -237,54 +392,84 @@ export default {
       ],
       tableData: [
         {
-          img_url: 'https://blueprint1453.github.io/zu/img/swiper_01.jpg',
+          img_url: "https://blueprint1453.github.io/zu/img/swiper_01.jpg",
           area: 112,
-          people_num: '14-25',
-          decoration:'精装修',
-          orientaion: '东',
+          people_num: "14-25",
+          decoration: "精装修",
+          orientaion: "东",
           price: 2581,
           total_price: 4.13
         },
-         {
-          img_url: 'https://blueprint1453.github.io/zu/img/swiper_02.jpg',
+        {
+          img_url: "https://blueprint1453.github.io/zu/img/swiper_02.jpg",
           area: 178,
-          people_num: '25-50',
-          decoration:'精装修',
-          orientaion: '东',
+          people_num: "25-50",
+          decoration: "精装修",
+          orientaion: "东",
           price: 2281,
           total_price: 5.5
         },
-         {
-          img_url: 'https://blueprint1453.github.io/zu/img/swiper_03.jpg',
+        {
+          img_url: "https://blueprint1453.github.io/zu/img/swiper_03.jpg",
           area: 140,
-          people_num: '28-45',
-          decoration:'精装修',
-          orientaion: '东',
+          people_num: "28-45",
+          decoration: "精装修",
+          orientaion: "东",
           price: 2381,
           total_price: 5.12
         },
-         {
-          img_url: 'https://blueprint1453.github.io/zu/img/swiper_04.jpg',
+        {
+          img_url: "https://blueprint1453.github.io/zu/img/swiper_04.jpg",
           area: 152,
-          people_num: '30-48',
-          decoration:'精装修',
-          orientaion: '东',
+          people_num: "30-48",
+          decoration: "精装修",
+          orientaion: "东",
           price: 2641,
           total_price: 5.3
         }
       ],
-      tableTablist: ['全部房源','1人','2-3人','4-10人','10-15人','16-25人','25人以上'],
+      tableTablist: [
+        "全部房源",
+        "1人",
+        "2-3人",
+        "4-10人",
+        "10-15人",
+        "16-25人",
+        "25人以上"
+      ],
       activeTableTabIndex: 0,
+      fixedBookStyle: 'fixed-book-custom'
     };
   },
   components: {
     Swiper,
     HouseTable,
-    CenterIntro
+    CenterIntro,
+    BuildingIntro,
+    FixedBook
+  },
+  mounted() {
+    let swiper = this.$refs.swiper
+    let swiperHeight = swiper.offsetHeight
+    document.querySelector('#app').addEventListener('scroll', (e) => {
+       let swiper = this.$refs.swiper
+      //  console.log(swiper.$el.scrollHeight)
+       let swiperHeight = swiper.$el.scrollHeight
+      console.log(e.target.scrollTop)
+      let scrollTop = e.target.scrollTop
+      
+     if(scrollTop > 1080){
+       this.fixedBookStyle = ''
+     } else  if (scrollTop > swiperHeight) {
+        this.fixedBookStyle = 'show'
+      } else {
+        this.fixedBookStyle = 'fixed-book-custom'
+      }
+    })
   },
   methods: {
     onTableTabClick(i) {
-      this.activeTableTabIndex = i
+      this.activeTableTabIndex = i;
     }
   }
 };
