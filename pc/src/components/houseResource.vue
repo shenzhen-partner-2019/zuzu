@@ -279,7 +279,7 @@ export default {
                                 width: auto;
                                 display: block;
                                 color: #3f454b;
-                                height: 26px;
+                                height: 30px;
                                 overflow: hidden;
                                 white-space: nowrap;
                                 text-overflow: ellipsis;
