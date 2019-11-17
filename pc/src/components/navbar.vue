@@ -72,24 +72,28 @@ export default {
   margin-top: 24px;
   // margin-bottom: 5px;
   .nav {
-    height: 40px;
+    height: 30px;
     overflow: hidden;
   }
   .logo {
+    height: 30px;
     display: inline-block;
-    margin-right: 40px;
+    margin-right: 30px;
     vertical-align: top;
+    img {
+      height: 100%;
+    }
   }
   .nav-list {
     display: inline-block;
-    height: 40px;
+    height: 30px;
     vertical-align: top;
     padding-top: 10px;
     a {
       display: inline-block;
-      height: 30px;
-      line-height: 30px;
-      font-size: 16px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 14px;
       margin-right: 30px;
       &.active {
         color: $btn-color;

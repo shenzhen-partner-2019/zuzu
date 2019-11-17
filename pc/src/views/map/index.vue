@@ -1,5 +1,5 @@
 <template>
-  <div class="zuzu">
-    <h2>map page</h2>
+  <div class="map-house">
+    
   </div>
 </template>

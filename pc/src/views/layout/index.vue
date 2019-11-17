@@ -6,7 +6,7 @@
     <!-- 主体内容 路由切换-->
     <router-view></router-view>
     <!-- 底部区域 -->
-    <footer-bar></footer-bar>
+    <footer-bar v-show="footerVisible"></footer-bar>
   </div>
 </template>
 <script>
@@ -25,7 +25,8 @@ export default {
   data() {
     return {
       navbarVisible: true,
-      activePath: ''
+      activePath: '',
+      footerVisible: true,
     }
   },
   watch: {
@@ -37,6 +38,9 @@ export default {
         let path = route.path
         if (path === "/zuzu/weituo") {
           this.navbarVisible = false
+        }
+        if (path === '/zuzu/map') {
+          this.footerVisible = false
         }
       }
     }

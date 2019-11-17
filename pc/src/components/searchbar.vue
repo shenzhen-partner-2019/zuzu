@@ -18,8 +18,8 @@
         width: 280px;
         input {
           width: 100%;
-          height: 40px;
-          line-height: 40px;
+          height: 30px;
+          line-height: 30px;
           padding: 0 20px;
           border: 1px solid #efefef;
           border-right: 0;
@@ -29,13 +29,13 @@
       .search-btn {
          display: inline-block;
          width: 48px;
-         height: 40px;
+         height: 30px;
          background: orange;
          border-radius: 0 4px 4px 0;
          text-align: center;
          img {
-           height: 32px;
-           width: 32px;
+           height: 24px;
+           width:24px;
            margin-top: 4px;
          }
       }
