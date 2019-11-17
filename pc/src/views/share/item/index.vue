@@ -1,12 +1,12 @@
 <template>
   <div class="share-item">
     <div class="item-left">
-      <a href="javascript:;">
+      <a href="/zuzu/share-detail">
         <img src="../../../../public/img/share_item_01.jpg" alt="">
       </a>
     </div>
     <div class="item-right">
-      <h4>寰图（航天科技广场）</h4>
+      <h4><a href="/zuzu/share-detail">寰图（航天科技广场）</a></h4>
       <p class="p1">
         <span class="icon"></span>
         <span>12种户型在租</span>

@@ -80,7 +80,9 @@
     </div>
      <div class="around">
         <h4 class="title">周边信息</h4>
-        <div :style="{height: '510px',border: '1px solid #ccc'}"></div>
+        <div :style="{border: '1px solid #ccc'}">
+          <baidu-map :height="510"></baidu-map>
+        </div>
       </div>
     <div class="book">
       <h4 class="title">预约看房</h4>
@@ -376,7 +378,7 @@ import HouseTable from "./component/house-table";
 import CenterIntro from "./component/center-intro";
 import BuildingIntro from "./component/building-intro";
 import FixedBook from "./component/fixed-book";
-
+import BaiduMap from '../../components/baidu-map'
 export default {
   data() {
     return {
@@ -446,26 +448,27 @@ export default {
     HouseTable,
     CenterIntro,
     BuildingIntro,
-    FixedBook
+    FixedBook,
+    BaiduMap
   },
   mounted() {
-    let swiper = this.$refs.swiper
-    let swiperHeight = swiper.offsetHeight
-    document.querySelector('#app').addEventListener('scroll', (e) => {
-       let swiper = this.$refs.swiper
-      //  console.log(swiper.$el.scrollHeight)
-       let swiperHeight = swiper.$el.scrollHeight
-      console.log(e.target.scrollTop)
-      let scrollTop = e.target.scrollTop
+    // let swiper = this.$refs.swiper
+    // let swiperHeight = swiper.offsetHeight
+    // document.querySelector('#app').addEventListener('scroll', (e) => {
+    //    let swiper = this.$refs.swiper
+    //   //  console.log(swiper.$el.scrollHeight)
+    //    let swiperHeight = swiper.$el.scrollHeight
+    //   console.log(e.target.scrollTop)
+    //   let scrollTop = e.target.scrollTop
       
-     if(scrollTop > 1080){
-       this.fixedBookStyle = ''
-     } else  if (scrollTop > swiperHeight) {
-        this.fixedBookStyle = 'show'
-      } else {
-        this.fixedBookStyle = 'fixed-book-custom'
-      }
-    })
+    //  if(scrollTop > 1080){
+    //    this.fixedBookStyle = ''
+    //  } else  if (scrollTop > swiperHeight) {
+    //     this.fixedBookStyle = 'show'
+    //   } else {
+    //     this.fixedBookStyle = 'fixed-book-custom'
+    //   }
+    // })
   },
   methods: {
     onTableTabClick(i) {

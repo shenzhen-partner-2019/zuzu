@@ -55,6 +55,7 @@
       a {
         color: #2e2e2e;
         display: inline;
+        cursor: pointer;
       }
     }
      .price{
