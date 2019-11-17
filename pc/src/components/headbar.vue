@@ -65,10 +65,9 @@
         </div>
         <div class="site-con fl">
           <router-link to="/">首页</router-link>
-          <router-link to="/zuzu/office" class="cur">写字楼出租</router-link>    
-          <i class="i2">·</i>
-          <a class="">出售</a>               
-          <router-link to="/zuzu/share">共享办公</router-link>               <a class="">资讯</a>
+          <router-link to="/zuzu/office" class="cur">写字楼出租</router-link>                  
+          <router-link to="/zuzu/share">共享办公</router-link>               
+          <a class="">资讯</a>
           <a>好租商城<em class="icon em1">礼物</em></a>
         </div>
         <div class="site-right fr">

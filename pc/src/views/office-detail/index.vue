@@ -147,10 +147,16 @@
                         </li>
                     </ul>
                      <!--预约-->
-                    <div class="telBox clearfix">
-                        <span class="s1">免费咨询</span>
-                        <span class="s2">400 668 1219</span>
-                    </div>
+                        <div class="tel-book">
+                            <p class="strong">免费预约</p>
+                            <p>专业客服，实时在线高效服务</p>
+                            <div class="btn-tel">
+                                <span class="icon-tel"></span>
+                                <span>400-733-2233</span>
+                            </div>
+                            <p>租租网承诺保护您的隐私安全</p>
+                        </div>
+                 
                 </div>
         </div>
 
@@ -298,11 +304,34 @@
         </ul>
 
         <div class="map-img">
-
+            <div :style="{border: '1px solid #ccc'}">
+                <baidu-map :height="510"></baidu-map>
+            </div>
         </div>
 
     </div>
 </template>
+
+<script>
+import BaiduMap from '../../components/baidu-map'
+export default {
+  data() {
+    return {
+
+    }
+  },
+  components: {
+    BaiduMap
+  },
+  mounted() {
+ 
+  },
+  methods: {
+   
+  }
+};
+</script>
+
 
 <style lang="scss" scoped>
   .office-detail{
@@ -622,30 +651,39 @@
             }
         }
          //预约
-        .telBox {
-            height: 34px;
-            border-radius: 4px;
-            line-height: 34px;
-            margin-top: 18px;
-            background: #f73a3a;
-            font-size: 0;
-            display: inline-block;
-            .s1 {
-                display: inline-block;
-                padding: 0 10px;
-                background: #d92121;
-                font-size: 14px;
-                border-radius: 4px;
-                color: #fff;
-                vertical-align: top;
+        .tel-book {
+            padding-top:20px;
+            p {
+                color: #999;
+                font-size: 12px;
+                line-height: 28px;
             }
-            .s2 {
-                display: inline-block;
-                padding: 0 10px;
-                font-size: 16px;
-                font-weight: 700;
-                font-family: Arial;
-                color: #fff;
+            .strong {
+                font-size: 24px;
+                line-height: 24px;
+                color: #333;
+            }
+            .btn-tel {
+                height: 54px;
+                border-radius: 2px;
+                border: 1px solid #399ede;
+                color: #399ede;
+                font-weight: bold;
+                font-size: 28px;
+                text-align: center;
+                line-height: 50px;
+                margin-top: 10px;
+                span {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                .icon-tel {
+                    width: 24px;
+                    height: 24px;
+                    background: url("../../../public/img/icon_tel.png") no-repeat;
+                    background-size: 100% 100%;
+                    margin-right: 4px;
+                }
             }
         }
     }
@@ -804,9 +842,9 @@
     }
     //地图
     .map-img{
-        height: 500px;
-        width:100%;
-        background:red;
+        // height: 500px;
+        // width:100%;
+        // background:red;
         margin-bottom: 30px;
     }
   }
