@@ -100,13 +100,13 @@
     <div class="wrap share-list clear">
       <div class="list-left">
         <div class="tab-nav">
-          <a href="javascript:;">
+          <a href="javascript:;" :class="{selected: activeTab === 0}" @click="onSelectTab(0)">
            <span>默认排序</span>
           </a>
-           <a href="javascript:;">
-            <span>价格</span>
-            <span></span>
-            <span></span>
+           <a href="javascript:;" :class="{selected: activeTab === 1}" @click="onSelectTab(1)">
+            <span class="text">价格</span>
+            <span class="icon-up" v-show="activeTab === 0 || sortType === 1" @click.stop="toggleSortType(1)"></span>
+            <span class="icon-down" v-show="activeTab === 0 || sortType === 0" @click.stop="toggleSortType(0)"></span>
           </a>
           <span class="total">共有<strong>328</strong>个网点满足您的需求</span>
         </div>
@@ -193,6 +193,10 @@ export default {
 
       sharelist: new Array(10),
       qualitylist: new Array(10),
+       
+      //  tab切换
+      activeTab: 0, // 0 1
+      sortType: 0, // 0-降序 1-升序
 
       pager: {
         pageIndex: 1,
@@ -236,7 +240,26 @@ export default {
     },
     selectDecorateStatus(i) {
       this.currentdecorateIndex = i;
-    }
+    },
+     onSelectTab(index) {
+      if (index === 1 && this.activeTab === 1) {
+        this.sortType = this.sortType === 0 ? 1 : 0
+      } else if (index === 1 && this.activeTab === 0) {
+        this.sortType = 0
+      }
+      this.activeTab = index;
+      if (index === 0) {
+        this.sortType = 0
+      }
+    },
+    toggleSortType(type) {
+      if (this.activeTab === 0) {
+        this.sortType = type
+        this.activeTab = 1
+      } else if (this.activeTab === 1) {
+        this.sortType = this.sortType === 0 ? 1 : 0
+      }
+    },
   }
 };
 </script>
@@ -368,15 +391,35 @@ $blue-theme: #399EDE;
       a {
         margin-right: 10px;
         padding: 0 10px;
-        background: #f5f8ff;
         color: #999;
         font-size: 12px;
         &:hover {
           color: #fb3;
+          background: #f5f8ff;
         }
         &.selected {
           background: #f5f8ff;
-          color: #999;
+          color: #fb3;
+        }
+        .text {
+          margin-right: 4px;
+        }
+        .icon-up {
+          display: inline-block;
+          height: 12px;
+          width: 12px;
+          background: url('../../../public/img/sort_up.png') no-repeat;
+          background-size: 100% 100%;
+          vertical-align: -2px;
+          margin-right: 2px;
+        }
+        .icon-down {
+          display: inline-block;
+          height: 12px;
+          width: 12px;
+          background: url('../../../public/img/sort_down.png') no-repeat;
+          background-size: 100% 100%;
+          vertical-align: -2px;
         }
       }
       .total {

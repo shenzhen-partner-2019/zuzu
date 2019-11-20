@@ -15,9 +15,9 @@
       <div class="tab">
         <div class=" tab-item" :class="{active: activeTab === 0}" @click="onSelectTab(0)"><span>默认</span></div>
         <div class="tab-item" :class="{active: activeTab === 1}" @click="onSelectTab(1)">
-          <span>按价格</span>
-          <span class="up"></span>
-          <span class="down"></span>
+          <span class="text">按价格</span>
+          <span class="icon-up" v-show="activeTab === 0 || sortType === 1" @click.stop="toggleSortType(1)"></span>
+          <span class="icon-down" v-show="activeTab === 0 || sortType === 0" @click.stop="toggleSortType(0)"></span>
         </div>
       </div>
       <div class="content">
@@ -40,23 +40,25 @@
 
           <div class="item">
             <div class="select-box">
-              <span class="text">区域</span>
+              <span class="text">{{currentRegion === '全部' ? '区域' : currentRegion}}</span>
               <span class="icon"></span>
             </div>
             <div class="options">
-               <a href="javascript:;">全部</a>
+               <a href="javascript:;" @click="selectCurrentRegion('全部')">全部</a>
                <a 
                   href="javascript:;"
                   v-for="(item, i) in region"
                   :key="i"
-                  @mouseover="handleOptionsItem(i)">
+                  @click="selectCurrentRegion(item.name)"
+                 >
                  <span>{{item.name}}</span>
                  <div class="sub-options">
                     <a 
                       href="javascript:;"
                       v-for="(subItem, j) in item.items"
                       :key="j"
-                      @mouseover="handleOptionsItem(i)">
+                      @click="selectCurrentRegion(subItem)"
+                      >
                       {{subItem}}
                     </a>
                  </div>
@@ -66,23 +68,23 @@
 
           <div class="item">
             <div class="select-box">
-              <span class="text">地铁</span>
+              <span class="text">{{currentSubway === '全部' ? '地铁' : currentSubway}}</span>
               <span class="icon"></span>
             </div>
             <div class="options">
-              <a href="javascript:;">全部</a>
+              <a href="javascript:;" @click="selectCurrentSubway('全部')" >全部</a>
                <a 
                 href="javascript:;"
                 v-for="(item, i) in subways"
                 :key="i"
-                @mouseover="handleOptionsItem(i)">
+                @click="selectCurrentSubway(item.name)">
                 <span>{{item.name}}</span>
                  <div class="sub-options">
                     <a 
                       href="javascript:;"
                       v-for="(subItem, j) in item.items"
                       :key="j"
-                      @mouseover="handleOptionsItem(i)">
+                       @click="selectCurrentSubway(item.name, subItem)">
                       {{subItem}}
                     </a>
                  </div>
@@ -92,51 +94,51 @@
 
            <div class="item">
             <div class="select-box">
-              <span class="text">类型</span>
+              <span class="text">{{currentType === '全部' ? '类型' : currentType}}</span>
               <span class="icon"></span>
             </div>
             <div class="options">
-              <a href="javascript:;">全部</a>
-              <a href="javascript:;">普通办公</a>
-              <a href="javascript:;">共享办公</a>
+              <a href="javascript:;" @click="selectCurrenType('全部')">全部</a>
+              <a href="javascript:;" @click="selectCurrenType('普通办公')" >普通办公</a>
+              <a href="javascript:;" @click="selectCurrenType('共享办公')">共享办公</a>
             </div>
           </div>
 
           <div class="item">
             <div class="select-box area">
-              <span class="text">面积</span>
+              <span class="text">{{currentArea === '全部' ? '面积' : currentArea}}</span>
               <span class="icon"></span>
             </div>
             <div class="options">
-              <a href="javascript:;">全部</a>
+              <a href="javascript:;"  @click="selectCurrenArea('全部')">全部</a>
                <a 
                 href="javascript:;"
                 v-for="(item, i) in area"
                 :key="i"
-                @mouseover="handleOptionsItem(i)">
+               @click="selectCurrenArea(item)">
                 {{item}}
               </a>
             </div>
           </div>  
            <div class="item">
             <div class="select-box price">
-              <span class="text">价格</span>
+              <span class="text">{{currentPrice === '全部' ? '价格' : currentPrice}}</span>
               <span class="icon"></span>
             </div>
             <div class="options">
-              <a href="javascript:;">全部</a>
+              <a href="javascript:;"  @click="selectCurrenPrice('全部')">全部</a>
                <a 
                 href="javascript:;"
                 v-for="(item, i) in pricelist"
                 :key="i"
-                @mouseover="handleOptionsItem(i)">
+                >
                 <span>{{item.name}}</span>
                 <div class="sub-options">
-                  <a 
+                  <a
                     href="javascript:;"
                     v-for="(subItem, j) in item.items"
                     :key="j"
-                    @mouseover="handleOptionsItem(i)">
+                    @click="selectCurrenPrice(subItem, item.name)">
                     {{subItem}}
                   </a>
                  </div>
@@ -148,6 +150,7 @@
         </div>
 
       </div>
+      <map-component class="map-custom"></map-component>
     </div>
   </div>
 </template>
@@ -207,6 +210,15 @@ $boder: 1px solid #c2c2c2;
         width: 80px;
         text-align: center;
         border-right: $boder;
+        .icon-geo {
+          display: inline-block;
+          height: 16px;
+          width: 16px;
+          background: url('../../../public/img/local_black.png') no-repeat;
+          background-size: 100% 100%;
+          vertical-align: -2px;
+          margin-right: 2px;
+        }
       }
       .house-count {
         display: inline-block;
@@ -229,8 +241,34 @@ $boder: 1px solid #c2c2c2;
         cursor: pointer;
         border-right: $boder;
 
+        &:last-child {
+          border-right: none;
+        }
+
         &.active {
           background: #fff;
+          border-right: $boder;
+
+        }
+        .text {
+          margin-right: 4px;
+        }
+        .icon-up {
+          display: inline-block;
+          height: 12px;
+          width: 12px;
+          background: url('../../../public/img/sort_up.png') no-repeat;
+          background-size: 100% 100%;
+          vertical-align: -2px;
+          margin-right: 2px;
+        }
+        .icon-down {
+          display: inline-block;
+          height: 12px;
+          width: 12px;
+          background: url('../../../public/img/sort_down.png') no-repeat;
+          background-size: 100% 100%;
+          vertical-align: -2px;
         }
       }
     }
@@ -250,6 +288,7 @@ $boder: 1px solid #c2c2c2;
     flex: 1;
     .select-area {
       position: relative;
+      height: 36px;
       border-bottom: 1px solid #e2e2e2;
       padding: 8px 24px 6px;
       .clear {
@@ -350,6 +389,9 @@ $boder: 1px solid #c2c2c2;
         }
       }
     }
+    .map-custom {
+      height: calc(100% - 36px);
+    }
   }
 }
 </style>
@@ -357,12 +399,12 @@ $boder: 1px solid #c2c2c2;
 <script>
 import LoupanItem from "./component/loupan-item";
 import { areas, subways } from "../../utils/location.js";
-
+import MapComponent from './component/map'
 export default {
   data() {
     return {
-      activeTab: 0,
-      priceSortType: 0, // 0-降序 1-升序
+      activeTab: 0, // 0 1
+      sortType: 0, // 0-降序 1-升序
       leftAreaVisible: true,
       region: areas,
       subways,
@@ -390,22 +432,57 @@ export default {
             "10万元/月以上"
           ]
         }
-      ]
+      ],
+
+      currentRegion: '全部',
+      currentSubway: '全部',
+      currentType: '全部',
+      currentArea: '全部',
+      currentPrice: '全部',
     };
   },
   components: {
-    LoupanItem
+    LoupanItem,
+    MapComponent
   },
   methods: {
     onSelectTab(index) {
+      if (index === 1 && this.activeTab === 1) {
+        this.sortType = this.sortType === 0 ? 1 : 0
+      } else if (index === 1 && this.activeTab === 0) {
+        this.sortType = 0
+      }
       this.activeTab = index;
+      if (index === 0) {
+        this.sortType = 0
+      }
+    },
+    toggleSortType(type) {
+      if (this.activeTab === 0) {
+        this.sortType = type
+        this.activeTab = 1
+      } else if (this.activeTab === 1) {
+        this.sortType = this.sortType === 0 ? 1 : 0
+      }
     },
     toggleSlide() {
       console.log("toggleSlide");
       this.leftAreaVisible = !this.leftAreaVisible;
     },
-    handleOptionsItem(data) {
-      console.log(data);
+    selectCurrentRegion(region) {
+      this.currentRegion = region
+    },
+    selectCurrentSubway(subway, station) {
+      this,currentSubway = subway
+    },
+    selectCurrenType(type) {
+      this.currentType = type
+    },
+    selectCurrenArea(area) {
+      this.currentArea = area
+    },
+    selectCurrenPrice(price, priceType) {
+      this.currentPrice = price
     }
   }
 };
