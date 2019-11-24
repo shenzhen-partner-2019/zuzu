@@ -400,6 +400,7 @@ $boder: 1px solid #c2c2c2;
 import LoupanItem from "./component/loupan-item";
 import { areas, subways } from "../../utils/location.js";
 import MapComponent from './component/map'
+ 
 export default {
   data() {
     return {
@@ -444,6 +445,9 @@ export default {
   components: {
     LoupanItem,
     MapComponent
+  },
+  mounted() {
+    
   },
   methods: {
     onSelectTab(index) {

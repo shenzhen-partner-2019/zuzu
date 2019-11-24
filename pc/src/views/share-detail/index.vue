@@ -81,7 +81,7 @@
      <div class="around">
         <h4 class="title">周边信息</h4>
         <div :style="{border: '1px solid #ccc'}">
-          <baidu-map :height="510"></baidu-map>
+          <baidu-map :height="510" address="深圳南山海上世界太子路工业3路1号"></baidu-map>
         </div>
       </div>
     <div class="book">
