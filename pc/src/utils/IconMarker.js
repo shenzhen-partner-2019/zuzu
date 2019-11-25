@@ -31,7 +31,7 @@ IconMarker.prototype.initialize = function (map) {
   var offsetLeft = this._iconOptions.offset[0] + 'px'
   var offsetTop = this._iconOptions.offset[1] + 'px'
   div.style.background = `url(${imgUrl}) ${offsetLeft} ${offsetTop} no-repeat`;
-  div.style.backgroundColor = '#f66a2d'
+  // div.style.backgroundColor = '#f66a2d'
 
   var p = document.createElement('div')
   // p.style.position = 'absoulte' 

@@ -7,7 +7,7 @@
     <div class="nav-list">
       <a v-for="item in navlist" :href="item.link" :class="{'active': activePath === item.link}" :key="item.name">{{item.text}}</a>
     </div>
-    <search-bar class="fr"></search-bar>
+    <search-bar class="fr" @search-house="onSearch"></search-bar>
    </nav>
   </div>
 </template>
@@ -59,6 +59,11 @@ export default {
         // 获取当前菜单项
         this.activePath = route.path
       }
+    }
+  },
+  methods: {
+    onSearch(text) {
+      this.$store.commit('updateSearchText', text)
     }
   }
 };

@@ -451,6 +451,16 @@ export default {
     FixedBook,
     BaiduMap
   },
+  computed: {
+    searchInputText(){
+      return this.$store.state.searchText
+    }
+  },
+  watch: {
+    searchInputText(value) {
+      console.log('watch searchInputText', value)
+    }
+  },
   mounted() {
     // let swiper = this.$refs.swiper
     // let swiperHeight = swiper.offsetHeight

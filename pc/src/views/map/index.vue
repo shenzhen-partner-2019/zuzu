@@ -397,9 +397,12 @@ $boder: 1px solid #c2c2c2;
 </style>
 
 <script>
+
 import LoupanItem from "./component/loupan-item";
 import { areas, subways } from "../../utils/location.js";
+import region from './data/region.js'
 import MapComponent from './component/map'
+import regions from './data/region.js';
  
 export default {
   data() {
@@ -407,7 +410,7 @@ export default {
       activeTab: 0, // 0 1
       sortType: 0, // 0-降序 1-升序
       leftAreaVisible: true,
-      region: areas,
+      region: regions,
       subways,
       area: ["0-100m²", "100-300m²", "300-500m²", "500-1000m²", "1000m² 以上"],
       pricelist: [

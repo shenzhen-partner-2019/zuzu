@@ -2,7 +2,7 @@
   <div class="zuzu">
     <!-- 头部区域 -->
     <header-bar class="g-header"></header-bar>
-    <nav-bar v-show="navbarVisible" class="g-navbar"></nav-bar>
+    <nav-bar v-show="navbarVisible" class="g-navbar" ></nav-bar>
     <!-- 主体内容 路由切换-->
     <router-view></router-view>
     <!-- 底部区域 -->
@@ -42,6 +42,7 @@ export default {
         if (path === '/zuzu/map') {
           this.footerVisible = false
         }
+        this.$store.commit('updateSearchText', '')
       }
     }
   }
