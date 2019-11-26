@@ -74,7 +74,7 @@ export default {
 @import "../style/mixin.scss";
 
 .nav-wrapper {
-  margin-top: 24px;
+  // margin-top: 24px;
   // margin-bottom: 5px;
   .nav {
     height: 30px;

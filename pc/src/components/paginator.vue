@@ -6,7 +6,7 @@
         :class="[sizeStyle, {'disabled': current <= 1}]"
         @click="prePage()"
       >
-        <a>&lt;</a>
+        <a class="icon-wrapper"><span class="icon icon-lt"></span></a>
       </li>
 
       <li
@@ -24,7 +24,7 @@
         :class="[sizeStyle, {'disabled': current >= totalPages}]"
         @click="nextPage()"
       >
-        <a>&gt;</a>
+        <a class="icon-wrapper"><span class="icon icon-gt"></span></a>
       </li>
       <li class="paginator-options" :class="[jumperSize]">
         <div class="quick-jumper">
@@ -39,6 +39,19 @@
 
 <style lang="less" scoped>
 .paginator {
+  .icon {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+  }
+  .icon-lt {
+    background: url('../../public/img/lt.png') no-repeat;
+    background-size: 100% 100%;
+  }
+  .icon-gt {
+    background: url('../../public/img/gt.png') no-repeat;
+    background-size: 100% 100%;
+  }
   &.paginator-align-left {
     text-align: left;
   }

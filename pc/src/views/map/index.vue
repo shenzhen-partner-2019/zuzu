@@ -158,14 +158,20 @@
 <style lang="scss" scoped>
 $boder: 1px solid #c2c2c2;
 .map-house {
-  position: absolute;
-  top: 118px;
-  bottom: 0;
-  width: 100%;
-  overflow: hidden;
+  // position: absolute;
+  // top: 118px;
+  // bottom: 0;
+  // width: 100%;
+  // overflow: hidden;
+
   border-top: 1px solid #f2f2f2;
   box-shadow: -1px -1px #f2f2f2;
   display: flex;
+
+      position: relative;
+      height: calc(100% - 118px);
+      width: 100%;
+      overflow: hidden;
   .left {
     height: 100%;
     width: 386px;
@@ -185,6 +191,7 @@ $boder: 1px solid #c2c2c2;
       line-height: 50px;
       cursor: pointer;
       z-index: 1000;
+      background: #fff;
       .icon {
         display: inline-block;
         height: 15px;
@@ -291,6 +298,7 @@ $boder: 1px solid #c2c2c2;
       height: 36px;
       border-bottom: 1px solid #e2e2e2;
       padding: 8px 24px 6px;
+      overflow: hidden;
       .clear {
         display: inline-block;
         font-size: 12px;
