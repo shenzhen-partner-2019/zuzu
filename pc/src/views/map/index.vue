@@ -57,7 +57,7 @@
                       href="javascript:;"
                       v-for="(subItem, j) in item.items"
                       :key="j"
-                      @click="selectCurrentRegion(subItem)"
+                      @click.stop="selectCurrentRegion(subItem)"
                       >
                       {{subItem}}
                     </a>
@@ -84,7 +84,7 @@
                       href="javascript:;"
                       v-for="(subItem, j) in item.items"
                       :key="j"
-                       @click="selectCurrentSubway(item.name, subItem)">
+                       @click.stop="selectCurrentSubway(item.name, subItem)">
                       {{subItem}}
                     </a>
                  </div>
@@ -163,15 +163,13 @@ $boder: 1px solid #c2c2c2;
   // bottom: 0;
   // width: 100%;
   // overflow: hidden;
-
+  position: relative;
+  height: calc(100% - 118px);
+  width: 100%;
+  overflow: hidden;
   border-top: 1px solid #f2f2f2;
   box-shadow: -1px -1px #f2f2f2;
   display: flex;
-
-      position: relative;
-      height: calc(100% - 118px);
-      width: 100%;
-      overflow: hidden;
   .left {
     height: 100%;
     width: 386px;
@@ -221,7 +219,7 @@ $boder: 1px solid #c2c2c2;
           display: inline-block;
           height: 16px;
           width: 16px;
-          background: url('../../../public/img/local_black.png') no-repeat;
+          background: url("../../../public/img/local_black.png") no-repeat;
           background-size: 100% 100%;
           vertical-align: -2px;
           margin-right: 2px;
@@ -255,7 +253,6 @@ $boder: 1px solid #c2c2c2;
         &.active {
           background: #fff;
           border-right: $boder;
-
         }
         .text {
           margin-right: 4px;
@@ -264,7 +261,7 @@ $boder: 1px solid #c2c2c2;
           display: inline-block;
           height: 12px;
           width: 12px;
-          background: url('../../../public/img/sort_up.png') no-repeat;
+          background: url("../../../public/img/sort_up.png") no-repeat;
           background-size: 100% 100%;
           vertical-align: -2px;
           margin-right: 2px;
@@ -273,7 +270,7 @@ $boder: 1px solid #c2c2c2;
           display: inline-block;
           height: 12px;
           width: 12px;
-          background: url('../../../public/img/sort_down.png') no-repeat;
+          background: url("../../../public/img/sort_down.png") no-repeat;
           background-size: 100% 100%;
           vertical-align: -2px;
         }
@@ -298,7 +295,6 @@ $boder: 1px solid #c2c2c2;
       height: 36px;
       border-bottom: 1px solid #e2e2e2;
       padding: 8px 24px 6px;
-      overflow: hidden;
       .clear {
         display: inline-block;
         font-size: 12px;
@@ -364,7 +360,7 @@ $boder: 1px solid #c2c2c2;
         z-index: 1000;
         background: #fff;
         display: none;
-        a {
+          a {
           display: block;
           font-size: 12px;
           line-height: 20px;
@@ -405,13 +401,12 @@ $boder: 1px solid #c2c2c2;
 </style>
 
 <script>
-
 import LoupanItem from "./component/loupan-item";
 import { areas, subways } from "../../utils/location.js";
-import region from './data/region.js'
-import MapComponent from './component/map'
-import regions from './data/region.js';
- 
+import region from "./data/region.js";
+import MapComponent from "./component/map";
+import regions from "./data/region.js";
+
 export default {
   data() {
     return {
@@ -446,38 +441,36 @@ export default {
         }
       ],
 
-      currentRegion: '全部',
-      currentSubway: '全部',
-      currentType: '全部',
-      currentArea: '全部',
-      currentPrice: '全部',
+      currentRegion: "全部",
+      currentSubway: "全部",
+      currentType: "全部",
+      currentArea: "全部",
+      currentPrice: "全部"
     };
   },
   components: {
     LoupanItem,
     MapComponent
   },
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
     onSelectTab(index) {
       if (index === 1 && this.activeTab === 1) {
-        this.sortType = this.sortType === 0 ? 1 : 0
+        this.sortType = this.sortType === 0 ? 1 : 0;
       } else if (index === 1 && this.activeTab === 0) {
-        this.sortType = 0
+        this.sortType = 0;
       }
       this.activeTab = index;
       if (index === 0) {
-        this.sortType = 0
+        this.sortType = 0;
       }
     },
     toggleSortType(type) {
       if (this.activeTab === 0) {
-        this.sortType = type
-        this.activeTab = 1
+        this.sortType = type;
+        this.activeTab = 1;
       } else if (this.activeTab === 1) {
-        this.sortType = this.sortType === 0 ? 1 : 0
+        this.sortType = this.sortType === 0 ? 1 : 0;
       }
     },
     toggleSlide() {
@@ -485,19 +478,25 @@ export default {
       this.leftAreaVisible = !this.leftAreaVisible;
     },
     selectCurrentRegion(region) {
-      this.currentRegion = region
+      console.log(region)
+      this.currentRegion = region;
     },
     selectCurrentSubway(subway, station) {
-      this,currentSubway = subway
+      if (station) {
+        this.currentSubway = station
+      } else {
+        this.currentSubway = subway
+      }
+      console.log(this.currentSubway)
     },
     selectCurrenType(type) {
-      this.currentType = type
+      this.currentType = type;
     },
     selectCurrenArea(area) {
-      this.currentArea = area
+      this.currentArea = area;
     },
     selectCurrenPrice(price, priceType) {
-      this.currentPrice = price
+      this.currentPrice = price;
     }
   }
 };
