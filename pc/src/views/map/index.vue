@@ -20,9 +20,33 @@
           <span class="icon-down" v-show="activeTab === 0 || sortType === 0" @click.stop="toggleSortType(0)"></span>
         </div>
       </div>
-      <div class="content">
-        <div class="list" >
+      <div class="content"  v-scroll="getHouselist">
+        <div class="list">
           <ul>
+            <li class="loupan-item-wrapper">
+              <Loupan-item ></Loupan-item>
+            </li>
+            <li class="loupan-item-wrapper">
+              <Loupan-item></Loupan-item>
+            </li>
+            <li class="loupan-item-wrapper">
+              <Loupan-item ></Loupan-item>
+            </li>
+            <li class="loupan-item-wrapper">
+              <Loupan-item></Loupan-item>
+            </li>
+            <li class="loupan-item-wrapper">
+              <Loupan-item ></Loupan-item>
+            </li>
+            <li class="loupan-item-wrapper">
+              <Loupan-item></Loupan-item>
+            </li>
+            <li class="loupan-item-wrapper">
+              <Loupan-item ></Loupan-item>
+            </li>
+            <li class="loupan-item-wrapper">
+              <Loupan-item></Loupan-item>
+            </li>
             <li class="loupan-item-wrapper">
               <Loupan-item ></Loupan-item>
             </li>
@@ -410,6 +434,8 @@ import regions from "./data/region.js";
 export default {
   data() {
     return {
+      pageIndex: 1,
+      pageSize: 10,
       activeTab: 0, // 0 1
       sortType: 0, // 0-降序 1-升序
       leftAreaVisible: true,
@@ -453,7 +479,22 @@ export default {
     MapComponent
   },
   mounted() {},
+  directives: {
+    scroll: {
+      bind: function(el, binding, vnode) {
+        el.addEventListener('scroll', (e) => {
+          if (el.scrollTop + el.offsetHeight >= el.scrollHeight) {
+            binding.value()
+          }
+        })
+      }
+    }
+  },
   methods: {
+    getHouselist(index) {
+      console.log('getHouselist')
+      this.pageIndex += 1
+    },
     onSelectTab(index) {
       if (index === 1 && this.activeTab === 1) {
         this.sortType = this.sortType === 0 ? 1 : 0;
