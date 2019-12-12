@@ -9,7 +9,7 @@
         <ul class="shareBox" style="overflow:hidden;">
             <li v-for="(item,i) in leaseData.leaseListData" :key="i">
                 <a>
-                    <div class="shareBox-img" @click="goOfficeDetail(item.id)">
+                    <div class="shareBox-img" @click="goOfficeDetail(item.path,item.id)">
                         <img :src="item.imgUrl" :title="item.title">
                     </div>
                     <div class="houseBox-about">
@@ -47,9 +47,9 @@ export default {
         }
     },
     methods:{
-        goOfficeDetail(id){
+        goOfficeDetail(path,id){
             console.log(id)
-            this.$router.push({path:'/zuzu/office-detail',query: {id:id}})
+            this.$router.push({path:path,query: {id:id}})
         }
     },
 

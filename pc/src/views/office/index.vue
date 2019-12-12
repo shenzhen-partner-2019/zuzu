@@ -30,15 +30,8 @@
       </div>
       <div class="list-right">
         <div class="entrust">
-            <p class="head">
-              委托找房
-            </p>
-            <p class="text">10分钟内响应，全程免佣，专业顾问带您看房</p>
-            <p>
-              <a href="/zuzu/weituo" class="btn" target="_blank">
-                免费委托
-              </a>
-            </p>
+            <p class="p1">深圳<i class="i1">25823</i>套</p>
+            <span class="s1"><em class="icon em1"></em>前往地图找房</span>
         </div>
         <div class="high-quality">
           <h4>热门写字楼推荐</h4>
@@ -55,7 +48,7 @@
 import CrumbsCompent from '../../components/crumbsCompent'
 import SelectFiller from '../../components/selectFiller'
 import HouseResouce from "../../components/houseResource"
-import QualityItem from '../share/qulity-item/index'
+import QualityItem from './qulity-item/index'
 import Paginator from '../../components/paginator'
 import HouseResoure from '../../../public/img/houseResoure1.jpg'
 export default {
@@ -70,6 +63,7 @@ export default {
       },
        houseResourceData:[
                 { id:'office2121212',
+                  path:'/zuzu/office-detail',
                   imgUrl:HouseResoure,
                   title:'南山科技园 大冲商务中心 720平米 精装修 朝东南',
                   loupan:'大冲商务中心',
@@ -91,6 +85,7 @@ export default {
                 },
                 { 
                   id:'office3121212',
+                  path:'/zuzu/office-detail',
                   imgUrl:HouseResoure,
                   title:'南山科技园 大冲商务中心 720平米 精装修 朝东南',
                   loupan:'大冲商务中心',
@@ -201,7 +196,7 @@ $blue-theme: #399EDE;
       // background: #f4fafd;
       // background: #edf6fc;
       // background: linear-gradient('#f4fafd','#edf6fc');
-      background: linear-gradient(to bottom, #f4fafd 0%, #edf6fc 100%);
+      background: linear-gradient(to bottom, #f9f9f9 0%, #edf6fc 100%);
       .head {
         color: #333333;
         font-size: 20px;
@@ -221,11 +216,45 @@ $blue-theme: #399EDE;
         background: $blue-theme;
         color: #fff;
         border-radius: 2px;
-        margin-top: 33px;
+        margin-top: 15px;
         cursor: pointer;
         text-align: center;
         line-height: 40px;
         overflow: hidden;
+      }
+      .p1 {
+        margin-top:85px;
+        line-height: 24px;
+        text-align: center;
+        color: #979fa8;
+        .i1 {
+          padding: 0 5px;
+          font-size: 16px;
+          color: #f90;
+          vertical-align: top;
+          display: inline-block;
+        }
+      }
+      .s1 {
+        width: 168px;
+        height: 28px;
+        margin: 0 auto;
+        margin-top:10px;
+        border: 1px solid #ececec;
+        color: #979fa8;
+        font-size: 14px;
+        letter-spacing: 2px;
+        border-radius: 3px;
+        line-height: 28px;
+        text-align: center;
+        background: #fff;
+        display: block;
+        .em1 {
+            width: 19px;
+            height: 19px;
+            background-position: -396px -26px;
+            margin: 4px 5px 0 0;
+        }
       }
     }
     .high-quality {
@@ -246,4 +275,10 @@ $blue-theme: #399EDE;
     }
   }
   }
+.icon {
+    display: inline-block;
+    vertical-align: top;
+    background: url(../../../public/img/icon_v4.png) no-repeat;
+    font-size: 0;
+}
 </style>

@@ -6,7 +6,7 @@
                     <span class="s1 mw900">福田中心区 卓越世纪中心 144平米 中等装修</span>
                 </h1>
                 <p class="crumbs">
-                    <a href="/sz/house-list">
+                    <a href="javascript:void(0)">
                         深圳 写字楼出租
                     </a>&nbsp;&gt;&nbsp;
                     <a href="#">
@@ -120,7 +120,7 @@
                     <ul class="house-traffic ptb25">
                         <li>
                             <em class="icon em1"></em>
-                            <a href="/sz/house-futian/" class="QoZxRqnId"></a>
+                            <a href="javascript:void(0)" class="QoZxRqnId"></a>
                             <span class="span-color">福田</span>
                             &nbsp;-&nbsp;
                             <span class="span-color">福田中心区</span>
@@ -141,7 +141,7 @@
                         </li>
                         <li>
                             <em class="icon em3"></em>
-                            <a href="//www.haozu.com/sz_xzl_1080/" class="lzvTcfnYNKIL">
+                            <a href="javascript:void(0)" class="lzvTcfnYNKIL">
                                 <span class="span-color">卓越世纪中心</span>
                             </a>
                         </li>
@@ -202,7 +202,7 @@
                     </li>
                 </ul>
                 <h2 class="h2-title">实拍图片</h2>
-                <div data-widget="static/js/index/office_detail.js#showBigImgv2">
+                <div>
                     <ul class="realImg">
                         <li data-index="0">
                             <img src="//fang-web-cdn.haozu.com/app/index/2019/09/17/98lnhw9qog.jpg?x-oss-process=image/resize,m_fill,w_750,h_560/quality,Q_90/crop,g_center,x_0,y_0,h_560,w_750">
@@ -231,7 +231,7 @@
                 <div class="belong clearfix">
                     <div class="belong-about fl">
                         <h3 class="h3-title">
-                            <a href="//www.haozu.com/sz_xzl_1080/" target="_blank" class="lzvTcfnYNKIL"></a>
+                            <a href="javascript:void(0)" class="lzvTcfnYNKIL"></a>
                         </h3>
                         <ul>
                             <li>
@@ -276,12 +276,12 @@
                         </ul>
                     </div>
                     <div class="belong-build fr">
-                        <a href="//www.haozu.com/sz_xzl_1080/" target="_blank">
+                        <a href="javascript:void(0)">
                             <img src="//fang-web-cdn.haozu.com/cms/index/2017/12/07/zFPhN68dzi.jpg?x-oss-process=image/resize,m_fill,w_240,h_160/quality,Q_90/crop,g_center,x_0,y_0,h_160,w_240">
                         </a>
                         <p>
-                            <a href="//www.haozu.com/sz_xzl_1080/" target="_blank"></a>
-                            <a href="//www.haozu.com/sz_xzl_1080/" target="_blank">查看楼盘详情</a>
+                            <a href="#"></a>
+                            <a href="#">查看楼盘详情</a>
                         </p>
                     </div>
                 </div>       

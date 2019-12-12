@@ -6,7 +6,7 @@
                 <li class="clearfix">
                     <a v-for="(item,index) in houseResourceData" :key="index" >
                         <div class="imgbox">
-                            <router-link :to="{path:'/zuzu/office-detail',query: {id:item.id}}">
+                            <router-link :to="{path:item.path,query: {id:item.id}}">
                                 <img :src="item.imgUrl" :alt="item.title" :title="item.title">
                                 <em class="video">video</em>                    
                             </router-link>

@@ -57,10 +57,10 @@ export default {
             descriptContent:"节省开支 提供全方位服务",
             otherChannel:"开启共享办公之旅",
             leaseListData:[
-                {id:"1223132332",imgUrl:img1,title:"深圳yeswedo福保国际·优客工场",houseName:"深圳yeswedo福保国际·优客工场",houseAddress:"福田-保税区",housePrice:"800",unitPrice:" 元/工位/月 "},
-                {id:"2223132332",imgUrl:img2,title:"深圳yeswedo蛇口国际·优客工场",houseName:"深圳yeswedo蛇口国际·优客工场",houseAddress:"南山-蛇口",housePrice:"1250",unitPrice:" 元/工位/月 "},
-                {id:"3223132332",imgUrl:img3,title:"WeWork（华润置地大厦）",houseName:"WeWork（华润置地大厦）",houseAddress:"南山-科技园",housePrice:"2100",unitPrice:" 元/工位/月 "},
-                {id:"4223132332",imgUrl:img4,title:"雷格斯（A8音乐大厦）",houseName:"雷格斯（A8音乐大厦）",houseAddress:"南山-科技园",housePrice:"1220",unitPrice:" 元/工位/月 "}
+                {id:"1223132332",path:'/zuzu/office-detail',imgUrl:img1,title:"深圳yeswedo福保国际·优客工场",houseName:"深圳yeswedo福保国际·优客工场",houseAddress:"福田-保税区",housePrice:"800",unitPrice:" 元/工位/月 "},
+                {id:"2223132332",path:'/zuzu/office-detail',imgUrl:img2,title:"深圳yeswedo蛇口国际·优客工场",houseName:"深圳yeswedo蛇口国际·优客工场",houseAddress:"南山-蛇口",housePrice:"1250",unitPrice:" 元/工位/月 "},
+                {id:"3223132332",path:'/zuzu/office-detail',imgUrl:img3,title:"WeWork（华润置地大厦）",houseName:"WeWork（华润置地大厦）",houseAddress:"南山-科技园",housePrice:"2100",unitPrice:" 元/工位/月 "},
+                {id:"4223132332",path:'/zuzu/office-detail',imgUrl:img4,title:"雷格斯（A8音乐大厦）",houseName:"雷格斯（A8音乐大厦）",houseAddress:"南山-科技园",housePrice:"1220",unitPrice:" 元/工位/月 "}
             ]
           },
           officeBuild:{
@@ -68,18 +68,19 @@ export default {
             descriptContent:"高性价 高格调 超精致",
             otherChannel:"查看更多",
             leaseListData:[
-                {id:"1223132332",imgUrl:officeBuild1,title:"汇海广场",houseName:"汇海广场",houseAddress:"龙华-龙华",housePrice:"80.0",unitPrice:"元/m²⋅月"},
-                {id:"2223132332",imgUrl:officeBuild2,title:"航盛科技大厦",houseName:"航盛科技大厦",houseAddress:"南山-大冲",housePrice:"68.0",unitPrice:"元/m²⋅月"},
-                {id:"3223132332",imgUrl:officeBuild3,title:"京地大厦",houseName:"京地大厦",houseAddress:"福田-中心区",housePrice:"168.0",unitPrice:"元/m²⋅月"},
-                {id:"4223132332",imgUrl:officeBuild4,title:"卓越时代广场",houseName:"卓越时代广场",houseAddress:"福田-中心区",housePrice:"158.0",unitPrice:"元/m²⋅月"},
-                {id:"5223132332",imgUrl:officeBuild5,title:"中洲大厦",houseName:"中洲大厦",houseAddress:"福田-中心区",housePrice:"185.0",unitPrice:"元/m²⋅月"},
-                {id:"6223132332",imgUrl:officeBuild6,title:"迈科龙大厦",houseName:"迈科龙大厦",houseAddress:"南山-科技园",housePrice:"58.0",unitPrice:"元/m²⋅月"},
-                {id:"7223132332",imgUrl:officeBuild7,title:"中海信科技园",houseName:"中海信科技园",houseAddress:"龙岗-布吉",housePrice:"50.0",unitPrice:"元/m²⋅月"},
-                {id:"8223132332",imgUrl:officeBuild8,title:"中洲控股中心",houseName:"中洲控股中心",houseAddress:"南山-中心区",housePrice:"128.0",unitPrice:"元/m²⋅月"}
+                {id:"1223132332",path:'/zuzu/loupan-detail',imgUrl:officeBuild1,title:"汇海广场",houseName:"汇海广场",houseAddress:"龙华-龙华",housePrice:"80.0",unitPrice:"元/m²⋅月"},
+                {id:"2223132332",path:'/zuzu/loupan-detail',imgUrl:officeBuild2,title:"航盛科技大厦",houseName:"航盛科技大厦",houseAddress:"南山-大冲",housePrice:"68.0",unitPrice:"元/m²⋅月"},
+                {id:"3223132332",path:'/zuzu/loupan-detail',imgUrl:officeBuild3,title:"京地大厦",houseName:"京地大厦",houseAddress:"福田-中心区",housePrice:"168.0",unitPrice:"元/m²⋅月"},
+                {id:"4223132332",path:'/zuzu/loupan-detail',imgUrl:officeBuild4,title:"卓越时代广场",houseName:"卓越时代广场",houseAddress:"福田-中心区",housePrice:"158.0",unitPrice:"元/m²⋅月"},
+                {id:"5223132332",path:'/zuzu/loupan-detail',imgUrl:officeBuild5,title:"中洲大厦",houseName:"中洲大厦",houseAddress:"福田-中心区",housePrice:"185.0",unitPrice:"元/m²⋅月"},
+                {id:"6223132332",path:'/zuzu/loupan-detail',imgUrl:officeBuild6,title:"迈科龙大厦",houseName:"迈科龙大厦",houseAddress:"南山-科技园",housePrice:"58.0",unitPrice:"元/m²⋅月"},
+                {id:"7223132332",path:'/zuzu/loupan-detail',imgUrl:officeBuild7,title:"中海信科技园",houseName:"中海信科技园",houseAddress:"龙岗-布吉",housePrice:"50.0",unitPrice:"元/m²⋅月"},
+                {id:"8223132332",path:'/zuzu/loupan-detail',imgUrl:officeBuild8,title:"中洲控股中心",houseName:"中洲控股中心",houseAddress:"南山-中心区",housePrice:"128.0",unitPrice:"元/m²⋅月"}
             ]
           },
           houseResourceData:[
-                {   id:'2121212',
+                { id:'2121212',
+                  path:'/zuzu/office-detail',
                   imgUrl:HouseResoure,
                   title:'南山科技园 大冲商务中心 720平米 精装修 朝东南',
                   loupan:'大冲商务中心',
@@ -100,6 +101,7 @@ export default {
                 },
                 { 
                   id:'3121212',
+                  path:'/zuzu/office-detail',
                   imgUrl:HouseResoure,
                   title:'南山科技园 大冲商务中心 720平米 精装修 朝东南',
                   loupan:'大冲商务中心',

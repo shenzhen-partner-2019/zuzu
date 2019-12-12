@@ -13,25 +13,25 @@
                 </div>
                 <div class="secsel menu_area">
                     <div class="area overflow-hidden">
-                        <a title="全深圳写字楼/办公室出租" href="/sz/house-list/" class="cur">全部</a>
-                        <a title="全南山写字楼/办公室出租" href="/sz/house-nanshan/" class="">南山</a>
-                        <a title="全福田写字楼/办公室出租" href="/sz/house-futian/" class="">福田</a>
-                        <a title="全罗湖写字楼/办公室出租" href="/sz/house-luohu/" class="">罗湖</a>
-                        <a title="全宝安写字楼/办公室出租" href="/sz/house-baoan/" class="">宝安</a>
-                        <a title="全龙岗写字楼/办公室出租" href="/sz/house-longgang/" class="">龙岗</a>
-                        <a title="全龙华写字楼/办公室出租" href="/sz/house-longhuaxinqu/" class="">龙华</a>
+                        <a title="全深圳写字楼/办公室出租" href="#" class="cur">全部</a>
+                        <a title="全南山写字楼/办公室出租" href="#" class="">南山</a>
+                        <a title="全福田写字楼/办公室出租" href="#" class="">福田</a>
+                        <a title="全罗湖写字楼/办公室出租" href="#" class="">罗湖</a>
+                        <a title="全宝安写字楼/办公室出租" href="#" class="">宝安</a>
+                        <a title="全龙岗写字楼/办公室出租" href="#" class="">龙岗</a>
+                        <a title="全龙华写字楼/办公室出租" href="#" class="">龙华</a>
                     </div>
                 </div>
                 <div class="secsel menu_sub" style="display:none">
                     <div class="area clearfix">
-                        <a href="/sz/house-list/" class="cur" rel="nofollow">全部</a>
-                        <a href="/sz/house-list-subway2058/" class="" rel="nofollow">7号线</a>
-                        <a href="/sz/house-list-subway2059/" class="" rel="nofollow">9号线</a>
-                        <a href="/sz/house-list-subway6/" class="" rel="nofollow">罗宝线</a>
-                        <a href="/sz/house-list-subway7/" class="" rel="nofollow">龙岗线</a>
-                        <a href="/sz/house-list-subway8/" class="" rel="nofollow">龙华线</a>
-                        <a href="/sz/house-list-subway635/" class="" rel="nofollow">蛇口线</a>
-                        <a href="/sz/house-list-subway1079/" class="" rel="nofollow">环中线</a>
+                        <a href="#" class="cur" rel="nofollow">全部</a>
+                        <a href="#" class="" rel="nofollow">7号线</a>
+                        <a href="#" class="" rel="nofollow">9号线</a>
+                        <a href="#" class="" rel="nofollow">罗宝线</a>
+                        <a href="#" class="" rel="nofollow">龙岗线</a>
+                        <a href="#" class="" rel="nofollow">龙华线</a>
+                        <a href="#" class="" rel="nofollow">蛇口线</a>
+                        <a href="#" class="" rel="nofollow">环中线</a>
                     </div>
                 </div>
             </dd>
@@ -40,8 +40,8 @@
             <dt>类型：</dt>
             <dd>
                 <div class="clearfix">
-                    <a href="/sz/house-list/" class="cur">全部</a>
-                    <a href="/sz/house-list/a1/" class="">普通办公</a>
+                    <a href="#" class="cur">全部</a>
+                    <a href="#" class="">普通办公</a>
                     <a href="#" class="">共享办公</a>
                     <!-- <a href="#" class="">创意园区</a> -->
                 </div>
@@ -52,8 +52,8 @@
             <dd>
                 <div class="clearfix">
                     <a href="#" class="cur">全部</a><a href="#" class="">0-100m²</a>
-                    <a href="/sz/house-list/b2/" class="">100-300m²</a>
-                    <a href="/sz/house-list/b3/" class="">300-500m²</a>
+                    <a href="#" class="">100-300m²</a>
+                    <a href="#" class="">300-500m²</a>
                     <a href="#" class="">500-1000m²</a>
                     <a href="#" class="">1000m² 以上</a>
                     <span class="input-box clearfix">
