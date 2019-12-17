@@ -120,7 +120,7 @@
           class="page-custom"
           :current.sync="pager.pageIndex"
           :total="pager.total"
-          :current-change="onPageIndexChange"
+          @current-change="onPageIndexChange"
         ></Paginator>
       </div>
       <div class="list-right">
@@ -136,7 +136,7 @@
             </p>
         </div>
         <div class="high-quality">
-          <h4>优质写字楼</h4>
+          <h4>热门共享办公</h4>
           <div class="list">
             <quality-item class="list-item" v-for="(item, i) in qualitylist" :key="i"></quality-item>
           </div>
@@ -205,7 +205,6 @@ export default {
         total: 0,
         pageSize: 10
       },
-
     };
   },
   created() {
@@ -235,6 +234,7 @@ export default {
       })
     },
     onPageIndexChange(index) {
+      console.log(this.pager)
       this.getSharelist()
     },
     selectArea(i) {
