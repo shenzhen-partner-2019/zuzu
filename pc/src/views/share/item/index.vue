@@ -2,29 +2,31 @@
   <div class="share-item">
     <div class="item-left">
       <a href="/zuzu/share-detail">
-        <img src="../../../../public/img/share_item_01.jpg" alt="">
+        <img v-if="info.zhaopian0" :src="info.zhaopian0" alt="">
+        <div v-if="!info.zhaopian0" class="no-pic">
+          <img src="../../../../public/img/paishezhong.png" alt="">
+          <span class="text">拍摄中...</span>
+        </div>
       </a>
     </div>
     <div class="item-right">
-      <h4><a href="/zuzu/share-detail">寰图（航天科技广场）</a></h4>
-      <p class="p1">
+      <h4><a href="/zuzu/share-detail">{{info.shangwu}}（{{info.suoshu}}）</a></h4>
+      <!-- <p class="p1">
         <span class="icon"></span>
         <span>12种户型在租</span>
         <span>|</span>
         <span>2012年建</span>
-      </p>
+      </p> -->
       <p class="p2">
         <span class="icon"></span>
-        <span>南山-海上世界</span>
-        <span>距离【2号线-海上世界】约456米</span>
+        <span>{{codeMap[info.qu_code]}}-{{info.yu}}</span>
+        <!-- <span>距离【2号线-海上世界】约456米</span> -->
       </p>
       <!-- 人数分类 -->
-      <div class="area-list">
+      <!-- <div class="area-list">
         <div class="area-list-item">
           <span>12人</span>
-          <!-- 鼠标hover后效果 -->
           <div class="pop">
-            <!-- 三角指示 left 60*i + 30-->
             <span class="arrow" :style="{left: '30px'}"></span>
             <div class="pop-content">
               <p class="name">
@@ -61,7 +63,6 @@
           <span>12人</span>
           <div></div>
         </div>
-        <!-- 大于五个时 -->
         <div class="area-list-item">
           <span>...</span>
           <div></div>
@@ -71,11 +72,32 @@
       <div class="price">
         <span class="value">1425</span>
         <span class="unit">元/工位/月起</span>
-      </div>
+      </div> -->
 
     </div>
   </div>
 </template>
+<script>
+import codeMap from '../../../utils/quCodeMap.js'
+export default {
+  data() {
+    return {
+      codeMap
+    }
+  },
+  props: {
+    info: {
+      type: Object,
+    }
+  },
+  created(){
+    setTimeout(() => {
+      console.log(this.info)
+    }, 1000)
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
 .share-item {
@@ -88,10 +110,21 @@
       display: block;
       height: 180px;
       width: 240px;
-      background: #f5f8ff;
     }
     img {
       height: 100%;
+      vertical-align: top;
+    }
+    .no-pic {
+      height: 100%;
+      position: relative;
+      .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+      }
     }
   }
 

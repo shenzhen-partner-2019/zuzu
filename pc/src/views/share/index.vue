@@ -33,7 +33,7 @@
       </dl>
 
       <!-- 人数 -->
-      <dl class="dl">
+      <!-- <dl class="dl">
         <dt>人数:</dt>
         <dd>
           <div class="list">
@@ -50,10 +50,10 @@
             </span>
           </div>
         </dd>
-      </dl>
+      </dl> -->
 
        <!-- 单价 -->
-      <dl class="dl">
+      <!-- <dl class="dl">
         <dt>单价:</dt>
         <dd>
           <div class="list">
@@ -70,10 +70,10 @@
             </span>
           </div>
         </dd>
-      </dl>
+      </dl> -->
 
       <!-- 装修 -->
-      <dl class="dl">
+      <!-- <dl class="dl">
         <dt>装修:</dt>
         <dd>
           <div class="list">
@@ -81,7 +81,7 @@
             <span :class="{'filter': currentdecorateIndex === i}" v-for="(item, i) in decorateStatuslist" @click="selectDecorateStatus(i)" :key="i">{{item}}</span>
           </div>
         </dd>
-      </dl>
+      </dl> -->
       <!-- 已选 -->
       <div class="divider-area"></div>
       <dl class="dl dl-selected">
@@ -108,11 +108,11 @@
             <span class="icon-up" v-show="activeTab === 0 || sortType === 1" @click.stop="toggleSortType(1)"></span>
             <span class="icon-down" v-show="activeTab === 0 || sortType === 0" @click.stop="toggleSortType(0)"></span>
           </a>
-          <span class="total">共有<strong>328</strong>个网点满足您的需求</span>
+          <span class="total">共有<strong>{{this.pager.total}}</strong>个网点满足您的需求</span>
         </div>
         <div class="list">
           <div class="list-item-wrap" v-for="(item, i) in sharelist" :key="i">
-            <Item ></Item>
+            <Item :info="item"></Item>
           </div>
         </div>
         <!-- 分页 -->
@@ -120,6 +120,7 @@
           class="page-custom"
           :current.sync="pager.pageIndex"
           :total="pager.total"
+          :current-change="onPageIndexChange"
         ></Paginator>
       </div>
       <div class="list-right">
@@ -149,6 +150,7 @@ import { areas, subways } from "../../utils/location.js";
 import Item from "./item/index";
 import QualityItem from './qulity-item/index'
 import Paginator from '../../components/paginator'
+import HttpRequest from '../../http/axios.js'
 import {
   pricelist,
   numOfStafflist,
@@ -200,12 +202,41 @@ export default {
 
       pager: {
         pageIndex: 1,
-        total: 318,
-        pageSize: 20
-      }
+        total: 0,
+        pageSize: 10
+      },
+
     };
   },
+  created() {
+    this.getSharelist()
+  },
   methods: {
+    getRequestParams(){
+      let params = {
+        qu_code: 2,
+        yu: this.subAreas[this.currentNumIndex],
+        page: this.pager.pageIndex
+      }
+      return params
+    },
+    getSharelist() {
+      let params = this.getRequestParams()
+      HttpRequest.get('/admin/api/share', params).then(res => {
+        if (res.data && Array.isArray(res.data.data)) {
+          this.sharelist = res.data.data
+          this.pager.total = res.data.total
+          this.pager.pageIndex = res.data.current_page
+        } else {
+          //
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    onPageIndexChange(index) {
+      this.getSharelist()
+    },
     selectArea(i) {
       this.currentAreaIndex = i;
       if (i !== -1) {

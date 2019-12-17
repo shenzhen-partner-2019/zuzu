@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './route/index'
 import store from './store/index'
 
+
 // 引入全局样式
 import './style/reset.css'
 import './style/common.scss'

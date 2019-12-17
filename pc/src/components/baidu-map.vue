@@ -196,10 +196,16 @@ export default {
           offset: OFFSET_MAP['geo']
         }
         let marker = new IconMarker(point, size, iconOptions, '', 'animation-bounce')
-        console.log(marker)
-        marker.addEventListener('click', function() {
-          console.log('marker event')
-        })
+        // let icon2 = new BMap.Icon('public/img/map/icon_map_local.png', new BMap.Size(24, 24))
+        // let marker2 = new BMap.Marker(point, {icon: icon2})
+        // console.log(marker2)
+        // marker2.addEventListener("click",() => {
+        //   console.log(marker2.getPosition())
+        // });
+        // this.map.addOverlay(marker2)
+        // marker.addEventListener('click', function() {
+        //   console.log('marker event')
+        // })
         this.map.addOverlay(marker)
       }
       /**
@@ -208,9 +214,9 @@ export default {
        */
       this.addCcontrol();
 
-      this.map.addEventListener("click", e => {
-        console.log("click", e);
-      });
+      // this.map.addEventListener("click", e => {
+      //   console.log("click", e);
+      // });
     },
     addMakerlist(keyword) {
       this.hideOldmarkers()
@@ -226,7 +232,8 @@ export default {
         for (let subItem of list) {
           iconOptions.offset = OFFSET_MAP[item.keyword]
           let {point, title} = subItem
-          let marker = new IconMarker(point, size, iconOptions, title, 'icon-marker')
+          // let marker = new IconMarker(point, size, iconOptions, title, 'icon-marker')
+          let marker = new BMap.Marker(point)
           this.map.addOverlay(marker)
           this.markerlist.push(marker)
           // marker.listen('click', (e) => {
