@@ -7,7 +7,7 @@
         <dd>
           <div class="list">
             <span :class="{'filter': locationType === 1}" @click="toggleLocationType(1)">区域</span>
-            <span :class="{'filter': locationType === 2}" @click="toggleLocationType(2)">地铁</span>
+            <!-- <span :class="{'filter': locationType === 2}" @click="toggleLocationType(2)">地铁</span> -->
           </div>
           <template v-if="locationType===1">
             <div class="list" >
@@ -83,7 +83,7 @@
         </dd>
       </dl> -->
       <!-- 已选 -->
-      <div class="divider-area"></div>
+      <!-- <div class="divider-area"></div>
       <dl class="dl dl-selected">
         <dt>已选:</dt>
         <dl>
@@ -95,7 +95,7 @@
             <div class="clear"><span class="icon-delete"></span><span>清空</span></div>
           </div>
         </dl>
-      </dl>
+      </dl> -->
     </div>
     <div class="wrap share-list clear">
       <div class="list-left">
@@ -138,7 +138,7 @@
         <div class="high-quality">
           <h4>热门共享办公</h4>
           <div class="list">
-            <quality-item class="list-item" v-for="(item, i) in qualitylist" :key="i"></quality-item>
+            <quality-item class="list-item" v-for="(item, i) in qualitylist" :key="i" :info="item" ></quality-item>
           </div>
         </div>
       </div>
@@ -157,6 +157,8 @@ import {
   decorateStatuslist,
   selectDecorateStatus
 } from "./data/searchFilter.js";
+import codeMap from '../../utils/quCodeMap.js';
+
 export default {
   components: {
     Item,
@@ -193,8 +195,8 @@ export default {
       decorateStatuslist,
       currentdecorateIndex: -1,
 
-      sharelist: new Array(10),
-      qualitylist: new Array(10),
+      sharelist: [],
+      qualitylist: [],
        
       //  tab切换
       activeTab: 0, // 0 1
@@ -208,26 +210,52 @@ export default {
     };
   },
   created() {
-    this.getSharelist()
+    this.getSharelist({page: this.pager.pageIndex})
+    this.getQualitylist()
+  },
+  watch: {
+    // currentAreaIndex(value) {
+    //   let params = {page: this.pager.pageIndex}
+    //   if (value !== -1) {
+    //     let name = this.areas[value].name
+    //     params.qu_code = this.findQucode(name)
+    //   }
+    //   this.getSharelist(params)
+    // },
+    currentSubAreaIndex(value) {
+      let params = {page: this.pager.pageIndex}
+      if (value !== -1) {
+
+      }
+    }
   },
   methods: {
-    getRequestParams(){
-      let params = {
-        qu_code: 2,
-        yu: this.subAreas[this.currentNumIndex],
-        page: this.pager.pageIndex
+    findQucode(name) {
+      for (let key in codeMap) {
+        if (codeMap[key] === name) {
+          return key
+        }
       }
-      return params
     },
-    getSharelist() {
-      let params = this.getRequestParams()
+    getSharelist(params) {
       HttpRequest.get('/admin/api/share', params).then(res => {
         if (res.data && Array.isArray(res.data.data)) {
           this.sharelist = res.data.data
+          this.qualitylist = res.data.data
           this.pager.total = res.data.total
           this.pager.pageIndex = res.data.current_page
-        } else {
-          //
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    getQualitylist() {
+      let params = {
+        page: 1
+      }
+      HttpRequest.get('/admin/api/share', params).then(res => {
+        if (res.data && Array.isArray(res.data.data)) {
+          this.sharelist = res.data.data || []
         }
       }).catch(error => {
         console.log(error)
@@ -241,12 +269,28 @@ export default {
       this.currentAreaIndex = i;
       if (i !== -1) {
         this.subAreas = areas[i].items;
+        this.currentSubAreaIndex = -1
       } else {
         this.subAreas = [];
       }
+      let params = {page: this.pager.pageIndex}
+      if (i !== -1) {
+        let name = this.areas[i].name
+        params.qu_code = this.findQucode(name)
+      }
+      this.getSharelist(params)
     },
     selectSubArea(i) {
       this.currentSubAreaIndex = i;
+      let params = {page: this.pager.pageIndex};
+
+      let areaItem = this.areas[this.currentAreaIndex]
+      let name = areaItem.name
+      params.qu_code = this.findQucode(name)
+      if (i !== -1) {
+        params.yu = areaItem.items[i]
+      }
+      this.getSharelist(params)
     },
     selecSubway(i) {
       this.currentSubwayIndex = i;

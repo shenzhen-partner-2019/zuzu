@@ -1,7 +1,7 @@
 <template>
   <div class="share-detail wrap">
     <div class="share-title">
-      <h2>迈思商务中心(深城投中心)</h2>
+      <h2>{{houseDetail.shangwu}}{{'(' + houseDetail.suoshu + ')'}}</h2>
       <span class="save-btn">关注房源</span>
     </div>
     <div class="house-preview">
@@ -381,10 +381,12 @@ import HouseTable from "./component/house-table";
 import CenterIntro from "./component/center-intro";
 import BuildingIntro from "./component/building-intro";
 import FixedBook from "./component/fixed-book";
-import BaiduMap from '../../components/baidu-map'
+import BaiduMap from '../../components/baidu-map';
+import HttpRequest from '../../http/axios.js'
 export default {
   data() {
     return {
+      houseDetail: {},
       swiperlist: [
         "https://blueprint1453.github.io/zu/img/swiper_01.jpg",
         "https://blueprint1453.github.io/zu/img/swiper_02.jpg",
@@ -464,6 +466,10 @@ export default {
       console.log('watch searchInputText', value)
     }
   },
+  created() {
+    this.getHouseDetail()
+  },
+
   mounted() {
     let targetDom = document.querySelector('.fixed-book-custom')
 
@@ -492,7 +498,23 @@ export default {
   methods: {
     onTableTabClick(i) {
       this.activeTableTabIndex = i;
-    }
+    },
+    getHouseDetail(){
+      let id = this.$route.query.id
+      HttpRequest.get('/admin/api/share', {id}).then(res => {
+        let data = res.data.data[0]
+        let swiperlist = []
+        for (let key in data) {
+          if (key.includes('zhaopian')) {
+            swiperlist.push(data[key])
+          }
+        }
+        this.swiperlist = swiperlist
+        this.houseDetail = data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
   }
 };
-</script>
+</script>  

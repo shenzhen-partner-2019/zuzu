@@ -1,22 +1,45 @@
 <template>
   <div class="quality-item">
     <div class="left">
-      <a href="/zuzu/share-detail">
-        <img src="../../../../public/img/share_quality.png" alt="">
+      <a href="javascript:;">
+        <img v-if="info.zhaopian0" :src="info.zhaopian0" alt="">
+         <div v-if="!info.zhaopian0" class="no-pic">
+          <img src="../../../../public/img/paishezhong.png" alt="">
+          <span class="text">拍摄中...</span>
+        </div>
       </a>
     </div>
     <div class="right">
       <div class="house-details">
-        <p class="title ellipsis"><a title="卓越宝中时代广场" href="/zuzu/share-detail">卓越宝中时代广场</a>
+        <p class="title ellipsis"><a href="javascript:;" :title="info.suoshu + info.shangwu" >{{info.suoshu + info.shangwu}}</a>
         </p>
         <p class="ellipsis" title="宝安 宝安中心区">
-          <span>宝安</span><span> 宝安中心区</span>
+          <span>{{quyu}}</span><span> {{info.yu}}</span>
         </p>
-        <p class="price ellipsis"> 248元/平米/月</p>
+        <!-- <p class="price ellipsis"> 248元/平米/月</p> -->
       </div>
     </div>
   </div>
 </template>
+<script>
+import codeMap from '../../../utils/quCodeMap.js'
+export default {
+  data() {
+    return {}
+  },
+  props: {
+    info: {
+      type: Object
+    }
+  },
+  computed: {
+    quyu() {
+      return codeMap[this.info.qu_code]
+    }
+  },
+}
+</script>
+
 
 <style lang="scss" scoped>
 .quality-item {
@@ -25,11 +48,32 @@
   .left {
     margin-right: 10px;
     a {
+      position: relative;
       display: block;
       height: 70px;
       width: 70px;
       img {
         height: 100%;
+      }
+    }
+    .no-pic {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+      .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 100%;
+        text-align: center;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 12px;
       }
     }
   }
