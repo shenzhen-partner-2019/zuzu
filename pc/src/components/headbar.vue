@@ -1,6 +1,6 @@
 <template>
   <div class="header-wrapper">
-    <div class="warp">
+    <div class="warp clear">
         <div class="site-city fl">
           <span class="s1">深圳<em class="icon em1"></em></span>
           <div class="site-cityBox">
@@ -174,6 +174,7 @@ export default {
     // color: #ddd;
     background: #333;
     position: relative;
+    overflow: hidden;
     .warp {
       width: 1180px;
       margin: 0 auto;

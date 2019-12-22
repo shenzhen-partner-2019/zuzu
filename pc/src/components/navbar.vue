@@ -7,7 +7,7 @@
     <div class="nav-list">
       <a v-for="item in navlist" :href="item.link" :class="{'active': activePath === item.link}" :key="item.name">{{item.text}}</a>
     </div>
-    <search-bar class="fr"></search-bar>
+    <search-bar class="fr" @search-house="onSearch"></search-bar>
    </nav>
   </div>
 </template>
@@ -60,6 +60,11 @@ export default {
         this.activePath = route.path
       }
     }
+  },
+  methods: {
+    onSearch(text) {
+      this.$store.commit('updateSearchText', text)
+    }
   }
 };
 </script>
@@ -69,7 +74,7 @@ export default {
 @import "../style/mixin.scss";
 
 .nav-wrapper {
-  margin-top: 24px;
+  // margin-top: 24px;
   // margin-bottom: 5px;
   .nav {
     height: 30px;

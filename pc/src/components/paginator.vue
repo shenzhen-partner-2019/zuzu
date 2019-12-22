@@ -4,9 +4,9 @@
       <li
         class="paginator-item paginator-item-prev"
         :class="[sizeStyle, {'disabled': current <= 1}]"
-        @click="prePage()"
+        @click="prevPage()"
       >
-        <a>&lt;</a>
+        <a class="icon-wrapper"><span class="icon icon-lt"></span></a>
       </li>
 
       <li
@@ -24,7 +24,7 @@
         :class="[sizeStyle, {'disabled': current >= totalPages}]"
         @click="nextPage()"
       >
-        <a>&gt;</a>
+        <a class="icon-wrapper"><span class="icon icon-gt"></span></a>
       </li>
       <li class="paginator-options" :class="[jumperSize]">
         <div class="quick-jumper">
@@ -39,6 +39,19 @@
 
 <style lang="less" scoped>
 .paginator {
+  .icon {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+  }
+  .icon-lt {
+    background: url('../../public/img/lt.png') no-repeat;
+    background-size: 100% 100%;
+  }
+  .icon-gt {
+    background: url('../../public/img/gt.png') no-repeat;
+    background-size: 100% 100%;
+  }
   &.paginator-align-left {
     text-align: left;
   }
@@ -176,7 +189,7 @@ export default {
     },
     pageSize: {
       type: [Number, String],
-      default: 20
+      default: 10
     },
     align: {
       validator: function(value) {
@@ -244,7 +257,7 @@ export default {
       let pageArr = [];
       let totalPages = this.totalPages;
       if (totalPages > 10) {
-        let current = this.current;
+        let current = Number(this.current);
         let startPage = 1;
         let lastPage = totalPages;
         if (current <= 4) {
@@ -285,32 +298,33 @@ export default {
       }
     },
     prevPage() {
-      if (this.current === 1) {
+      let current = Number(this.current)
+      if (current === 1) {
         return;
       }
-      let value = this.current - 1;
+      let value = current - 1;
       this.updateCurrent(value);
     },
     nextPage() {
-      if (this.current === this.totalPageCount) {
+      let current = Number(this.current)
+      if (Number(this.current) === this.totalPageCount) {
         return;
       }
-      let value = this.current + 1;
+      let value = current + 1;
       this.updateCurrent(value);
     },
     onItemClick(index) {
-      console.log('onItemClick')
+      let current = Number(this.current)
       let value = index;
       if (value === "prev") {
-        value = this.current - 5 > 0 ? this.current - 5 : 1;
+        value = current - 5 > 0 ? current - 5 : 1;
       }
       if (value === "next") {
         value =
-          this.current + 5 < this.totalPages
-            ? this.current + 5
+          current + 5 < this.totalPages
+            ? current + 5
             : this.totalPages;
       }
-      console.log(value)
       this.updateCurrent(value);
     },
     jump(e) {

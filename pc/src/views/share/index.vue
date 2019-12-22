@@ -7,7 +7,7 @@
         <dd>
           <div class="list">
             <span :class="{'filter': locationType === 1}" @click="toggleLocationType(1)">区域</span>
-            <span :class="{'filter': locationType === 2}" @click="toggleLocationType(2)">地铁</span>
+            <!-- <span :class="{'filter': locationType === 2}" @click="toggleLocationType(2)">地铁</span> -->
           </div>
           <template v-if="locationType===1">
             <div class="list" >
@@ -33,7 +33,7 @@
       </dl>
 
       <!-- 人数 -->
-      <dl class="dl">
+      <!-- <dl class="dl">
         <dt>人数:</dt>
         <dd>
           <div class="list">
@@ -50,10 +50,10 @@
             </span>
           </div>
         </dd>
-      </dl>
+      </dl> -->
 
        <!-- 单价 -->
-      <dl class="dl">
+      <!-- <dl class="dl">
         <dt>单价:</dt>
         <dd>
           <div class="list">
@@ -70,10 +70,10 @@
             </span>
           </div>
         </dd>
-      </dl>
+      </dl> -->
 
       <!-- 装修 -->
-      <dl class="dl">
+      <!-- <dl class="dl">
         <dt>装修:</dt>
         <dd>
           <div class="list">
@@ -81,9 +81,9 @@
             <span :class="{'filter': currentdecorateIndex === i}" v-for="(item, i) in decorateStatuslist" @click="selectDecorateStatus(i)" :key="i">{{item}}</span>
           </div>
         </dd>
-      </dl>
+      </dl> -->
       <!-- 已选 -->
-      <div class="divider-area"></div>
+      <!-- <div class="divider-area"></div>
       <dl class="dl dl-selected">
         <dt>已选:</dt>
         <dl>
@@ -95,7 +95,7 @@
             <div class="clear"><span class="icon-delete"></span><span>清空</span></div>
           </div>
         </dl>
-      </dl>
+      </dl> -->
     </div>
     <div class="wrap share-list clear">
       <div class="list-left">
@@ -108,11 +108,11 @@
             <span class="icon-up" v-show="activeTab === 0 || sortType === 1" @click.stop="toggleSortType(1)"></span>
             <span class="icon-down" v-show="activeTab === 0 || sortType === 0" @click.stop="toggleSortType(0)"></span>
           </a>
-          <span class="total">共有<strong>328</strong>个网点满足您的需求</span>
+          <span class="total">共有<strong>{{this.pager.total}}</strong>个网点满足您的需求</span>
         </div>
         <div class="list">
           <div class="list-item-wrap" v-for="(item, i) in sharelist" :key="i">
-            <Item ></Item>
+            <Item :info="item"></Item>
           </div>
         </div>
         <!-- 分页 -->
@@ -120,6 +120,7 @@
           class="page-custom"
           :current.sync="pager.pageIndex"
           :total="pager.total"
+          @current-change="onPageIndexChange"
         ></Paginator>
       </div>
       <div class="list-right">
@@ -135,9 +136,9 @@
             </p>
         </div>
         <div class="high-quality">
-          <h4>优质写字楼</h4>
+          <h4>热门共享办公</h4>
           <div class="list">
-            <quality-item class="list-item" v-for="(item, i) in qualitylist" :key="i"></quality-item>
+            <quality-item class="list-item" v-for="(item, i) in qualitylist" :key="i" :info="item" ></quality-item>
           </div>
         </div>
       </div>
@@ -149,12 +150,15 @@ import { areas, subways } from "../../utils/location.js";
 import Item from "./item/index";
 import QualityItem from './qulity-item/index'
 import Paginator from '../../components/paginator'
+import HttpRequest from '../../http/axios.js'
 import {
   pricelist,
   numOfStafflist,
   decorateStatuslist,
   selectDecorateStatus
 } from "./data/searchFilter.js";
+import codeMap from '../../utils/quCodeMap.js';
+
 export default {
   components: {
     Item,
@@ -191,8 +195,8 @@ export default {
       decorateStatuslist,
       currentdecorateIndex: -1,
 
-      sharelist: new Array(10),
-      qualitylist: new Array(10),
+      sharelist: [],
+      qualitylist: [],
        
       //  tab切换
       activeTab: 0, // 0 1
@@ -200,22 +204,93 @@ export default {
 
       pager: {
         pageIndex: 1,
-        total: 318,
-        pageSize: 20
-      }
+        total: 0,
+        pageSize: 10
+      },
     };
   },
+  created() {
+    this.getSharelist({page: this.pager.pageIndex})
+    this.getQualitylist()
+  },
+  watch: {
+    // currentAreaIndex(value) {
+    //   let params = {page: this.pager.pageIndex}
+    //   if (value !== -1) {
+    //     let name = this.areas[value].name
+    //     params.qu_code = this.findQucode(name)
+    //   }
+    //   this.getSharelist(params)
+    // },
+    currentSubAreaIndex(value) {
+      let params = {page: this.pager.pageIndex}
+      if (value !== -1) {
+
+      }
+    }
+  },
   methods: {
+    findQucode(name) {
+      for (let key in codeMap) {
+        if (codeMap[key] === name) {
+          return key
+        }
+      }
+    },
+    getSharelist(params) {
+      HttpRequest.get('/admin/api/share', params).then(res => {
+        if (res.data && Array.isArray(res.data.data)) {
+          this.sharelist = res.data.data
+          this.qualitylist = res.data.data
+          this.pager.total = res.data.total
+          this.pager.pageIndex = res.data.current_page
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    getQualitylist() {
+      let params = {
+        page: 1
+      }
+      HttpRequest.get('/admin/api/share', params).then(res => {
+        if (res.data && Array.isArray(res.data.data)) {
+          this.sharelist = res.data.data || []
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    onPageIndexChange(index) {
+      console.log(this.pager)
+      this.getSharelist()
+    },
     selectArea(i) {
       this.currentAreaIndex = i;
       if (i !== -1) {
         this.subAreas = areas[i].items;
+        this.currentSubAreaIndex = -1
       } else {
         this.subAreas = [];
       }
+      let params = {page: this.pager.pageIndex}
+      if (i !== -1) {
+        let name = this.areas[i].name
+        params.qu_code = this.findQucode(name)
+      }
+      this.getSharelist(params)
     },
     selectSubArea(i) {
       this.currentSubAreaIndex = i;
+      let params = {page: this.pager.pageIndex};
+
+      let areaItem = this.areas[this.currentAreaIndex]
+      let name = areaItem.name
+      params.qu_code = this.findQucode(name)
+      if (i !== -1) {
+        params.yu = areaItem.items[i]
+      }
+      this.getSharelist(params)
     },
     selecSubway(i) {
       this.currentSubwayIndex = i;

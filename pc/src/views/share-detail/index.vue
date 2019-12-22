@@ -1,12 +1,12 @@
 <template>
   <div class="share-detail wrap">
     <div class="share-title">
-      <h2>迈思商务中心(深城投中心)</h2>
+      <h2>{{houseDetail.shangwu}}{{'(' + houseDetail.suoshu + ')'}}</h2>
       <span class="save-btn">关注房源</span>
     </div>
     <div class="house-preview">
       <swiper class="swiper-custom" ref="swiper" :list="swiperlist"></swiper>
-      <div class="house-info">
+      <div class="house-info" id="house-info">
         <div class="price">
           <span>2250-2885</span>
           元/工位/月
@@ -53,13 +53,10 @@
           </div>
           <p>租租网承诺保护您的隐私安全</p>
         </div>
-
-         <fixed-book :class="fixedBookStyle"></fixed-book>
-
       </div>
     </div>
     <!-- 房源表格信息 -->
-    <div class="detail-info">
+    <div class="detail-info" id="share-detail-info">
        <!-- <div class="house-table-wrapper">
         <div class="tab">
           <a 
@@ -74,14 +71,15 @@
         <house-table :tableData="tableData"></house-table>
       </div> -->
       <center-intro class="center-info-custom"></center-intro>
-      <div class="building-info-wrapper">
-         <building-intro></building-intro>
+      <div class="building-info-wrapper" id="building-info-wrapper">
+         <building-intro class="building-info-custom"></building-intro>
+         <fixed-book class="fixed-book-custom" :class="fixedBookStyle"></fixed-book>
       </div>
     </div>
      <div class="around">
         <h4 class="title">周边信息</h4>
         <div :style="{border: '1px solid #ccc'}">
-          <baidu-map :height="510"></baidu-map>
+          <baidu-map :height="510" address="深圳南山海上世界太子路工业3路1号"></baidu-map>
         </div>
       </div>
     <div class="book">
@@ -243,7 +241,7 @@
     }
   }
   .detail-info {
-    width: 716px;
+    // width: 716px;
   }
   .house-table-wrapper {
     margin-bottom: 50px;
@@ -275,6 +273,7 @@
   }
   .center-info-custom {
     margin-bottom: 50px;
+    width: 716px;
   }
   .around {
     margin-bottom: 50px;
@@ -348,25 +347,29 @@
   .building-info-wrapper {
     position: relative;
   }
+  .building-info-custom {
+    width: 716px;
+  }
   .fixed-book-custom {
-    display: none;
+     display: none;
      position: fixed;
-      top: 70px;
-      z-index: 100;
+     top: 70px;
+     z-index: 100;
    
     // right: -436px;
-    &.show {
+    &.pos-fixed {
+      position: fixed;
+      top: 70px;
+      z-index: 10000;
       display: block;
     }
     &.pos-absolute {
       position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10000;
+      display: block;
     }
-    // &.fixed {
-    //   position: fixed;
-    //   top: 70px;
-    //   z-index: 100;
-    //   // right: 0;
-    // }
   }
 }
 </style>
@@ -378,10 +381,12 @@ import HouseTable from "./component/house-table";
 import CenterIntro from "./component/center-intro";
 import BuildingIntro from "./component/building-intro";
 import FixedBook from "./component/fixed-book";
-import BaiduMap from '../../components/baidu-map'
+import BaiduMap from '../../components/baidu-map';
+import HttpRequest from '../../http/axios.js'
 export default {
   data() {
     return {
+      houseDetail: {},
       swiperlist: [
         "https://blueprint1453.github.io/zu/img/swiper_01.jpg",
         "https://blueprint1453.github.io/zu/img/swiper_02.jpg",
@@ -451,29 +456,65 @@ export default {
     FixedBook,
     BaiduMap
   },
+  computed: {
+    searchInputText(){
+      return this.$store.state.searchText
+    }
+  },
+  watch: {
+    searchInputText(value) {
+      console.log('watch searchInputText', value)
+    }
+  },
+  created() {
+    this.getHouseDetail()
+  },
+
   mounted() {
-    // let swiper = this.$refs.swiper
-    // let swiperHeight = swiper.offsetHeight
-    // document.querySelector('#app').addEventListener('scroll', (e) => {
-    //    let swiper = this.$refs.swiper
-    //   //  console.log(swiper.$el.scrollHeight)
-    //    let swiperHeight = swiper.$el.scrollHeight
-    //   console.log(e.target.scrollTop)
-    //   let scrollTop = e.target.scrollTop
-      
-    //  if(scrollTop > 1080){
-    //    this.fixedBookStyle = ''
-    //  } else  if (scrollTop > swiperHeight) {
-    //     this.fixedBookStyle = 'show'
-    //   } else {
-    //     this.fixedBookStyle = 'fixed-book-custom'
-    //   }
-    // })
+    let targetDom = document.querySelector('.fixed-book-custom')
+
+    let dom1 = document.querySelector('#share-detail-info')
+    let dom2 = document.querySelector('#building-info-wrapper')
+
+    let dom3 = document.querySelector('#house-info')
+    let x3 = dom3.getBoundingClientRect().x
+    
+    document.querySelector('.zuzu').addEventListener('scroll', (e) => {
+      let y1 = dom1.getBoundingClientRect().y
+      let y2 = dom2.getBoundingClientRect().y
+      console.log(y1, y2)
+      if (y1 <= 0 && y2 >= 0) {
+        this.fixedBookStyle = 'pos-fixed'
+        targetDom.style.left = x3 + 'px'
+      } else if (y1 <= 0 && y2 < 0) {
+        this.fixedBookStyle = 'pos-absolute'
+        targetDom.style.left = ''
+      } else {
+        this.fixedBookStyle = ''
+        targetDom.style.left = ''
+      }
+    })
   },
   methods: {
     onTableTabClick(i) {
       this.activeTableTabIndex = i;
-    }
+    },
+    getHouseDetail(){
+      let id = this.$route.query.id
+      HttpRequest.get('/admin/api/share', {id}).then(res => {
+        let data = res.data.data[0]
+        let swiperlist = []
+        for (let key in data) {
+          if (key.includes('zhaopian')) {
+            swiperlist.push(data[key])
+          }
+        }
+        this.swiperlist = swiperlist
+        this.houseDetail = data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
   }
 };
-</script>
+</script>  

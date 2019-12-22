@@ -2,7 +2,7 @@
   <div class="zuzu">
     <!-- 头部区域 -->
     <header-bar class="g-header"></header-bar>
-    <nav-bar v-show="navbarVisible" class="g-navbar"></nav-bar>
+    <nav-bar v-show="navbarVisible" class="g-navbar" ></nav-bar>
     <!-- 主体内容 路由切换-->
     <router-view></router-view>
     <!-- 底部区域 -->
@@ -41,10 +41,15 @@ export default {
         let path = route.path
         if (path === "/zuzu/weituo") {
           this.navbarVisible = false
+        } else {
+          this.navbarVisible = true
         }
         if (path === '/zuzu/map') {
           this.footerVisible = false
+        } else {
+          this.footerVisible = true
         }
+        this.$store.commit('updateSearchText', '')
       }
     }
   }
@@ -54,9 +59,12 @@ export default {
 <style lang="scss">
 .zuzu {
   width: 100%;
+  height: 100%;
+  overflow: auto;
 }
 .g-navbar {
-  margin-bottom: 24px;
+  // margin-bottom: 24px;
+  padding: 24px 0;
 }
 </style>
 

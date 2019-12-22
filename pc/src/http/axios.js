@@ -1,9 +1,9 @@
 import axios from 'axios'
 import Qs from 'qs'
 
-const HttpRequest = axios.create({
-  baseURL: 'https://some-domain.com/api/',
-  url: '/user',
+const instance = axios.create({
+  // baseURL: 'https://some-domain.com/api/',
+  // url: '/user',
   headers: { 
     'Content-Type': 'application/x-www-form-urlencoded',
     'X-Requested-With': 'XMLHttpRequest',
@@ -16,21 +16,30 @@ const HttpRequest = axios.create({
   }
 })
 
-HttpRequest.interceptors.request.use(config => {
+instance.interceptors.request.use(config => {
   // do something before request
   if (config.method === 'post') {
     config.data = Qs.stringify(config.data)
-    return config
   }
+  return config
 }, error => {
-  Promise.reject(error)
+  return Promise.reject(error)
 })
 
-HttpRequest.interceptors.response.use(response => {
+instance.interceptors.response.use(response => {
   // do something
   return response
 }, error => {
-  Promise.reject(error)
+  return Promise.reject(error)
 })
+
+const HttpRequest = {
+  get(url, data) {
+    return instance.get(url, {params: data})
+  },
+  post(url, data) {
+    return instance.post(url, data)
+  }
+}
 
 export default HttpRequest

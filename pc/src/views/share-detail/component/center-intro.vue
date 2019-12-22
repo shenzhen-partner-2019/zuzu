@@ -14,28 +14,52 @@
       <span class="label">基础服务</span>
       <div class="content">
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
+          <span class="iconfont iconbangongjiaju1"></span>
           <p class="text">办公家具</p>
         </div>
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
+          <span class="iconfont iconkongtiao"></span>
           <p class="text">中央空调</p>
         </div>
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
+          <span class="iconfont iconbangongkuandai"></span>
           <p class="text">办公宽带</p>
         </div>
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
+          <span class="iconfont iconwifi1"></span>
           <p class="text">WIFI</p>
         </div>
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
-          <p class="text">办公家具</p>
+          <span class="iconfont iconqingjie"></span>
+          <p class="text">办公清洁</p>
         </div>
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
-          <p class="text">办公家具</p>
+          <span class="iconfont iconweibolu"></span>
+          <p class="text">微波炉</p>
+        </div>
+         <!-- <div class="item">
+           <span class="iconfont iconweibolu"></span>
+          <p class="text">卫生间配套</p>
+        </div> -->
+         <div class="item">
+          <span class="iconfont iconmianwuyefei"></span>
+          <p class="text">免物业费</p>
+        </div>
+         <!-- <div class="item">
+          <span class="iconfont iconmianwuyefei"></span>
+          <p class="text">传真</p>
+        </div> -->
+         <div class="item">
+          <span class="iconfont iconyinyongshui"></span>
+          <p class="text">茶水间</p>
+        </div>
+        <div class="item">
+          <span class="iconfont icondayin"></span>
+          <p class="text">打印复印</p>
+        </div>
+        <div class="item">
+          <span class="iconfont iconbingxiang"></span>
+          <p class="text">冰箱</p>
         </div>
       </div>
     </div>
@@ -43,28 +67,44 @@
       <span class="label">企业服务</span>
       <div class="content">
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
-          <p class="text">办公家具</p>
+          <span class="iconfont icongongshangzhuce"></span>
+          <p class="text">工商注册</p>
+        </div>
+        <!-- <div class="item">
+          <span class="iconfont icongongshangzhuce"></span>
+          <p class="text">税务</p>
+        </div> -->
+        <div class="item">
+           <span class="iconfont iconnianjian"></span>
+          <p class="text">公司年检</p>
         </div>
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
-          <p class="text">中央空调</p>
+           <span class="iconfont iconqiantai"></span>
+          <p class="text">行政前台</p>
         </div>
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
-          <p class="text">办公宽带</p>
+           <span class="iconfont iconchaishuidaili1"></span>
+          <p class="text">财务服务</p>
         </div>
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
-          <p class="text">WIFI</p>
+           <span class="iconfont iconrenshizhaopin"></span>
+          <p class="text">人力招聘</p>
+        </div>
+         <div class="item">
+           <span class="iconfont icontouziziyuan"></span>
+          <p class="text">投资资源</p>
         </div>
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
-          <p class="text">办公家具</p>
+           <span class="iconfont iconxiuxianqu"></span>
+          <p class="text">商务聚会</p>
         </div>
         <div class="item">
-          <img src="../../../../public/img/wifi.png" alt="">
-          <p class="text">办公家具</p>
+           <span class="iconfont iconzhishijiangzuo"></span>
+          <p class="text">知识讲座</p>
+        </div>
+        <div class="item">
+           <span class="iconfont iconxuanchuansheji"></span>
+          <p class="text">宣传设计</p>
         </div>
       </div>
     </div>
@@ -110,6 +150,9 @@
       }
       .text {
         color: #999;
+      }
+      .iconfont {
+        font-size: 24px;
       }
     }
   }

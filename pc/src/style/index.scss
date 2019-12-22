@@ -1,16 +1,142 @@
 /*布局相关*/
 
-html, body {
+html,
+body {
   height: 100%;
   min-width: 1180px;
 }
 
 #app {
   height: 100%;
-  overflow: auto;
 }
 
 .wrap {
   width: 1180px;
-  margin: auto;
+  margin: 0 auto;
 }
+
+.icon-marker {
+  z-index: 1000000001;
+  // display: block !important;
+  .label {
+    position: absolute;
+    display: none;
+    left: 30px;
+    top: 30px;
+    font-size: 12px;
+    white-space: nowrap;
+    width: auto;
+    background: #f9f9f9;
+    border: 0.5px solid #aaa;
+    padding: 0 10px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+    z-index: 1000000002;
+  }
+  &:hover {
+    .label {
+      display: block !important;
+    }
+  }
+}
+
+// 地图定位点弹跳动画
+@keyframes bounce {
+  0% {
+    transform: translateY(-24px);
+  }
+
+  60% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-24px);
+  }
+}
+.animation-bounce {
+  animation: bounce .8s linear infinite;
+}
+
+// 地图找房页面圆形覆盖物样式
+.round-overlay {
+  background: #f66a2d;
+  color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  &:hover {
+    background: #d84f06;
+  }
+  &.small {
+    font-size: 12px;
+  }
+}
+
+.squire-overlay {
+  background: #f66a2d;
+  font-size: 12px;
+  padding: 0px 12px;
+  color: #f9f9f9;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 5px solid #f66a2d;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid transparent;
+    bottom: -10px;
+    z-index: 100;
+  }
+  &:hover {
+    background: #d84f06;
+    &::after {
+      border-top: 5px solid #d84f06;
+    }
+    .info-wrapper {
+      display: block;
+    }
+  }
+  .info-wrapper {
+    user-select: all;
+    display: none;
+    width: 140px;
+    border: 1px solid #ad9191;
+    padding-bottom: 4px;
+    background: #fff;
+    z-index: 10000;
+    img {
+      width: 100%;
+      vertical-align: top;
+    }
+    .price {
+      color: #f9f9f9;
+      background: rgba(0, 0, 0, .75);
+      color: #f9f9f9;
+      height: 24px;
+      line-height: 24px;
+      padding: 0 20px;
+    }
+    .title {
+      height: 20px;
+      line-height: 20px;
+      font-size: 12px;
+      padding-left: 10px;
+      margin-top: 4px;
+      color: #444;
+    }
+    .area {
+      font-size: 12px;
+      color: #444;
+      padding-left: 6px;
+      transform: scale(0.9);
+    }
+  }
+}
+

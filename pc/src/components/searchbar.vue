@@ -1,9 +1,9 @@
 <template>
   <div class="search-bar">
     <div class="input-box">
-      <input type="text" placeholder="输入区域/商圈/楼盘名" />
+      <input type="text" v-model="text"  placeholder="输入区域/商圈/楼盘名" />
     </div>
-    <div class="search-btn">
+    <div class="search-btn" @click="onSearchBtnClick">
       <img src="../../public/img/icon_search.png" alt="">
     </div>
   </div>
@@ -33,6 +33,7 @@
          background: orange;
          border-radius: 0 4px 4px 0;
          text-align: center;
+         cursor: pointer;
          img {
            height: 24px;
            width:24px;
@@ -41,4 +42,23 @@
       }
     }
 </style>
+
+<script>
+export default {
+  data() {
+    return {
+      text: ''
+    }
+  },
+  watch: {
+   
+  },
+  methods: {
+     onSearchBtnClick() {
+      this.$emit('search-house', this.text)
+    }
+  }
+}
+</script>
+
 
