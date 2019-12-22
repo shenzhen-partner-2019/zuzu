@@ -5,18 +5,18 @@
     <div class="footbox">
         <h1>办公选址上好租，专业靠谱！</h1>
         <p class="p1">
-            <a href="//www.haozu.com/about/" target="_blank">关于好租</a><i class="i1">-</i>
-            <a href="//www.haozu.com/fuwujieshao/" target="_blank">服务介绍</a><i class="i1">-</i>
-            <a href="//www.haozu.com/contact/" target="_blank">联系我们</a><i class="i1">-</i>
-            <a href="//haozu.zhiye.com/home/" target="_blank">加入我们</a><i class="i1">-</i>
-            <a href="//www.haozu.com/wangzhanditu/" target="_blank">网站地图</a><i class="i1">-</i>
-            <a href="//www.haozu.com/changjianwenti/" target="_blank">常见问题</a><i class="i1">-</i>
-            <a href="http://ad.haozu.com/" target="_blank">广告服务</a>
+            <a href="#">关于好租</a><i class="i1">-</i>
+            <a href="#">服务介绍</a><i class="i1">-</i>
+            <a href="#">联系我们</a><i class="i1">-</i>
+            <a href="#">加入我们</a><i class="i1">-</i>
+            <a href="#">网站地图</a><i class="i1">-</i>
+            <a href="#">常见问题</a><i class="i1">-</i>
+            <a href="#">广告服务</a>
             <i class="i1">-</i>
-            <a href="//www.haozu.com/sz/fangyuanweituo/?from=4" target="_blank">投放房源</a>
+            <a href="#">投放房源</a>
         </p>
         <p class="p1">©2015-2019&nbsp;北京好租科技发展有限公司&nbsp;
-            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802025685" target="_blank">京ICP备16019026号</a>&nbsp;地址：北京市海淀区上地软件园南路57号八维学院</p>
+            <a href="#">京ICP备16019026号</a>&nbsp;地址：北京市海淀区上地软件园南路57号八维学院</p>
         <div class="foot-ewmBox">
             <div class="foot-app" id="foot_mini" 
              data-phone="400-733-2233">

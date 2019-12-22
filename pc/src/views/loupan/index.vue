@@ -266,4 +266,10 @@ $blue-theme: #399EDE;
     }
   }
   }
+  .icon {
+    display: inline-block;
+    vertical-align: top;
+    background: url(../../../public/img/icon_v4.png) no-repeat;
+    font-size: 0;
+}
 </style>

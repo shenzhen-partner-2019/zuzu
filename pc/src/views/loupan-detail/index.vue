@@ -31,11 +31,10 @@
     <!--图片信息-->
     <div class="clearfix">
         <div class="imgBox fl">
-            <div class="detail-img2 imgBox-play">                                                 <span class="prev" data-role="prev"><em class="icon em1"></em></span>
-                <span class="next" data-role="next"><em class="icon em2"></em></span>
+            <div class="detail-img2 imgBox-play">                                              
                 <ul class="play-ul clearfix">
                     <li class="fade_in">
-                      <img src="../../../public/img/office-detail1.jpg" alt="">
+                      <img src="//fang-web-cdn.haozu.com/gjfs21/M03/70/5C/CgEHF1c0cLWohTGqABNl4DouqXc712.jpg?x-oss-process=image/resize,m_fill,w_660,h_440/quality,Q_90/crop,g_center,x_0,y_0,h_440,w_660" alt="">
                     </li>
                     <li class="" data-role="item" data-tag="shineitu" data-index="0">
                         2
@@ -435,7 +434,6 @@ export default {
         .imgBox-play {
             position: relative;
             z-index: 0;
-            border:1px solid #ccc;
             .play-ul {
                 height: 500px;
                 width: auto;
@@ -450,22 +448,18 @@ export default {
                 vertical-align: top;
                 li {
                     width: 710px;
-                    height: 400px;
-                    overflow: hidden;
+                    height: 500px;
                     cursor: pointer;
                     position: absolute;
-                    opacity: 0;
                     transition: opacity 1s;
-                    background: #fff;
                     border-radius: 4px;
-                    border: 1px solid #ccc;
                     display: inline-block;
                     vertical-align: top;
                     text-align: center;
                     img {
                         display: block;
                         width: 710px;
-                        height: 400px;
+                        height: 500px;
                         border-radius: 4px;
                     }
                 }

@@ -31,8 +31,7 @@
         </div>
         <div class="clearfix">
             <div class="imgBox fl">
-                <div class="detail-img2 imgBox-play">                                                 <span class="prev" data-role="prev"><em class="icon em1"></em></span>
-                    <span class="next" data-role="next"><em class="icon em2"></em></span>
+                <div class="detail-img2 imgBox-play">                                                 
                     <ul class="play-ul clearfix">
                         <li class="fade_in">
                           <img src="../../../public/img/office-detail1.jpg" alt="">
@@ -324,10 +323,32 @@ export default {
     BaiduMap
   },
   mounted() {
- 
+    //   this.aaa()
   },
   methods: {
-   
+   aaa(){
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      loop: true,
+      freeMode: true,
+      loopedSlides: 5, //looped slides should be the same
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
+    });
+    var galleryTop = new Swiper('.gallery-top', {
+      spaceBetween: 10,
+      loop:true,
+      loopedSlides: 5, //looped slides should be the same
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      thumbs: {
+        swiper: galleryThumbs,
+      },
+    });
+   }
   }
 };
 </script>
@@ -425,7 +446,6 @@ export default {
         .imgBox-play {
             position: relative;
             z-index: 0;
-            border:1px solid #ccc;
             .play-ul {
                 height: 400px;
                 width: auto;
@@ -441,14 +461,13 @@ export default {
                 li {
                     width: 710px;
                     height: 400px;
-                    overflow: hidden;
+                    // overflow: hidden;
                     cursor: pointer;
                     position: absolute;
-                    opacity: 0;
+                    // opacity: 0;
                     transition: opacity 1s;
-                    background: #fff;
                     border-radius: 4px;
-                    border: 1px solid #ccc;
+                    // border: 1px solid #ccc;
                     display: inline-block;
                     vertical-align: top;
                     text-align: center;

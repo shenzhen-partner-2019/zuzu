@@ -7,9 +7,11 @@
     <router-view></router-view>
     <!-- 底部区域 -->
     <footer-bar v-show="footerVisible"></footer-bar>
+    <customerCall></customerCall>
   </div>
 </template>
 <script>
+import customerCall from '../customer-call/index'
 import HeaderBar from "../../components/headbar";
 import FooterBar from "../../components/footerbar";
 import NavBar from "../../components/navbar";
@@ -20,7 +22,8 @@ export default {
   components: {
     HeaderBar,
     FooterBar,
-    NavBar
+    NavBar,
+    customerCall
   },
   data() {
     return {

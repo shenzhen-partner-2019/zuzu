@@ -24,6 +24,7 @@
     </div>
     <!--底部-->
     <Footerbar></Footerbar>
+    <customerCall></customerCall>
   </div>
 </template>
 
@@ -47,6 +48,7 @@ import HotBusinessBox from './hotBusinessBox'
 import Footerbar from '../../components/footerbar'
 import Loufan from '../../components/loupanCompent'
 import HouseResouce from "../../components/houseResource"
+import customerCall from '../customer-call/index'
 export default {
     name:'home',
     data(){
@@ -129,7 +131,8 @@ export default {
       HotBusinessBox,
       Footerbar,
       Loufan,
-      HouseResouce
+      HouseResouce,
+      customerCall
     }
 }
 </script>
@@ -177,5 +180,4 @@ export default {
     color: #f90;
   }
 }
-
 </style>
