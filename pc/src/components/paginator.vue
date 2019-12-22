@@ -334,6 +334,7 @@ export default {
       }
     },
     updateCurrent(value) {
+      console.log('updateCurrent ', value)
       this.$emit("update:current", value);
       this.$emit("current-change", value);
     }

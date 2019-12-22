@@ -222,12 +222,12 @@ export default {
     //   }
     //   this.getSharelist(params)
     // },
-    currentSubAreaIndex(value) {
-      let params = {page: this.pager.pageIndex}
-      if (value !== -1) {
+    // currentSubAreaIndex(value) {
+    //   let params = {page: this.pager.pageIndex}
+    //   if (value !== -1) {
 
-      }
-    }
+    //   }
+    // }
   },
   methods: {
     findQucode(name) {
@@ -262,18 +262,29 @@ export default {
       })
     },
     onPageIndexChange(index) {
-      console.log(this.pager)
-      this.getSharelist()
+      let params = {
+        page: this.pager.pageIndex
+      }
+      if (this.currentAreaIndex !== -1) {
+        let areaItem = this.areas[this.currentAreaIndex]
+        let name = areaItem.name
+        params.qu_code = this.findQucode(name)
+        if (this.currentSubAreaIndex !== -1) {
+          params.yu = areaItem.items[this.currentSubAreaIndex]
+        }
+      }
+      this.getSharelist(params)
     },
     selectArea(i) {
       this.currentAreaIndex = i;
+      this.pager.pageIndex = 1
       if (i !== -1) {
         this.subAreas = areas[i].items;
         this.currentSubAreaIndex = -1
       } else {
         this.subAreas = [];
       }
-      let params = {page: this.pager.pageIndex}
+      let params = {page: 1}
       if (i !== -1) {
         let name = this.areas[i].name
         params.qu_code = this.findQucode(name)
@@ -282,7 +293,8 @@ export default {
     },
     selectSubArea(i) {
       this.currentSubAreaIndex = i;
-      let params = {page: this.pager.pageIndex};
+      this.pager.pageIndex = 1
+      let params = {page: 1};
 
       let areaItem = this.areas[this.currentAreaIndex]
       let name = areaItem.name
