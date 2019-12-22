@@ -59,6 +59,12 @@ var top_right_navigation = new BMap.NavigationControl({
 }); //右上角，仅包含平移和缩放按钮
 
 const IMG_URL = 'https://blueprint1453.github.io/zu/img/map_icon.png'
+const IMG_URL_MAP = {
+  '地铁': 'https://blueprint1453.github.io/zu//map/icon_ditie.png',
+  '公交': 'https://blueprint1453.github.io/zu//map/icon_gongjiao.png',
+  '餐饮': 'https://blueprint1453.github.io/zu//map/icon_canyin.png',
+  '银行': 'https://blueprint1453.github.io/zu//map/icon_bank.png'
+}
 const OFFSET_MAP = {
   '地铁': [-102, 0],
   '公交': [-132, 0],
@@ -195,28 +201,18 @@ export default {
           imgUrl: IMG_URL,
           offset: OFFSET_MAP['geo']
         }
-        let marker = new IconMarker(point, size, iconOptions, '', 'animation-bounce')
-        // let icon2 = new BMap.Icon('public/img/map/icon_map_local.png', new BMap.Size(24, 24))
-        // let marker2 = new BMap.Marker(point, {icon: icon2})
-        // console.log(marker2)
-        // marker2.addEventListener("click",() => {
-        //   console.log(marker2.getPosition())
-        // });
-        // this.map.addOverlay(marker2)
-        // marker.addEventListener('click', function() {
-        //   console.log('marker event')
-        // })
-        this.map.addOverlay(marker)
+        let icon2 = new BMap.Icon('https://blueprint1453.github.io/zu//map/icon_local.png', new BMap.Size(36, 36))
+        let marker2 = new BMap.Marker(point, {icon: icon2})
+       
+        this.map.addOverlay(marker2)
+        marker2.setAnimation(BMAP_ANIMATION_BOUNCE)
+        marker2.setTitle(this.address)
       }
       /**
        * 在有滚动条的页面中开启enableScrollWheelZoom会有问题
        * 采用缩放控件实现缩放
-       */
+     */
       this.addCcontrol();
-
-      // this.map.addEventListener("click", e => {
-      //   console.log("click", e);
-      // });
     },
     addMakerlist(keyword) {
       this.hideOldmarkers()
@@ -225,20 +221,17 @@ export default {
       if (item) {
         let list = item.list
         let size = [29, 29]
-        let iconOptions = {
-          imgUrl: IMG_URL,
-          offset: OFFSET_MAP['银行']
-        }
         for (let subItem of list) {
-          iconOptions.offset = OFFSET_MAP[item.keyword]
           let {point, title} = subItem
-          // let marker = new IconMarker(point, size, iconOptions, title, 'icon-marker')
+          let icon = new BMap.Icon(IMG_URL_MAP[keyword], new BMap.Size(24, 24))
           let marker = new BMap.Marker(point)
+          marker.setIcon(icon)
+          marker.setTitle(title)
           this.map.addOverlay(marker)
+          marker.addEventListener("click",() => {
+            this.onSelectResultItem(subItem, keyword)
+          });
           this.markerlist.push(marker)
-          // marker.listen('click', (e) => {
-          //   console.log('marker', e)
-          // })
         }
       }
     },
@@ -248,7 +241,6 @@ export default {
       }
     },
     searchWalkRoute(point1, point2) {
-      console.log(point1, point2)
       return new Promise( (resolve, reject) => {
         var walking = new BMap.WalkingRoute(this.map);
         walking.search(point1, point2);
@@ -271,24 +263,31 @@ export default {
     //   console.log(searchResult);
     //   console.log(this.curSearchResultlist);
     // },
-    onSelectResultItem(item) {
+    onSelectResultItem(item, keyword) {
+      console.log(item)
       let itemPoint = item.point;
-      let overlays = this.map.getOverlays();
-      let target = overlays.find(overlay => {
-        let point = overlay.point;
-        return (
-          point && itemPoint.lat === point.lat && itemPoint.lng === point.lng
-        );
-      });
-
-      let content = `<div><p>地址：${item.address}</p><p>电话：${
-        item.phoneNumber
-      }</p></div>`;
-      let searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+      let width = 320
+      let height = 80
+      let content = ''
+      if (keyword === '地铁') {
+        content = `<div><p>地址：${item.address}</p></div>`;
+        height = 30
+      } else if (keyword === '公交') {
+        content = `<div><p>地址：${item.address}</p></div>`;
+        height = 80
+      } else if (keyword === '餐饮') {
+        content = `<div><p>地址：${item.address}</p><p>电话：${item.phoneNumber || '暂无'}</p></div>`;
+        height = 50
+      } else if (keyword === '银行') {
+        content = `<div><p>地址：${item.address}</p><p>电话：${item.phoneNumber || '暂无'}</p></div>`;
+        height = 50
+      }
+     
+      let searchInfoWindow = new BMapLib.SearchInfoWindow(this.map, content, {
         title: item.title, //标题
-        width: 240, //宽度
-        height: 105, //高度
-        panel: "panel", //检索结果面板
+        width: width, //宽度
+        height: height, //高度
+        panel: "panel1", //检索结果面板
         enableAutoPan: true, //自动平移
         searchTypes: [
           BMAPLIB_TAB_SEARCH, //周边检索
@@ -296,8 +295,8 @@ export default {
           BMAPLIB_TAB_FROM_HERE //从这里出发
         ]
       });
-      console.log(item.marker);
-      // searchInfoWindow.open(item.marker)
+
+      searchInfoWindow.open(item.point)
     },
     handleSearchResult(result) {
       let arr = [];

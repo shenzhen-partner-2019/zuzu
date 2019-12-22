@@ -482,7 +482,7 @@ export default {
     document.querySelector('.zuzu').addEventListener('scroll', (e) => {
       let y1 = dom1.getBoundingClientRect().y
       let y2 = dom2.getBoundingClientRect().y
-      console.log(y1, y2)
+      // console.log(y1, y2)
       if (y1 <= 0 && y2 >= 0) {
         this.fixedBookStyle = 'pos-fixed'
         targetDom.style.left = x3 + 'px'
