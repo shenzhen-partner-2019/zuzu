@@ -9,9 +9,6 @@
         <div class="process">
           <img src="../../../public/img/tf_process.png" alt="">
         </div>
-        <div class="flag-code">
-          <img src="../../../public/img/tf_code.jpg" alt="">
-        </div>
         <div class="form-item identity">
           <div>
             <span class="radio-wrapper">
@@ -33,30 +30,36 @@
         </div>
         <div class="form-item form-item-bg form-item-blur">
           <div class="input-wrapper">
-            <div class="input-box"><input type="text" placeholder="楼盘名称"></div>
+            <div class="input-box"><input type="text" v-model="loupanName" placeholder="楼盘名称"></div>
           </div>
         </div>
         <div class="form-item form-item-bg form-item-blur">
           <div class="input-wrapper">
-            <select class="select-district" name="district" id="district">
+            <select class="select-district" v-model="quCode" @click="onQuchange"  name="district" id="district">
               <option value="0">区域</option>
               <option value="1">南山</option>
+              <option value="2">福田</option>
+              <option value="3">罗湖</option>
+              <option value="4">宝安</option>
+              <option value="5">龙华</option>
+              <option value="6">龙岗</option>
+
             </select>
             <span class="split-line"></span>
-            <div class="input-box input-box-district"><input type="text" placeholder="详细地址"></div>
+            <div class="input-box input-box-district"><input type="text" v-model="detailAddress" placeholder="详细地址"></div>
           </div>
         </div>
          <div class="form-item form-item-bg form-item-blur">
           <div class="input-wrapper">
-            <div class="input-box"><input type="text" placeholder="出租面积"></div>
+            <div class="input-box"><input type="text" v-model="areas" placeholder="出租面积"></div>
             <span class="rent-unit">m²</span>
           </div>
         </div>
          <div class="form-item form-item-bg form-item-blur">
           <div class="input-wrapper">
-            <div class="input-box input-box-rent"><input type="text" placeholder="租金"></div>
+            <div class="input-box input-box-rent"><input type="text" v-model="price" placeholder="租金"></div>
             <span class="split-line"></span>
-           <select class="select-rent" name="rent" id="rent">
+           <select class="select-rent" v-model="priceType" name="rent" id="rent">
               <option value="1">元/工位/月</option>
               <option value="2">元/m²/月</option>
               <option value="3">元/月</option>
@@ -76,16 +79,16 @@
         <p class="user-title">联系人信息</p>
         <div class="form-item form-item-bg form-item-blur">
           <div class="input-wrapper">
-            <div class="input-box"><input type="text" placeholder="手机号"></div>
+            <div class="input-box"><input type="text" v-model="mobile" placeholder="手机号"></div>
           </div>
         </div>
         <div class="form-item form-item-bg form-item-blur">
           <div class="input-wrapper">
-            <div class="input-box-code"><input type="text" placeholder="验证码"></div>
-            <span class="btn-code">获取短信验证码</span>
+            <div class="input-box-code"><input type="text" v-model="veryCode" placeholder="验证码"></div>
+            <span class="btn-code" @click="getVeryCode">获取短信验证码</span>
           </div>
         </div>
-        <div class="form-item form-item-submit">
+        <div class="form-item form-item-submit" @click="handleSubmit">
           <span>提交房源</span>
         </div>
       </div>
@@ -94,12 +97,23 @@
 </template>
 
 <script>
+import HttpRequest from '../../http/axios.js'
+
 export default {
   data() {
     return {
       identity: -1,
       tipVisible: false,
       checkedPayType: -1,
+      loupanName: '',
+      quCode: 0,
+      detailAddress: '',
+      areas: '',
+      price: '',
+      priceType: 0,
+
+      mobile: '',
+      veryCode: '',
       payTypelist: ["无", "0.5个月", "1个月", "1.5个月", "2个月"]
     };
   },
@@ -118,6 +132,63 @@ export default {
     },
     toggleTipVisible() {
       this.tipVisible = !this.tipVisible
+    },
+    handleSubmit() {
+      if (this.identity === -1) {
+        window.alert('请选择业主身份')
+        return
+      }
+      if (!this.loupanName) {
+        window.alert('请输入楼盘名称')
+        return
+      }
+      if (Number(this.quCode) === 0) {
+        window.alert('请选择楼盘所在区域')
+        return
+      }
+      if (!this.detailAddress) {
+        window.alert('请输入详细地址')
+        return
+      }
+      if (!this.areas) {
+        window.alert('请输入出租面积')
+        return
+      }
+      if (!Number(this.areas)) {
+        window.alert('输入出租面积应为数字')
+        return
+      }
+      if (!this.price) {
+        window.alert('请输入租金')
+        return
+      }
+      if (!Number(this.price)) {
+        window.alert('输入租金应为数字')
+        return
+      }
+      if (Number(this.priceType) === 0) {
+        window.alert('输入租金支付方式')
+        return
+      }
+      if (this.checkedPayType === -1) {
+        window.alert('请选择悬赏佣金')
+        return
+      }
+      if (!this.mobile) {
+        window.alert('请输入手机号')
+        return
+      }
+      if (!this.veryCode) {
+        window.alert('请输入验证码')
+        return
+      }
+    },
+    getVeryCode() {
+      HttpRequest.get('')
+    },
+    onQuchange(value) {
+      console.log(value)
+      console.log(this.quCode)
     }
   }
 };

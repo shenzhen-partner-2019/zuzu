@@ -2,10 +2,10 @@
   <div class="weituo" >
     <div class="wrap">
       <div class="logo ">
-        <img src="../../../public/img/logo.png" alt="">
+        <img src="../../../public/img/zuzu_logo.jpg" alt="">
       </div>
       <div class="our-slogan">
-        <p class="text1">委托好租找办公室</p>
+        <p class="text1">委托租租网找办公室</p>
         <p class="text2">海量真实房源，全套专业办公选址方案</p>
       </div>
       <div class="form-wrapper">

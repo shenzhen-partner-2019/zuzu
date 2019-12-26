@@ -5,7 +5,7 @@
     <nav-bar v-show="navbarVisible" class="g-navbar" ></nav-bar>
     <!-- 主体内容 路由切换-->
     <router-view></router-view>
-    <!-- 底部区域 -->
+    <!-- 底部区域 -->\
     <footer-bar v-show="footerVisible"></footer-bar>
     <customerCall></customerCall>
   </div>
@@ -16,7 +16,7 @@ import HeaderBar from "../../components/headbar";
 import FooterBar from "../../components/footerbar";
 import NavBar from "../../components/navbar";
 import { truncate } from "fs";
-
+import HttpRequest from '../../http/axios.js'
 export default {
   name: "zuzu",
   components: {
@@ -30,6 +30,7 @@ export default {
       navbarVisible: true,
       activePath: '',
       footerVisible: true,
+      imgUrl: ''
     }
   },
   watch: {
@@ -52,7 +53,7 @@ export default {
         this.$store.commit('updateSearchText', '')
       }
     }
-  }
+  },
 };
 </script>
 
