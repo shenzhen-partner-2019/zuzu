@@ -44,7 +44,7 @@
                 </label> 
 
                 <div class="login_btn">
-                  <button type="button" class="button" @click="loginBtn"> 
+                  <button type="button" class="button" @click="registerBtn"> 
                     注册
                   </button>
                 </div>
@@ -94,17 +94,16 @@ export default {
       this.getverifyimg()
     },
     methods:{
-      //获取验证码
+      //获取手机验证码
       getVerifycode(){
         let flag = this.validatePhone();
         if(!flag){ return }
-        console.log(flag)
         //倒计时
-        this.validateCountDown()
+        this.validateCountDown();
         this.registersms({
           mobile: this.form.phone
-        }).then(data =>{
-           console.log(data)
+        }).then(res =>{
+          console.log(res)
         })
       },
       //校验方法---直接返回true/false
@@ -125,7 +124,7 @@ export default {
               return true
           }
       },
-             //倒计时
+      //倒计时
       validateCountDown(){
           let time = 60;
           let timer = setInterval(() => {
@@ -144,7 +143,7 @@ export default {
               }
           }, 1000);
       },
-      //获取图片
+      //获取图片验证码
       getverifyimg(){
         let v_this = this;
         this.verifyimg({}).then(data =>{
@@ -155,9 +154,34 @@ export default {
       getImg(){
         this.imgUrl = "https://baitai1688.com/verify?tockenId=QWERTYUISDFGHJEW+"+Math.random()
       },
-      //登陆
-      loginBtn(){
-        console.log('登陆')
+      //注册
+      registerBtn(){
+        this.goLogin()
+        if(!this.form.isCheckbox){
+          alert('请勾选协议')
+          return
+        }
+        let parms = {
+          mobile:this.form.phone,
+          captcha:this.form.imgVerifycode,
+          sms:this.form.phoneVerifycode,
+          password:this.form.password,
+        }
+        try {
+          let res = this.register(parms).then(res =>{
+            console.log(res)
+            if(res.status == 200 && res.data.status == 1){
+              alert(res.data.info)
+            }
+          });
+        } catch (error) {
+            console.log(error)
+            // this.$createToast({
+            //     type: "warn",
+            //     txt: error.data.msg,
+            //     time: 2000
+            // }).show();
+        }
       },
       //去登陆页面
       goLogin(){

@@ -1,5 +1,6 @@
 // import axios from 'axios'
-import HttpRequest from '../http/axios'
+// import HttpRequest from '../http/axios'
+import axios from 'axios'
 import API from '@/tool/api';
 import qs from 'qs';
 
@@ -7,43 +8,53 @@ import qs from 'qs';
 export default {
     actions: {
         async login({ dispatch }, data) {
-            let res = await HttpRequest.post(API.login, qs.stringify(data))
+            let res = await axios.post(API.login, qs.stringify(data))
             if (res.status == 1) {
                 return res.data;
             } else {
-                return dispatch('_reject', res);
+                return Promise.reject(res);
             }
         }, 
+        //登陆
         async loginsms({ dispatch }, data) {
-            let res = await HttpRequest.post(API.loginsms, data)
+            let res = await axios.post(API.loginsms, qs.stringify(data))
             if (res.status == 1) {
                 return res.data;
             } else {
-                return dispatch('_reject', res);
+                return Promise.reject(res);
             }
         }, 
+        //注册
         async register({ dispatch }, data) {
-            let res = await HttpRequest.post(API.register, data)
+            let res = await axios.post(API.register, qs.stringify(data),{
+                withCredentials: true
+            })
             if (res.status == 1) {
                 return res.data;
             } else {
-                return dispatch('_reject', res);
+                return Promise.reject(res);
             }
         }, 
+        //注册短信
         async registersms({ dispatch }, data) {
-            let res = await HttpRequest.post(API.registersms, data)
-            if (res.status == 1) {
-                return res.data;
+            let res = await axios.post(API.registersms, qs.stringify(data),{
+                withCredentials: true
+            })
+            if (res.status == 200) {
+                return res;
             } else {
-                return dispatch('_reject', res);
+                return Promise.reject(res);
             }
         }, 
+        //获取验证码图片
         async verifyimg({ dispatch }, data) {
-            let res = await HttpRequest.get(API.verifyimg, data)
+            let res = await axios.get(API.verifyimg, qs.stringify(data),{
+                withCredentials: true
+            })
             if (res.status == 200 && res.data.status == 1) {
                 return res.data;
             } else {
-                return dispatch('_reject', res);
+                return Promise.reject(res);
             }
         },
     }

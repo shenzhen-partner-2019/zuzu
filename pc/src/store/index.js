@@ -4,6 +4,7 @@ import Vue from 'vue'
 Vue.use(Vuex)
 
 import User from "./User"
+import House from "./house"
 
 export default new Vuex.Store({
   state: {
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     }
   },
   modules:{
-    User
+    User,
+    House
   }
 })
