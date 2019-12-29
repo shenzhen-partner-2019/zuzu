@@ -79,7 +79,7 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 10000;
+  z-index: 9000000000;
   top: 0;
   left: 0;
   font-size: 14px;

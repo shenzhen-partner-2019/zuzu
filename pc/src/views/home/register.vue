@@ -10,7 +10,8 @@
                     </div>
                 </div> 
 
-                <div class="error-message">&nbsp;</div> 
+                <div class="error-message" v-if="errorText">&nbsp;{{errorText}}</div> 
+                <div class="error-message" v-else>&nbsp;{{verifyText}}</div> 
 
                 <div class="ivu-input-wrapper">
                     <input type="text" placeholder="请输入手机号" maxlength="11" class="ivu-input" v-model="form.phone"> 
@@ -18,13 +19,13 @@
                 
                 <div class="form_input_item mb20">
                     <input placeholder="请输入验证码" type="text" v-model="form.imgVerifycode">
-                    <img style="height:40px;width:120px;" src="https://upassport.ke.com/freshCaptch?t=1573028837812">
+                    <img style="height:40px;width:120px;" :src="imgUrl" @click="getImg()">
                 </div>
 
                 <div class="form_input_item messageverifycode mb20" >
                     <input placeholder="请输入短信验证码" type="text" v-model="form.phoneVerifycode">
-                    <span class="send_messageverifycode">
-                        <em @click="getVerifycode">获取验证码</em>
+                    <span class="send_messageverifycode" @click="getVerifycode">
+                        <em>{{btnTitle}}</em>
                     </span>
                 </div>
 
@@ -54,11 +55,14 @@
 
 
 <script>
+import {mapActions} from "vuex"
+import { debuglog } from 'util';
 export default {
     name:'login',
     data(){
       return{
         //表单数据
+        imgUrl:'',
         form: {
             phone: '',
             imgVerifycode:'',
@@ -66,9 +70,95 @@ export default {
             password:'',
             isCheckbox:true,
         },
+        error:"",
+        verifyText:'',
+        btnTitle:"获取验证码"
       }
     },
+    mounted(){
+        
+    },
+    computed:{
+      errorText(){
+        if(!this.form.phone){ return }
+        if(/^1[345678]\d{9}$/.test(this.form.phone) == false){
+            this.verifyText =""
+           return this.error = "请填写正确的手机号码"
+        }else{
+          this.verifyText =""
+           return this.error=""
+        }
+      }
+    },
+    created(){
+      this.getverifyimg()
+    },
     methods:{
+      //获取验证码
+      getVerifycode(){
+        let flag = this.validatePhone();
+        if(!flag){ return }
+        console.log(flag)
+        //倒计时
+        this.validateCountDown()
+        this.registersms({
+          mobile: this.form.phone
+        }).then(data =>{
+           console.log(data)
+        })
+      },
+      //校验方法---直接返回true/false
+      validatePhone() {
+          if(this.form.phone == ""){
+              //显示提示信息
+              console.log("手机号码不能为空")
+              this.verifyText = "手机号码不能为空"
+              this.error =""
+              return false
+          }else if(/^1[345678]\d{9}$/.test(this.form.phone) == false){
+              console.log("请填写正确的手机号码")
+              this.verifyText = "请填写正确的手机号码"
+              this.error =""
+              return false
+          }else{
+              console.log("222222222222正确")
+              return true
+          }
+      },
+             //倒计时
+      validateCountDown(){
+          let time = 60;
+          let timer = setInterval(() => {
+              //判断秒数
+              if(time == 0){
+                  //恢复初始状态的btnTitle
+                  this.btnTitle = "获取验证码"
+                  this.disabled = false;
+                  //清除Interval的定时器,传入变量名(创建Interval定时器时定义的变量名)
+                  clearInterval(timer);
+              }else{
+                  //更改btnTitle文本描述
+                  this.btnTitle = time + "秒后重试";
+                  this.disabled = true;
+                  time--;
+              }
+          }, 1000);
+      },
+      //获取图片
+      getverifyimg(){
+        let v_this = this;
+        this.verifyimg({}).then(data =>{
+          v_this.imgUrl = data.data
+        })
+      },
+      //点击图片获取
+      getImg(){
+        this.imgUrl = "https://baitai1688.com/verify?tockenId=QWERTYUISDFGHJEW+"+Math.random()
+      },
+      //登陆
+      loginBtn(){
+        console.log('登陆')
+      },
       //去登陆页面
       goLogin(){
          this.$parent.login_visible()
@@ -76,16 +166,12 @@ export default {
       closeBtn(){
         this.$emit("close_register",false)
       },
-      //获取验证码
-      getVerifycode(){
-        console.log('获取验证码')
-      },
-      //登陆
-      loginBtn(){
-        console.log('登陆')
-      }
+      ...mapActions([
+          "register",
+          "registersms",
+          "verifyimg",
+      ])
     }
-
 }
 </script>
 
@@ -94,7 +180,7 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 10000;
+  z-index: 9000000000;
   top: 0;
   left: 0;
   font-size: 14px;
@@ -182,6 +268,9 @@ export default {
       box-sizing: border-box;
       border: 1px solid #dcdee2;
       border-radius: 2px;
+      img{
+        cursor: pointer;
+      }
       input {
         width: 198px;
         float: left;
