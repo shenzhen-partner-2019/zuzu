@@ -6,21 +6,18 @@
                 <div class="mt15 font-size-26px">手机快速登录</div> 
                 <div class="font-size-12px textDescript">没有帐号，手机快速登录后将为你自动注册帐号</div> 
                 <div class="error-message">&nbsp;</div> 
-
+              <form>
                 <div class="ivu-input-wrapper">
                     <input autocomplete="off" type="text" placeholder="请输入手机号" maxlength="11" class="ivu-input" v-model="form.phone"> 
                 </div> 
                 
                 <div class="form_input_item mb20">
                     <input placeholder="请输入验证码" type="text" v-model="form.imgVerifycode" autocomplete="off">
-                    <img style="height:40px;width:120px;" src="https://upassport.ke.com/freshCaptch?t=1573028837812">
+                    <img style="height:40px;width:120px;" :src="imgUrl" @click="getImg()">
                 </div>
 
                 <div class="form_input_item messageverifycode" style="">
-                    <input placeholder="请输入短信验证码" type="text" v-model="form.phoneVerifycode" autocomplete="off">
-                    <span class="send_messageverifycode">
-                        <em @click="getVerifycode">获取验证码</em>
-                    </span>
+                    <input placeholder="请输入密码" type="password" v-model="form.passWord" autocomplete="off">
                 </div>
 
                 <label class="ivu-checkbox-wrapper ivu-checkbox-wrapper-checked ivu-checkbox-default" style="margin-top: 25px;">
@@ -37,38 +34,123 @@
                     登录
                   </button>
                 </div>
-               
+              </form> 
         </div>
     </div>
 </template>
 
 
 <script>
+import {mapActions} from "vuex"
+import { setLocalStorage, getLocalStorage } from "@/utils/common";
 export default {
     name:'login',
     data(){
       return{
+        imgUrl:'',
         //表单数据
         form: {
             phone: '',
             imgVerifycode:'',
-            phoneVerifycode: '',
+            passWord: '',
             isCheckbox:true,
         },
+        btnTitle:"获取验证码"
       }
     },
+    created(){
+      this.getverifyimg()
+    },
     methods:{
-      closeBtn(){
-        this.$emit("close_login",false)
-      },
-      //获取验证码
+      //获取手机验证码
       getVerifycode(){
-        console.log('获取验证码')
+        let flag = this.validatePhone();
+        if(!flag){ return }
+        //倒计时
+        this.validateCountDown();
+        this.loginsms({
+          mobile: this.form.phone
+        }).then(res =>{
+          console.log(res)
+        })
+      },
+      //校验方法---直接返回true/false
+      validatePhone() {
+          if(this.form.phone == ""){
+              //显示提示信息
+              console.log("手机号码不能为空")
+              this.verifyText = "手机号码不能为空"
+              this.error =""
+              return false
+          }else if(/^1[345678]\d{9}$/.test(this.form.phone) == false){
+              console.log("请填写正确的手机号码")
+              this.verifyText = "请填写正确的手机号码"
+              this.error =""
+              return false
+          }else{
+              console.log("222222222222正确")
+              return true
+          }
+      },
+      //倒计时
+      validateCountDown(){
+          let time = 60;
+          let timer = setInterval(() => {
+              //判断秒数
+              if(time == 0){
+                  //恢复初始状态的btnTitle
+                  this.btnTitle = "获取验证码"
+                  this.disabled = false;
+                  //清除Interval的定时器,传入变量名(创建Interval定时器时定义的变量名)
+                  clearInterval(timer);
+              }else{
+                  //更改btnTitle文本描述
+                  this.btnTitle = time + "秒后重试";
+                  this.disabled = true;
+                  time--;
+              }
+          }, 1000);
+      },
+      //获取图片验证码
+      getverifyimg(){
+        let v_this = this;
+        this.verifyimg({}).then(data =>{
+          v_this.imgUrl = data.data
+        })
+      },
+      //点击图片获取
+      getImg(){
+        this.imgUrl = "https://baitai1688.com/verify?tockenId=QWERTYUISDFGHJEW+"+Math.random()
       },
       //登陆
       loginBtn(){
-        console.log('登陆')
-      }
+        let useInfor = {mobile: "17840990869", name: "", create_time: "2019-12-30 21:27:20"}
+        setLocalStorage("userInfo", useInfor);
+        this.$router.push({path:'/user'})
+        //登陆接口
+        // let parms = {
+        //   mobile:this.form.phone,
+        //   captcha:this.form.imgVerifycode,
+        //   password:this.form.passWord,
+        // }
+        // let res = this.login(parms).then(res =>{
+        //   if(res.status == 200 && res.data.status == 1){
+        //     // alert(res.data.info)
+        //     setLocalStorage("userInfo", res.data.data);
+        //     this.$router.push({path:'/user'})
+        //   }
+        // }).then(res=>{
+        //   console.log(res)
+        // });
+      },
+      closeBtn(){
+        this.$emit("close_login",false)
+      },
+      ...mapActions([
+          "login",
+          "loginsms",
+          "verifyimg",
+      ])
     }
 
 }

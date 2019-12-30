@@ -7,17 +7,22 @@ import qs from 'qs';
 
 export default {
     actions: {
+        //登陆
         async login({ dispatch }, data) {
-            let res = await axios.post(API.login, qs.stringify(data))
+            let res = await axios.post(API.login, qs.stringify(data),{
+                withCredentials: true
+            })
             if (res.status == 1) {
                 return res.data;
             } else {
                 return Promise.reject(res);
             }
         }, 
-        //登陆
+        //登陆验证码
         async loginsms({ dispatch }, data) {
-            let res = await axios.post(API.loginsms, qs.stringify(data))
+            let res = await axios.post(API.loginsms, qs.stringify(data),{
+                withCredentials: true
+            })
             if (res.status == 1) {
                 return res.data;
             } else {

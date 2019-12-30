@@ -7,7 +7,7 @@
         <div class="w1180">
           <div class="left-container fl">
             <img src="../../../public/img/infor.png" class="avatar"> 
-            <div class="text-align-center f-12">欢迎你，135****41</div> 
+            <div class="text-align-center f-12">欢迎你，{{mobile}}</div> 
             <div class="button button__selected mrt-50">我的关注</div> 
           </div> 
           <div class="right-container fr">
@@ -35,9 +35,11 @@
 import HeaderBar from "../../components/headbar";
 import FooterBar from "../../components/footerbar";
 import ListDataCompent from './listCompent'
+import { randomPhone, getLocalStorage } from "@/utils/common";
 export default {
     data(){
         return{
+          mobile:'',
           flag:false,
           listTransferData: [
             {title:'京地大厦',qu:'福田中心区',price:168,danwei:'元/平米/月'},
@@ -48,10 +50,14 @@ export default {
         }
     },
     created(){
-     
+     this.getUserInfor()
     },
     methods:{
-
+      getUserInfor(){
+        let userInfor = getLocalStorage("userInfo");
+        this.mobile = randomPhone(userInfor.mobile)
+        console.log(userInfor)
+      }
     },
     components:{
       HeaderBar,

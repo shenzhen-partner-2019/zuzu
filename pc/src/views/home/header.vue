@@ -43,7 +43,10 @@
             <div class="ti-hover">
               <div class="typeShowUser ">
                 <i></i>
-                <span class="welcome">
+                <span v-if="mobile" style="cursor: pointer;" @click="goUser()">
+                  {{mobile}}
+                </span>
+                <span v-else>
                   <a class="btn-login bounceIn actLoginBtn" href="javascript:;" @click="login_visible">
                     <span class="reg">登录</span>
                   </a>
@@ -147,9 +150,11 @@
 <script>
 import Login from "./login";
 import Register from "./register"
+import { setLocalStorage, getLocalStorage } from "@/utils/common";
 export default {
     data(){
       return {
+        mobile:'',
         loginFlag:false,
         registerFlag:false,
         searchStyle:{
@@ -170,11 +175,15 @@ export default {
         
       }
     },
-    components:{
-      Login,
-      Register
+    created(){
+      this.getUserInfor()
     },
     methods:{
+      getUserInfor(){
+        let userInfor = getLocalStorage("userInfo");
+        this.mobile = userInfor.mobile
+        console.log(userInfor)
+      },
       //区域搜索选择
       searchRegon(item,index){
         console.log(item,index)
@@ -208,14 +217,13 @@ export default {
         console.log(this.searchStyle.searchPlaceholder)
         console.log(this.saveRegonId) 
       },
-        //登陆
+      //登陆
       login_visible(){
         console.log('login')
         this.loginFlag = true
         this.registerFlag = false
       },
       register_visible(){
-        console.log('register')
         this.loginFlag = false
         this.registerFlag = true
       },
@@ -226,7 +234,15 @@ export default {
       },
       getCloseRegisterVal(val){
         this.registerFlag = val;
+      },
+      //去用户页
+      goUser(){
+        this.$router.push({path:'/user'})
       }
+    },
+    components:{
+      Login,
+      Register
     }
 }
 </script>
