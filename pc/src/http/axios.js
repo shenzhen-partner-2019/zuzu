@@ -1,16 +1,18 @@
 import axios from 'axios'
 import Qs from 'qs'
 
+axios.defaults.baseURL = '/api'
+
 const instance = axios.create({
   // baseURL: 'https://some-domain.com/api/',
   // url: '/user',
   headers: { 
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'X-Requested-With': 'XMLHttpRequest',
+    'Content-Type': 'application/json',
+    // 'X-Requested-With': 'XMLHttpRequest',
   },
   timeout: 5000,
-  xsrfCookieName: 'XSRF-TOKEN', // default
-  xsrfHeaderName: 'X-XSRF-TOKEN', // default
+  // xsrfCookieName: 'XSRF-TOKEN', // default
+  // xsrfHeaderName: 'X-XSRF-TOKEN', // default
   validateStatus: function (status) {
     return true
   }

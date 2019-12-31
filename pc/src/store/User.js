@@ -1,6 +1,6 @@
 // import axios from 'axios'
-// import HttpRequest from '../http/axios'
-import axios from 'axios'
+import HttpRequest from '../http/axios'
+// import axios from 'axios'
 import API from '@/tool/api';
 import qs from 'qs';
 
@@ -9,7 +9,7 @@ export default {
     actions: {
         //登陆
         async login({ dispatch }, data) {
-            let res = await axios.post(API.login, qs.stringify(data),{
+            let res = await HttpRequest.post(API.login, qs.stringify(data),{
                 withCredentials: true
             })
             if (res.status == 1) {
@@ -53,7 +53,7 @@ export default {
         }, 
         //获取验证码图片
         async verifyimg({ dispatch }, data) {
-            let res = await axios.get(API.verifyimg, qs.stringify(data),{
+            let res = await HttpRequest.get(API.verifyimg, qs.stringify(data),{
                 withCredentials: true
             })
             if (res.status == 200 && res.data.status == 1) {

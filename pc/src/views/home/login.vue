@@ -124,24 +124,24 @@ export default {
       },
       //登陆
       loginBtn(){
-        let useInfor = {mobile: "17840990869", name: "", create_time: "2019-12-30 21:27:20"}
-        setLocalStorage("userInfo", useInfor);
-        this.$router.push({path:'/user'})
+        // let useInfor = {mobile: "17840990869", name: "", create_time: "2019-12-30 21:27:20"}
+        // setLocalStorage("userInfo", useInfor);
+        // this.$router.push({path:'/user'})
         //登陆接口
-        // let parms = {
-        //   mobile:this.form.phone,
-        //   captcha:this.form.imgVerifycode,
-        //   password:this.form.passWord,
-        // }
-        // let res = this.login(parms).then(res =>{
-        //   if(res.status == 200 && res.data.status == 1){
-        //     // alert(res.data.info)
-        //     setLocalStorage("userInfo", res.data.data);
-        //     this.$router.push({path:'/user'})
-        //   }
-        // }).then(res=>{
-        //   console.log(res)
-        // });
+        let parms = {
+          mobile:this.form.phone,
+          captcha:this.form.imgVerifycode,
+          password:this.form.passWord,
+        }
+        let res = this.login(parms).then(res =>{
+          if(res.status == 200 && res.data.status == 1){
+            // alert(res.data.info)
+            setLocalStorage("userInfo", res.data.data);
+            this.$router.push({path:'/user'})
+          }
+        }).then(res=>{
+          console.log(res)
+        });
       },
       closeBtn(){
         this.$emit("close_login",false)
