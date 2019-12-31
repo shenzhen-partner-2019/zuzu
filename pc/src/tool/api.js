@@ -1,5 +1,5 @@
 
-const domain = 'https://baitai1688.com/admin/api';//测试环境
+const domain = '/api';//测试环境
 export default {
 	//===============================登录/注册部分==============================
     login: `${domain}/login`,			                    //登录

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Qs from 'qs'
 
-axios.defaults.baseURL = '/api'
+
 
 const instance = axios.create({
   // baseURL: 'https://some-domain.com/api/',
