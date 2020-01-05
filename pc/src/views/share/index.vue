@@ -238,7 +238,7 @@ export default {
       }
     },
     getSharelist(params) {
-      HttpRequest.get('/share', params).then(res => {
+      HttpRequest.get('/api/share', params).then(res => {
         if (res.data && Array.isArray(res.data.data)) {
           this.sharelist = res.data.data
           this.qualitylist = res.data.data
@@ -253,7 +253,7 @@ export default {
       let params = {
         page: 1
       }
-      HttpRequest.get('/share', params).then(res => {
+      HttpRequest.get('/api/share', params).then(res => {
         if (res.data && Array.isArray(res.data.data)) {
           this.sharelist = res.data.data || []
         }

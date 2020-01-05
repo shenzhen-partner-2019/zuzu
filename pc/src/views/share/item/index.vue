@@ -1,7 +1,7 @@
 <template>
   <div class="share-item">
     <div class="item-left">
-      <a :href="'/zuzu/share-detail?id=' + info.id ">
+      <a href="javascript:;">
         <img v-if="info.zhaopian0" :src="info.zhaopian0" alt="">
         <div v-if="!info.zhaopian0" class="no-pic">
           <img src="../../../../public/img/paishezhong.png" alt="">
@@ -10,7 +10,7 @@
       </a>
     </div>
     <div class="item-right">
-      <h4><a :href="'/zuzu/share-detail?id=' + info.id ">{{info.shangwu}}（{{info.suoshu}}）</a></h4>
+      <h4><a href="javascript:;">{{info.shangwu}}（{{info.suoshu}}）</a></h4>
       <!-- <p class="p1">
         <span class="icon"></span>
         <span>12种户型在租</span>
