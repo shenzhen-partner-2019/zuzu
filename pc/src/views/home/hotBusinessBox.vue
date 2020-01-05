@@ -48,7 +48,7 @@
 </template>
 
 <script>
-
+import {mapActions} from "vuex"
 export default {
     name:'loufan',
     data(){
@@ -57,10 +57,29 @@ export default {
         }
     },
     created(){
-
+        this.getHotBusinessCircle()
+        this.getofficeBuilding()
+        this.gethotListings()
     },
     methods:{
-        //查询数据接口
+        //查询数据接口-->热门商圈
+        async getHotBusinessCircle(){
+            let res = await this.hotBusinessCircle();
+            console.log(res)
+        },
+        async getofficeBuilding(){
+            let res = await this.officeBuilding();
+            console.log(res)
+        },
+        async gethotListings(){
+            let res = await this.hotListings();
+            console.log(res)
+        },
+        ...mapActions([
+            "hotBusinessCircle",
+            "officeBuilding",
+            "hotListings",
+        ])
     }
 
 }

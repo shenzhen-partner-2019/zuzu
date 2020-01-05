@@ -166,6 +166,7 @@ export default {
         searchVal:"",//搜索框中的val值
         addressList:[
           {id:'11',region:'南山'},
+          {id:'111',region:'福田'},
           {id:'22',region:'坂田'},
           {id:'33',region:'罗湖'},
           {id:'44',region:'宝安'},
@@ -193,21 +194,24 @@ export default {
           this.searchStyle.searchPlaceholder = ""
           this.searchStyle.left = "15px";//需要动态计算
         }else{
-          if(item.region == "坂田" && index == 1){
+          if(item.region == "福田"  && index == 1){
+            this.searchStyle.searchPlaceholder = "福田"
+            this.searchStyle.left = "68px"
+          }else if(item.region == "坂田" && index == 2){
             this.searchStyle.searchPlaceholder = "坂田"
-            this.searchStyle.left = "65px"
-          }else if(item.region == "罗湖"  && index == 2){
-            this.searchStyle.searchPlaceholder = "罗湖"
             this.searchStyle.left = "118px"
-          }else if(item.region == "宝安"  && index == 3){
-            this.searchStyle.searchPlaceholder = "宝安"
+          }else if(item.region == "罗湖"  && index == 3){
+            this.searchStyle.searchPlaceholder = "罗湖"
             this.searchStyle.left = "170px"
-          }else if(item.region == "龙岗"  && index == 4){
-            this.searchStyle.searchPlaceholder = "龙岗"
+          }else if(item.region == "宝安"  && index == 4){
+            this.searchStyle.searchPlaceholder = "宝安"
             this.searchStyle.left = "225px"
-          }else if(item.region == "龙华"  && index == 5){
-            this.searchStyle.searchPlaceholder = "龙华"
+          }else if(item.region == "龙岗"  && index == 5){
+            this.searchStyle.searchPlaceholder = "龙岗"
             this.searchStyle.left = "275px"
+          }else if(item.region == "龙华"  && index == 6){
+            this.searchStyle.searchPlaceholder = "龙华"
+            this.searchStyle.left = "330px"
           }
         }
       },
@@ -269,10 +273,10 @@ export default {
           margin-top: 5px;
           display: inline-block;
           float: left;
-          background-image: url(../../../public/img/sprite.png);
-          background-position: -72px 0;
-          width: 94px;
-          height: 34px;
+          background-image: url(../../../public/img/zuzu_logo.jpg);
+          // background-position: -72px 0;
+          width: 339px;
+          height: 104px;
       }
       //城市
       .exchange {

@@ -3,7 +3,7 @@
     <footer class="wrap">
       <div class="foot">
     <div class="footbox">
-        <h1>办公选址上好租，专业靠谱！</h1>
+        <h1>办公选址上租租网，专业靠谱！</h1>
         <p class="p1">
             <a href="#">关于好租</a><i class="i1">-</i>
             <a href="#">服务介绍</a><i class="i1">-</i>

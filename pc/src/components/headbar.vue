@@ -67,8 +67,8 @@
           <router-link to="/">首页</router-link>
           <router-link to="/zuzu/office" class="cur">写字楼出租</router-link>                  
           <router-link to="/zuzu/share">共享办公</router-link>               
-          <a class="">资讯</a>
-          <a>好租商城<em class="icon em1">礼物</em></a>
+          <!-- <a class="">资讯</a> -->
+          <!-- <a>好租商城<em class="icon em1">礼物</em></a> -->
         </div>
         <div class="site-right fr">
             <div class="user-box">
@@ -80,7 +80,7 @@
             </div>
             <div class="site-tn">400-733-2233</div>
             <div class="site-phone">
-                <span class="s1">手机好租<em class="icon em1"></em></span>
+                <span class="s1">手机租租网<em class="icon em1"></em></span>
                 <div class="phone-box">
                     <div class="phone-box-title">
                       <em class="icon em1"></em>

@@ -156,7 +156,8 @@ export default {
       },
       //注册
       registerBtn(){
-        this.goLogin()
+        // this.goLogin()
+        let v_this =this;
         if(!this.form.isCheckbox){
           alert('请勾选协议')
           return
@@ -169,9 +170,11 @@ export default {
         }
         try {
           let res = this.register(parms).then(res =>{
-            console.log(res)
             if(res.status == 200 && res.data.status == 1){
-              alert(res.data.info)
+              alert(res.info)
+              v_this.goLogin()
+            }else{
+              alert(res.info)
             }
           });
         } catch (error) {

@@ -138,6 +138,8 @@ export default {
             // alert(res.data.info)
             setLocalStorage("userInfo", res.data.data);
             this.$router.push({path:'/user'})
+          }else{
+            alert(res.info)
           }
         }).then(res=>{
           console.log(res)
