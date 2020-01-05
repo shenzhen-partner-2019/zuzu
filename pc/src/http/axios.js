@@ -4,8 +4,8 @@ import Qs from 'qs'
 
 
 const instance = axios.create({
-  // baseURL: 'https://some-domain.com/api/',
-  // url: '/user',
+  baseURL: 'https://baitai1688.com/admin/api',
+  // url: '',
   headers: { 
     'Content-Type': 'application/json',
     // 'X-Requested-With': 'XMLHttpRequest',

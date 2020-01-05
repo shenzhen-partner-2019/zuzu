@@ -501,7 +501,7 @@ export default {
     },
     getHouseDetail(){
       let id = this.$route.query.id
-      HttpRequest.get('/admin/api/share', {id}).then(res => {
+      HttpRequest.get('/share', {id}).then(res => {
         let data = res.data.data[0]
         let swiperlist = []
         for (let key in data) {
