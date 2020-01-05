@@ -6,7 +6,7 @@
         <div class="fl">
           <a href="#" title="贝壳找房" class="logo"></a>
           <a href="#" class="exchange">
-            <i></i>佛山
+            <i></i>深圳
           </a>
         </div>
         <div class="fr">
@@ -273,10 +273,10 @@ export default {
           margin-top: 5px;
           display: inline-block;
           float: left;
-          background-image: url(../../../public/img/zuzu_logo.jpg);
-          // background-position: -72px 0;
-          width: 339px;
-          height: 104px;
+          background: url(../../../public/img/zuzu_logo.jpg) no-repeat;
+          background-size: 100% 100%;
+          width: 130px;
+          height: 40px;
       }
       //城市
       .exchange {
@@ -286,7 +286,7 @@ export default {
           line-height: 26px;
           text-align: center;
           color: #fff;
-          margin-top: 8px;
+          margin-top: 12px;
           cursor: pointer;
           border-radius: 14px;
           border: 2px solid #fff;

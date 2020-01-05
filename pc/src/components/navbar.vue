@@ -2,7 +2,7 @@
   <div class="nav-wrapper">
    <nav class="nav wrap">
     <div class="logo">
-      <img src="../../public/img/logo.png" alt="">
+      <img src="/static/img/zuzu_logo.a19ddebf.jpg" alt="">
     </div>
     <div class="nav-list">
       <a v-for="item in navlist" :href="item.link" :class="{'active': activePath === item.link}" :key="item.name">{{item.text}}</a>
@@ -86,7 +86,9 @@ export default {
     margin-right: 30px;
     vertical-align: top;
     img {
-      height: 100%;
+      display: inline-block;
+      height: 30px;
+      width: 98px;
     }
   }
   .nav-list {
