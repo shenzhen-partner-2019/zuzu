@@ -1,15 +1,20 @@
 import axios from 'axios'
 import Qs from 'qs'
 
-
-
+const isDevMode = () => {
+  return process.env.NODE_ENV === 'development'
+}
+const getBaseUrl = () => {
+  return isDevMode() ? '' : 'https://baitai1688.com/admin/api'
+}
 const instance = axios.create({
-  baseURL: 'https://baitai1688.com/admin/api',
-  // url: '',
+  baseURL: getBaseUrl(),
   headers: { 
-    'Content-Type': 'application/json',
-    // 'X-Requested-With': 'XMLHttpRequest',
+    // 'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+    'Content-Type': 'application/x-www-form-urlencoded',
   },
+  withCredentials: true,
   timeout: 5000,
   // xsrfCookieName: 'XSRF-TOKEN', // default
   // xsrfHeaderName: 'X-XSRF-TOKEN', // default

@@ -37,12 +37,12 @@
           <div class="input-wrapper">
             <select class="select-district" v-model="quCode" @click="onQuchange"  name="district" id="district">
               <option value="0">区域</option>
-              <option value="1">南山</option>
-              <option value="2">福田</option>
-              <option value="3">罗湖</option>
+              <option value="2">南山</option>
+              <option value="6">福田</option>
+              <option value="7">罗湖</option>
               <option value="4">宝安</option>
-              <option value="5">龙华</option>
-              <option value="6">龙岗</option>
+              <option value="8">龙华</option>
+              <option value="9">龙岗</option>
 
             </select>
             <span class="split-line"></span>
@@ -182,13 +182,43 @@ export default {
         window.alert('请输入验证码')
         return
       }
+      let params = {
+        mobile: this.mobile,
+        type: this.identity,
+        name: this.loupanName,
+        district_code: this.quCode,
+        address: this.detailAddress,
+        rent_fee: this.price,
+        unit: this.priceType,
+        service_fee: Number(this.checkedPayType) + 1,
+        sms: this.veryCode
+      }
+      HttpRequest.post('/admin/api/posthouse', params).then(res => {
+        if (res.data.status === 1) {
+          window.alert(res.data.info)
+        } else {
+          window.alert('服务器故障, 请稍后再试')
+        } 
+      }).catch(error => {
+        console.log(error)
+      })
     },
     getVeryCode() {
-      HttpRequest.get('')
+      let params = {
+        mobile: this.mobile
+      }
+      HttpRequest.get('/admin/api/postsms', params).then(res => {
+        if (res.data.status === 1) {
+          window.alert('验证码已发送')
+        } else {
+          window.alert('服务器故障, 请稍后再试')
+        } 
+      }).catch(error => {
+        console.log(error)
+      })
     },
     onQuchange(value) {
       console.log(value)
-      console.log(this.quCode)
     }
   }
 };

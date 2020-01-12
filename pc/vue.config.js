@@ -7,17 +7,17 @@ module.exports = {
     host: '127.0.0.1',
     hot: true,
     open: true,
-    // proxy: {
-    //   '/api': {
-    //     //接口地址
-    //     target: 'https://baitai1688.com/admin/api',
-    //     ws: true,
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/api': ''  //通过pathRewrite重写地址，将前缀/api转为/
-    //     }
-    //   }
-    // }
+    proxy: {
+      '/admin/api': {
+        //接口地址
+        target: 'https://baitai1688.com/admin/api',
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/admin/api': ''  //通过pathRewrite重写地址，将前缀/api转为/
+        }
+      }
+    }
   },
   lintOnSave: false,
 }

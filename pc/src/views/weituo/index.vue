@@ -75,6 +75,8 @@
 
 <script>
 import {REG_MOBILE} from '../../utils/regexp.js'
+import HttpRequest from '../../http/axios.js'
+
 export default {
   name: 'weituo',
   data() {
@@ -91,7 +93,18 @@ export default {
         return
       }
       this.errorTipVisible = false
-      // 提交
+      let params = {
+        mobile
+      }
+      HttpRequest.post('/admin/api/agent', params).then(res => {
+        if (res.data.status === 1) {
+          window.alert(res.data.info)
+        } else {
+          window.alert('服务器故障, 请稍后再试')
+        }
+      }).catch(error => {
+        console.log(error)
+      })
     }
   }
 }
