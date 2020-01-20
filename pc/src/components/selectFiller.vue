@@ -36,14 +36,13 @@
                 </div>
             </dd>
         </dl>
-        <dl class="clearfix">
+        <!-- <dl class="clearfix">
             <dt>类型：</dt>
             <dd>
                 <div class="clearfix">
                     <a href="#" class="cur">全部</a>
                     <a href="#" class="">普通办公</a>
                     <a href="#" class="">共享办公</a>
-                    <!-- <a href="#" class="">创意园区</a> -->
                 </div>
             </dd>
         </dl>
@@ -101,14 +100,14 @@
             <dd>
                 <div class="clearfix">
                     <a href="#" class="cur">全部</a>
-                    <!-- <a href="#" class="">豪华装修</a> -->
+                    <a href="#" class="">豪华装修</a>
                     <a href="#" class="">精装修</a>
-                    <!-- <a href="#" class="">中等装修</a> -->
+                    <a href="#" class="">中等装修</a>
                     <a href="#" class="">简装修</a>
                     <a href="#" class="">毛坯</a>                
                 </div>
             </dd>
-        </dl>
+        </dl> -->
         <!-- <dl class="clearfix">
             <dt>特色：</dt>
             <dd>
@@ -135,7 +134,7 @@
                 </div>
             </dd>
         </dl> -->
-          <div class="divider-area"></div>
+        <!-- <div class="divider-area"></div>
         <dl class="dl dl-selected">
         <dt>已选:</dt>
         <dl>
@@ -147,7 +146,7 @@
             <div class="clear"><span class="icon-delete"></span><span>清空</span></div>
           </div>
         </dl>
-      </dl>
+      </dl> -->
     </div>
 </div>
   </div>

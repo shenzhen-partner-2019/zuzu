@@ -10,13 +10,14 @@
             <li v-for="(item,i) in leaseData.leaseListData" :key="i">
                 <a>
                     <div class="shareBox-img" @click="goOfficeDetail(item.path,item.id)">
-                        <img :src="item.imgUrl" :title="item.title">
+                        <img :src="item.img0" :title="item.title" v-if="item.img0">
+                        <img src="../../public/img/officeBuild2.jpg" alt="" v-else>
                     </div>
                     <div class="houseBox-about">
-                        <p class="houseName">{{item.houseName}}</p>
+                        <p class="houseName">{{item.name}}</p>
                         <div class="address_price">
                             <span class="houseAddress fl">
-                                <em class="icon em1">地址</em>{{item.houseAddress}}
+                                <em class="icon em1">地址</em>{{item.yu}}
                             </span>
                             <span class="housePrice fr">
                                 <i class="price">{{item.housePrice}}</i>

@@ -90,9 +90,9 @@
       }
 
       &.paginator-item-mediumn {
-        width: 34px;
-        height: 34px;
-        line-height: 34px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
       }
 
       &.paginator-item-large {

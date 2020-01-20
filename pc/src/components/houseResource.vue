@@ -6,32 +6,32 @@
                 <li class="clearfix">
                     <a v-for="(item,index) in houseResourceData" :key="index" >
                         <div class="imgbox">
-                            <router-link :to="{path:item.path,query: {id:item.id}}">
-                                <img :src="item.imgUrl" :alt="item.title" :title="item.title">
+                            <a  @click="goHouseResourceDetail(item.path,item.id)">
+                                <img :src="item.imgUrl" :alt="item.title" :title="item.title" v-if="item.img0">
+                                <img src="../../public/img/houseResoure1.jpg" alt="" v-else>
                                 <em class="video">video</em>                    
-                            </router-link>
+                            </a>
                         </div>
                         <div class="list-content fl">
                             <h1 class="h1-title">
-                                <a  href="javascript:;" :alt="item.title" :title="item.title">{{item.title}}</a>
+                                <a  href="javascript:;" :alt="item.title" :title="item.title">
+                                    {{`${item.qu}${item.yu} ${item.loupan}${item.mianji}平米 ${item.zhuangxiu} ${item.chaoxiang}`}}
+                                </a>
                             </h1>
                             <p class="p1">
                                 <a href="javascript:;">{{item.loupan}}</a>
                                     <i>/</i>
-                            <span class="SLHEMKsUVrdkTz">{{item.square}}</span>m²
-                                <i>/</i>{{item.style}}             
+                            <span class="SLHEMKsUVrdkTz">{{item.mianji}}</span>m²
+                                <i>/</i>{{item.zhuangxiu}}             
                             </p>
                             <p class="p1">
-                                <a href="javascript:;">{{item.qu}}</a>&nbsp;-&nbsp;
-                                <a href="javascript:;">
-                                    {{item.xian}}
-                                </a>
-                                <i>/</i>{{item.street}}                        
+                                <a href="javascript:;">{{item.quyu}}</a>
+                                <i>/</i>{{`${item.dong}${item.ceng}层${item.fanghao}`}}                    
                                 <i>/</i>{{item.jl}}                  
                             </p>
-                            <p class="p2">有{{item.renshu}}位用户正在浏览该写字楼房源</p>
+                            <p class="p2" v-if="item.renshu">有{{item.renshu}}位用户正在浏览该写字楼房源</p>
                             <div class="list-price">
-                                <p class="p1">   
+                                <p class="p1" v-if="item.yuan">   
                                     <i class="i1"><span class="SLHEMKsUVrdkTz">{{item.yuan}}</span></i>万元/月                                                                                        
                                 </p>
                                 <p class="p2">单价:<span class="SLHEMKsUVrdkTz">{{item.danjia}}</span>元/m²⋅月</p>
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="p-tag">
+                            <p class="p-tag" v-if="item.pTag && item.pTag.length > 0"> 
                                 <i class="offerTips" :style="{background:item.background,color:item.color}" v-for="(item,index) in item.pTag" :key="index">
                                     {{item.text}} 
                                 </i>
@@ -75,9 +75,9 @@ export default {
         }
     },
     methods:{
-        goOfficeDetail(id){
+        goHouseResourceDetail(path,id){
             console.log(id)
-            this.$router.push()
+            this.$router.push({path:path,query: {id:id}})
         }
     },
 
